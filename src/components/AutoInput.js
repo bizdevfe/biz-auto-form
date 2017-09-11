@@ -25,22 +25,23 @@ class AutoInput extends React.Component {
 
     render() {
         const {title, value, disabled, limiter, canBeNull, currentLen} = this.state;
-        let limterText = limiter - currentLen;
+        const limterText = limiter - currentLen;
         let limterTpl = (
             <span className="gray">
-                        <label className="limter">{limterText}</label>
-                        字节
-                    </span>
-        );
-        if (limterText < 0) {
-            limterText = -limterText;
-            limterTpl = (
-                <span className="red">超出
-                    <label className="limter">{limterText}</label>
+                <label className="limter">{limterText}</label>
                     字节
                 </span>
-            )
+        );
+        if (limterText<0) {
+            limterTpl = (
+                <span className="red">
+                    超出
+                    <label className="limter">{-limterText}</label>
+                    字节
+                </span>
+            );
         }
+
         let errorTpl = (<span></span>);
         return (
             <div>
