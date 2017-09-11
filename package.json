@@ -1,0 +1,24 @@
+{
+  "name": "biz-auto-form",
+  "version": "1.0.0",
+  "description": "some components for auto-generated in ad systems",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/galaxy-fe/biz-auto-form.git"
+  },
+  "keywords": [
+    "react",
+    "form",
+    "components"
+  ],
+  "author": "KCFE",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/galaxy-fe/biz-auto-form/issues"
+  },
+  "homepage": "https://github.com/galaxy-fe/biz-auto-form#readme"
+}
