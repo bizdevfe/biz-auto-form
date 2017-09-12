@@ -1,10 +1,15 @@
-.form-title {
+.form-item {
+    margin: 10px 0;
+}
+.form-item>span {
+    line-height: 28px;
+}
+.form-item-title {
     float: left;
     width: 140px;
     text-align: right;
-    line-height: 28px;
 }
-.limter {
+.limiter {
     display: inline-block;
     padding: 5px 6px;
     font-size: 12px;
@@ -34,4 +39,13 @@
 .input[disabled] {
     background-color: #f1f1f1;
     color: #b6b6b6;
+}
+input[type="radio"] {
+    width: 17px;
+    height: 17px;
+    vertical-align: sub;
+    cursor: pointer;
+}
+input[type="radio"]+label {
+    cursor: pointer;
 }
