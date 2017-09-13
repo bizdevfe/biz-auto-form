@@ -83,10 +83,26 @@
         },
         {
           "title": "无",
-          "content": null,
-          "actived": true
+          "content": null
         }
       ]
+    },
+    {
+      "type": "uploader",
+      "title": "Logo",
+      "defaultValue": "",
+      "disabled": false,
+      "uploadRules": {
+        "action": "/mock/upload.json",
+        "data": {
+          "type": "suggestionImg"
+        },
+        "maxSize": 5,
+        "accept": ".png,.jpg"
+      },
+      "validateRules": {
+        "isRequired": true
+      }
     }
   ]
 }

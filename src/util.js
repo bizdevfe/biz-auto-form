@@ -1,4 +1,5 @@
 import Input from './components/Input/index';
+import Uploader from './components/Uploader/index';
 import RadioGroup from './components/RadioGroup/index';
 
 export default {
@@ -8,6 +9,9 @@ export default {
             switch (item.type) {
                 case 'input':
                     component = <Input key={`${index}-form-item`} {...item}/>;
+                    break;
+                case 'uploader':
+                    component = <Uploader key={`${index}-form-item`} {...item}/>;
                     break;
                 case 'radioGroup':
                     component = <RadioGroup key={`${index}-form-item`} {...item}/>;

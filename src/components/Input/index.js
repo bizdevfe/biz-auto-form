@@ -32,7 +32,7 @@ class Input extends React.Component {
                     {validateRules.isRequired ? <label className="red mr5">*</label> : '' }
                     <label>{title}:</label>
                 </span>
-                <div>
+                <span>
                     <input type="text"
                            value={value}
                            className="input mr5 ml5"
@@ -41,7 +41,7 @@ class Input extends React.Component {
                     />
                     {limiterRules ? <Limiter rules={limiterRules} currentvalue={value}/> : null}
                     {errorTpl}
-                </div>
+                </span>
             </div>
         );
     }

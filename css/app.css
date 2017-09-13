@@ -2,12 +2,19 @@
     margin: 10px 0;
 }
 .form-item>span {
+    display: inline-block;
     line-height: 28px;
 }
 .form-item-title {
     float: left;
     width: 140px;
     text-align: right;
+}
+.form-item-uploader button{
+    line-height: 23px;
+    border: 1px solid #93c0eb;
+    background-color: #fff;
+    border-radius: 2px;
 }
 .limiter {
     display: inline-block;

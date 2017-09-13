@@ -33,3 +33,6 @@ body {
 .red {
     color: #c00;
 }
+.cursor-pointer {
+    cursor: pointer;
+}
