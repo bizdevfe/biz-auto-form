@@ -1,4 +1,4 @@
-import Limiter from '../Limiter/Limiter';
+import Limiter from '../Limiter/index';
 class Input extends React.Component {
     constructor(props) {
         super(props);

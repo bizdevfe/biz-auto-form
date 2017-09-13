@@ -1,5 +1,4 @@
-import Input from '../Input/Input';
-
+import util from '../../util';
 class RadioGroup extends React.Component {
     constructor(props) {
         super(props);
@@ -52,18 +51,8 @@ class RadioGroup extends React.Component {
     getRadiosContentTpl = (activeIndex) => {
         const contentConfig = this.props.radios[activeIndex];
         let radiosContent = null;
-        if(contentConfig.content) {
-            radiosContent = contentConfig.content.map((config,index)=> {
-                let component = null;
-                switch (config.type) {
-                    case 'input':
-                        component = <Input key={`${index}-radio-content`} {...config}/>;
-                        break;
-                    default:
-                        break;
-                }
-                return component;
-            });
+        if(contentConfig.content) { //遍历radio内部的内容，和生成form逻辑一致
+            radiosContent = util.generateComponents(contentConfig.content);
         }
         return radiosContent;
     };

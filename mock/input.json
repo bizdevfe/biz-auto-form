@@ -1,0 +1,18 @@
+{
+  "form": [
+    {
+      "type": "input",
+      "title": "跳转URL",
+      "defaultValue": "http://",
+      "disabled": false,
+      "limiterRules": {
+        "type": "byte",
+        "min": 1,
+        "max": 20
+      },
+      "validateRules": {
+        "isRequired": true
+      }
+    }
+  ]
+}
