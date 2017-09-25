@@ -1,6 +1,6 @@
 import axios from 'axios';
 import util from '../util';
-
+const types = ['form','input','uploader','radioGroup'];
 class App extends React.Component {
     constructor(props) {
         super(props);
@@ -30,10 +30,9 @@ class App extends React.Component {
 
     menuTpl = (
         <ul>
-            <li><a href="javascript:void(0);" type="form" onClick={this.changeComponent}>form</a></li>
-            <li><a href="javascript:void(0);" type="input" onClick={this.changeComponent}>input</a></li>
-            <li><a href="javascript:void(0);" type="uploader" onClick={this.changeComponent}>uploader</a></li>
-            <li><a href="javascript:void(0);" type="radioGroup" onClick={this.changeComponent}>radioGroup</a></li>
+            {types.map((type)=>{
+                return <li><a href="javascript:void(0);" type={type} onClick={this.changeComponent}>{type}</a></li>
+            })}
         </ul>
     );
 
