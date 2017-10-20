@@ -2,45 +2,37 @@ const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
-    entry: {
-        app: './src/index.js',
-        vendor: ['react', 'react-dom', 'react-router']
-    },
-    output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: '[name].js',
-        chunkFilename: '[name].js',
-        publicPath: '/dist/'
-    },
-    module: {
-        rules: [{
-            test: /\.js$/,
-            exclude: /node_modules/,
-            loader: 'babel-loader'
-        }]
-    },
-    plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: ['vendor', 'manifest']
-        }),
-        new webpack.ProvidePlugin({
-            React: 'react'
-        })
-    ],
-    devtool: 'source-map',
-    devServer: {
-        host: '0.0.0.0',
-        port: 5000,
-        inline: true,
-        hot: true,
-        historyApiFallback: true,
-        proxy: {
-            '/mock': {
-                bypass: function (req) {
-                    req.method = 'GET';
-                }
-            }
-        }
-    }
+  entry: {
+    app: path.join(__dirname, 'demos', 'index.js'),
+  },
+  output: {
+    filename: 'bundle.js'
+  },
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader'
+      },
+      {
+        test: /\.less/,
+        use: [
+          {loader: "style-loader"},
+          {loader: "css-loader"},
+          {loader: "less-loader"}
+        ]
+      }
+    ]
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ],
+  devtool: 'source-map',
+  devServer: {
+    contentBase: path.join(__dirname, 'demos'),
+    host: '0.0.0.0',
+    inline: true,
+    hot: true,
+  }
 };

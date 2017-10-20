@@ -16,20 +16,7 @@
     background-color: #fff;
     border-radius: 2px;
 }
-.limiter {
-    display: inline-block;
-    padding: 5px 6px;
-    font-size: 12px;
-    line-height: 14px;
-    width: 28px;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: baseline;
-    background-color: #F0F0F0;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-}
+
 .input {
     display: inline-block;
     border:1px solid #e2e2e2;
