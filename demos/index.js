@@ -4,7 +4,10 @@ import InputTest from './input/test';
 import TitleTest from './input/TitleTest';
 import TextareaTest from './textarea/test';
 import DescTest from './textarea/DescTest';
+
+import '../src/components/ImageInput';
 import '../src/styles/form.less';
+import ImageInput from "../src/components/ImageInput";
 
 const app = (
   <div>
@@ -43,6 +46,22 @@ const app = (
         <DescTest />
       </div>
     </div>
+
+      <div className="form-item">
+        <label className="item-title">
+          <em className="red-star">*</em>图片：
+        </label>
+        <div className="item-con">
+          <ImageInput
+            value='http://xx.png'
+            uploadRules={{
+              size: 20,
+              exts: 'png',
+              key: '200x100'
+            }}
+          />
+        </div>
+      </div>
   </div>
 );
 

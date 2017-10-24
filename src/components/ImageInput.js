@@ -5,6 +5,7 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
+import Upload from 'rc-upload';
 import Input from './Input';
 
 import '../styles/button.less';
@@ -20,8 +21,8 @@ class ImageInput extends React.Component {
       },
       beforeUpload(file) {
         console.log(file.type);
-        const maxSizeKB = uploadRules.maxSize*1024;
-        if(file.size>maxSizeKB) {
+        const maxSizeKB = uploadRules.size * 1024;
+        if(file.size > maxSizeKB) {
           alert(`图片超过${uploadRules.maxSize}KB`);
           return false;
         }
@@ -61,24 +62,22 @@ class ImageInput extends React.Component {
   };
 
   render() {
-    const {limiter, disabled} = this.props;
     return (
       <div>
-        <Upload {...this.uploaderProps}>
+        <Upload
+          {...this.uploaderProps}
+          style={{outline: 'none', cursor: 'pointer'}}
+        >
           <Input
             value={this.state.value}
-            limiter={{
-              ...limiter,
-              filterSymbol: true
-            }}
-            disabled={disabled}
             onChange={this.handleChange}
-            inputRef={(input) => { this.inputElem = input; }}
+            disabled
           />
           <button
             className="btn"
-            onClick={this.insertRedWord}>
-            插入标红词
+            style={{marginLeft: 2}}
+          >
+            上传图片
           </button>
         </Upload>
       </div>
@@ -88,18 +87,13 @@ class ImageInput extends React.Component {
 
 ImageInput.propTypes = {
   value: PropTypes.string,
-  limiter: PropTypes.shape({
-    type: PropTypes.string,
-    max: PropTypes.number,
-    filterSymbol: PropTypes.bool
-  }),
   rules: PropTypes.object,
   disabled: PropTypes.bool,
   onChange: PropTypes.func
 };
 
 ImageInput.defaultProps = {
-  disabled: false
+
 };
 
 export default ImageInput;
