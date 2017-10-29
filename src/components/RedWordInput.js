@@ -50,6 +50,10 @@ class RedWordInput extends React.Component {
       elem.blur();
       elem.focus();
     });
+    const {onChange} = this.props;
+    if (onChange) {
+      onChange(newStr);
+    }
   };
 
   render() {
@@ -69,6 +73,7 @@ class RedWordInput extends React.Component {
           />
         </div>
         <button
+          type="button"
           className="btn"
           onClick={this.insertRedWord}>
           插入标红词
@@ -85,7 +90,6 @@ RedWordInput.propTypes = {
     max: PropTypes.number,
     filterSymbol: PropTypes.bool
   }),
-  rules: PropTypes.object,
   disabled: PropTypes.bool,
   onChange: PropTypes.func
 };

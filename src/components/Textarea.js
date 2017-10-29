@@ -69,7 +69,6 @@ Textarea.propTypes = {
     max: PropTypes.number,
     filterSymbol: PropTypes.bool
   }),
-  rules: PropTypes.object,
   disabled: PropTypes.bool,
   textRef: PropTypes.func,
   onChange: PropTypes.func

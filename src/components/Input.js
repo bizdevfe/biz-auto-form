@@ -69,7 +69,6 @@ Input.propTypes = {
     max: PropTypes.number,
     filterSymbol: PropTypes.bool
   }),
-  rules: PropTypes.object,
   disabled: PropTypes.bool,
   inputRef: PropTypes.func,
   onChange: PropTypes.func

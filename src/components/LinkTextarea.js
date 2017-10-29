@@ -54,6 +54,10 @@ class LinkTextarea extends React.Component {
       elem.blur();
       elem.focus();
     });
+    const {onChange} = this.props;
+    if (onChange) {
+      onChange(newStr);
+    }
   };
 
   render() {
@@ -73,6 +77,7 @@ class LinkTextarea extends React.Component {
           />
         </div>
         <button
+          type="button"
           className="btn"
           onClick={this.insertLink}>
           插入链接
@@ -89,7 +94,6 @@ LinkTextarea.propTypes = {
     max: PropTypes.number,
     filterSymbol: PropTypes.bool
   }),
-  rules: PropTypes.object,
   disabled: PropTypes.bool,
   onChange: PropTypes.func
 };

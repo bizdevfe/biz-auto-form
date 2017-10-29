@@ -5,64 +5,75 @@ import TitleTest from './input/TitleTest';
 import TextareaTest from './textarea/test';
 import DescTest from './textarea/DescTest';
 
-import '../src/components/ImageInput';
-import '../src/styles/form.less';
-import ImageInput from "../src/components/ImageInput";
+import RedWordInput from '../src/components/RedWordInput';
+import Input from '../src/components/Input';
+import Textarea from '../src/components/Textarea';
+import LinkTextarea from '../src/components/LinkTextarea';
+import ImageInput from '../src/components/ImageInput';
+import Form from '../src/components/Form';
+import FormItem from '../src/components/FormItem';
 
 const app = (
-  <div>
-    <div className="form-item">
-      <label className="item-title">
-        <em className="red-star">*</em>标题：
-      </label>
-      <div className="item-con">
-        <TitleTest />
-      </div>
-    </div>
+  <Form onSubmit={(values) => {console.log(values);}}>
+    <FormItem
+      name="title"
+      label="标题"
+      tip="标题中可以插入标红词"
+    >
+      <RedWordInput
+        limiter={{
+          max: 24
+        }}
+      />
+    </FormItem>
 
-    <div className="form-item">
-      <label className="item-title">
-        <em className="red-star">*</em>链接：
-      </label>
-      <div className="item-con">
-        <InputTest />
-      </div>
-    </div>
+    <FormItem
+      name="link"
+      label="链接"
+    >
+      <Input
+        limiter={{
+          max: 512
+        }}
+      />
+    </FormItem>
 
-    <div className="form-item">
-      <label className="item-title">
-        <em className="red-star">*</em>描述：
-      </label>
-      <div className="item-con">
-        <TextareaTest />
-      </div>
-    </div>
+    <FormItem
+      name="description"
+      label="描述"
+    >
+      <Textarea
+        limiter={{
+          max: 24
+        }}
+      />
+    </FormItem>
 
-    <div className="form-item">
-      <label className="item-title">
-        <em className="red-star">*</em>描述1：
-      </label>
-      <div className="item-con">
-        <DescTest />
-      </div>
-    </div>
+    <FormItem
+      name="descriptionLink"
+      label="子链描述"
+    >
+      <LinkTextarea
+        limiter={{
+          max: 50
+        }}
+      />
+    </FormItem>
 
-      <div className="form-item">
-        <label className="item-title">
-          <em className="red-star">*</em>图片：
-        </label>
-        <div className="item-con">
-          <ImageInput
-            value='http://xx.png'
-            uploadRules={{
-              size: 20,
-              exts: 'png',
-              key: '200x100'
-            }}
-          />
-        </div>
-      </div>
-  </div>
+    <FormItem
+      name="image"
+      label="图片"
+    >
+      <ImageInput
+        value="http://"
+        uploadRules={{
+          size: 20,
+          types: ['png'],
+          key: '200x100'
+        }}
+      />
+    </FormItem>
+  </Form>
 );
 
 ReactDom.render(

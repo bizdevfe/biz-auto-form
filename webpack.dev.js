@@ -34,5 +34,16 @@ module.exports = {
     host: '0.0.0.0',
     inline: true,
     hot: true,
+    proxy: {
+      '*.do': {
+        bypass: function (req, res, proxyOptions) {
+          console.log(req.url);
+          if (req.url.indexOf('.do') !== -1) {
+            req.method = 'GET';
+            return '/mock' + req.url.replace('.do', '.json');
+          }
+        }
+      }
+    }
   }
 };

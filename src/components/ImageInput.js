@@ -10,32 +10,52 @@ import Input from './Input';
 
 import '../styles/button.less';
 
+const imageTypes = {
+  'png': 'image/png',
+  'jpg': 'image/jpeg',
+  'gif': 'image/gif'
+};
+
 class ImageInput extends React.Component {
   constructor(props) {
     super(props);
     const {uploadRules} = props;
+    const self = this;
     this.uploaderProps = {
       action: '/upload.do',
       data: {
         key: uploadRules.key
       },
       beforeUpload(file) {
-        console.log(file.type);
-        const maxSizeKB = uploadRules.size * 1024;
-        if(file.size > maxSizeKB) {
-          alert(`图片超过${uploadRules.maxSize}KB`);
+        if(uploadRules.types){
+          const types = uploadRules.types.map((type) => {
+            return imageTypes[type];
+          });
+          if(file.type.indexOf(types) == -1){
+            console.log('图片格式不符合');
+            return false;
+          }
+        }
+
+        if(file.size > uploadRules.size * 1024) {
+          alert('图片超过了限制大小');
           return false;
         }
       },
-      onSuccess(file) {
-        if(file.status) {
-          me.setState({
-            value: file.data
+      onSuccess(response) {
+        if(response.status == 1) {
+          self.setState({
+            value: response.data
           });
+          if (props.onChange) {
+            props.onChange(response.data);
+          }
+        } else {
+          alert('上传失败');
         }
       },
       onError(err) {
-        console.log('onError', err);
+        console.log('上传失败：', err.message);
       }
     };
     this.state = {
@@ -74,8 +94,9 @@ class ImageInput extends React.Component {
             disabled
           />
           <button
+            type="button"
             className="btn"
-            style={{marginLeft: 2}}
+            style={{marginLeft: 5}}
           >
             上传图片
           </button>
@@ -87,8 +108,6 @@ class ImageInput extends React.Component {
 
 ImageInput.propTypes = {
   value: PropTypes.string,
-  rules: PropTypes.object,
-  disabled: PropTypes.bool,
   onChange: PropTypes.func
 };
 
