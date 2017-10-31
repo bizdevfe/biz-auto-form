@@ -17,10 +17,17 @@ class LinkTextarea extends React.Component {
     };
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.props.value === nextProps.value) {
+      return false;
+    }
+    return true;
+  }
+
   componentWillReceiveProps(nextProps) {
     if ('value' in nextProps) {
       this.setState({
-        value: nextProps.value
+        value: nextProps.value || ''
       });
     }
   }

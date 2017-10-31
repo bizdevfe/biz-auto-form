@@ -12,6 +12,7 @@ import LinkTextarea from '../src/components/LinkTextarea';
 import ImageInput from '../src/components/ImageInput';
 import Form from '../src/components/Form';
 import FormItem from '../src/components/FormItem';
+import ValidateRules from '../src/components/ValidateRules';
 
 const app = (
   <Form onSubmit={(values) => {console.log(values);}}>
@@ -19,6 +20,9 @@ const app = (
       name="title"
       label="标题"
       tip="标题中可以插入标红词"
+      rules={[
+        ValidateRules.required
+      ]}
     >
       <RedWordInput
         limiter={{
@@ -30,6 +34,10 @@ const app = (
     <FormItem
       name="link"
       label="链接"
+      defaultValue="http://"
+      rules={[
+        ValidateRules.url
+      ]}
     >
       <Input
         limiter={{
@@ -41,6 +49,9 @@ const app = (
     <FormItem
       name="description"
       label="描述"
+      rules={[
+        ValidateRules.required
+      ]}
     >
       <Textarea
         limiter={{
@@ -52,6 +63,9 @@ const app = (
     <FormItem
       name="descriptionLink"
       label="子链描述"
+      rules={[
+        ValidateRules.required
+      ]}
     >
       <LinkTextarea
         limiter={{
@@ -63,9 +77,11 @@ const app = (
     <FormItem
       name="image"
       label="图片"
+      rules={[
+        {required: true, message: '请上传图片'}
+      ]}
     >
       <ImageInput
-        value="http://"
         uploadRules={{
           size: 20,
           types: ['png'],

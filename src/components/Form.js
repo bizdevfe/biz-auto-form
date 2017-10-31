@@ -7,41 +7,61 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import '../styles/form.less';
+import FormItem from "./FormItem";
 
 class Form extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      data: props.data || {}
-    };
+    this.items = {};
   }
 
   handleSubmit = (event) => {
     event && event.preventDefault();
+    if( !this.validate() ){
+      return;
+    }
     if(this.props.onSubmit){
-      console.log(this.state.data);
-      this.props.onSubmit(this.state.data);
+      const values = this.getValues();
+      this.props.onSubmit(values);
     }
   };
 
-  handleChange = (name, value) => {
-    const data = Object.assign({}, this.state.data, {[name]: value});
-    this.setState({ data });
+  getValues = () => {
+    const values = {};
+    Object.keys(this.items).forEach((key) => {
+      const value = this.items[key].getValue();
+      if(value){
+        Object.assign(values, {[key]: value});
+      }
+    });
+    return values;
+  };
+
+  validate = () => {
+    return Object.keys(this.items).reduce((suc, key) => {
+      const valid = this.items[key].validate();
+      return suc && valid;
+    }, true);
   };
 
   render() {
-    const children = React.Children.map(this.props.children, (child) => {
-      const value = child.props.value || this.state.data[child.props.name];
-      return React.cloneElement(child, {
-        value,
-        onChange: this.handleChange
-      });
+    const formData = this.props.data || {};
+    const formItems = React.Children.map(this.props.children, (child) => {
+      if(child.type === FormItem){
+        const value = formData[child.props.name];
+        return React.cloneElement(child, {
+          value,
+          ref: (item) => {this.items[child.props.name] = item;}
+        });
+      } else {
+        return child;
+      }
     });
     return (
       <form
         onSubmit={this.handleSubmit}
       >
-        {children}
+        {formItems}
         <div className="form-item">
           <label className="item-title">
           </label>

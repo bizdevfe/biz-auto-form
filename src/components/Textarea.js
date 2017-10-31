@@ -17,10 +17,17 @@ class Textarea extends React.Component {
     };
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.props.value === nextProps.value) {
+      return false;
+    }
+    return true;
+  }
+
   componentWillReceiveProps(nextProps) {
     if ('value' in nextProps) {
       this.setState({
-        value: nextProps.value
+        value: nextProps.value || ''
       });
     }
   }
@@ -53,7 +60,7 @@ class Textarea extends React.Component {
             type={limiter.type || 'byte'}
             max={limiter.max}
             filterSymbol={limiter.filterSymbol}
-            inputValue={this.state.value}
+            inputValue={this.state.value || ''}
           />
           : null
         }

@@ -41,7 +41,7 @@ class Limiter extends React.Component {
 }
 
 Limiter.propTypes = {
-  type: PropTypes.string,
+  type: PropTypes.oneOf(['char', 'byte']),
   filterSymbol: PropTypes.bool,
   max: PropTypes.number.isRequired,
   inputValue: PropTypes.string.isRequired

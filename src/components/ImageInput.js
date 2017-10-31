@@ -44,12 +44,7 @@ class ImageInput extends React.Component {
       },
       onSuccess(response) {
         if(response.status == 1) {
-          self.setState({
-            value: response.data
-          });
-          if (props.onChange) {
-            props.onChange(response.data);
-          }
+          self.handleChange(response.data);
         } else {
           alert('上传失败');
         }
@@ -63,10 +58,17 @@ class ImageInput extends React.Component {
     };
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.props.value === nextProps.value) {
+      return false;
+    }
+    return true;
+  }
+
   componentWillReceiveProps(nextProps) {
     if ('value' in nextProps) {
       this.setState({
-        value: nextProps.value
+        value: nextProps.value || ''
       });
     }
   }
