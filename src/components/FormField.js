@@ -1,7 +1,7 @@
 /**
  * author: KCFE
  * date: 2017/10/12
- * description: 表单项
+ * description: 表单单项
  */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -9,7 +9,7 @@ import Validator from 'async-validator';
 
 import '../styles/form.less';
 
-class FormItem extends React.Component {
+class FormField extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,10 +17,10 @@ class FormItem extends React.Component {
       errors: null
     };
     if(props.rules) {
-      const descriptor = {
+      const rulesDescriptor = {
         [props.name]: props.rules
       };
-      this.validator = new Validator(descriptor);
+      this.validator = new Validator(rulesDescriptor);
     }
   }
 
@@ -70,7 +70,7 @@ class FormItem extends React.Component {
         </label>
         <div className="item-con">
           {children}
-          {this.props.tip && <p className="form-item-tips">{this.props.tip}</p>}
+          {this.props.tips && <p className="form-item-tips">{this.props.tips}</p>}
           {this.state.errors && <p className="form-validator-error">{this.state.errors[0].message}</p>}
         </div>
       </div>
@@ -78,11 +78,11 @@ class FormItem extends React.Component {
   }
 }
 
-FormItem.propTypes = {
+FormField.propTypes = {
   children: PropTypes.element,
   label: PropTypes.string,
   name: PropTypes.string.isRequired,
-  tip: PropTypes.string,
+  tips: PropTypes.string,
   value: PropTypes.any,
   defaultValue: PropTypes.any,
   required: PropTypes.bool,
@@ -93,8 +93,8 @@ FormItem.propTypes = {
   onChange: PropTypes.func
 };
 
-FormItem.defaultProps = {
+FormField.defaultProps = {
   required: true
 };
 
-export default FormItem;
+export default FormField;

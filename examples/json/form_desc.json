@@ -1,0 +1,45 @@
+[
+  {
+    "name": "title",
+    "control": "RedWordInput",
+    "label": "标题",
+    "defaultValue": "{哈哈哈}我是标题",
+    "limiter": {"max": 24},
+    "rules": {"required": true, "maxBytes":24s}
+  },
+  {
+    "name": "link",
+    "control": "Input",
+    "label": "链接",
+    "defaultValue": "http://",
+    "limiter": {"max": 512},
+    "rules": {"url": true}
+  },
+  {
+    "name": "description",
+    "control": "Textarea",
+    "label": "描述",
+    "limiter": {"max": 80},
+    "rules": {"required": true}
+  },
+  {
+    "name": "descriptionLink",
+    "control": "LinkTextarea",
+    "label": "子链描述",
+    "limiter": {"max": 80},
+    "rules": {"required": true}
+  },
+  {
+    "name": "image",
+    "control": "ImageInput",
+    "label": "图片",
+    "rules": [
+      {"required": true, "message": "请上传图片"}
+    ],
+    "uploadRules": {
+      "size": 20,
+      "types": ["png"],
+      "key": "200x100"
+    }
+  }
+]

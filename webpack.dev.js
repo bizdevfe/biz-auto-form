@@ -3,7 +3,7 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    app: path.join(__dirname, 'demos', 'index.js'),
+    app: path.join(__dirname, 'examples', 'index.js'),
   },
   output: {
     filename: 'bundle.js'
@@ -30,10 +30,11 @@ module.exports = {
   ],
   devtool: 'source-map',
   devServer: {
-    contentBase: path.join(__dirname, 'demos'),
+    contentBase: path.join(__dirname, 'examples'),
     host: '0.0.0.0',
     inline: true,
     hot: true,
+    historyApiFallback: true,
     proxy: {
       '*.do': {
         bypass: function (req, res, proxyOptions) {

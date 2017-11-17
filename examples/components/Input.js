@@ -20,6 +20,7 @@ class InputTest extends React.Component {
       <Input
         value={this.state.value}
         limiter={{
+          type: 'byte',
           max: 512
         }}
         onChange={this.handleChange}

@@ -1,11 +1,11 @@
 import React from 'react';
-import LinkTextarea from '../../src/components/LinkTextarea';
+import ImageInput from '../../src/components/ImageInput';
 
-class InputTest extends React.Component {
+class ImageInputTest extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: ''
+      value: 'http://xx.png'
     }
   }
 
@@ -17,10 +17,12 @@ class InputTest extends React.Component {
 
   render() {
     return (
-      <LinkTextarea
+      <ImageInput
         value={this.state.value}
-        limiter={{
-          max: 50
+        uploadRules={{
+          size: 20,
+          types: ['png'],
+          key: '200x100'
         }}
         onChange={this.handleChange}
       />
@@ -28,4 +30,4 @@ class InputTest extends React.Component {
   }
 }
 
-export default InputTest;
+export default ImageInputTest;

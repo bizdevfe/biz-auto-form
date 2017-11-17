@@ -7,7 +7,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import '../styles/form.less';
-import FormItem from "./FormItem";
 
 class Form extends React.Component {
   constructor(props) {
@@ -47,15 +46,11 @@ class Form extends React.Component {
   render() {
     const formData = this.props.data || {};
     const formItems = React.Children.map(this.props.children, (child) => {
-      if(child.type === FormItem){
-        const value = formData[child.props.name];
-        return React.cloneElement(child, {
-          value,
-          ref: (item) => {this.items[child.props.name] = item;}
-        });
-      } else {
-        return child;
-      }
+      const value = formData[child.props.name];
+      return React.cloneElement(child, {
+        value,
+        ref: (item) => {this.items[child.props.name] = item;}
+      });
     });
     return (
       <form

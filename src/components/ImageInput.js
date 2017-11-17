@@ -110,6 +110,11 @@ class ImageInput extends React.Component {
 
 ImageInput.propTypes = {
   value: PropTypes.string,
+  uploadRules: PropTypes.shape({
+    size: PropTypes.number,
+    types: PropTypes.array,
+    key: PropTypes.string
+  }),
   onChange: PropTypes.func
 };
 
