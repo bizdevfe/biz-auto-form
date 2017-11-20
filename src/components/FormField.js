@@ -25,7 +25,7 @@ class FormField extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if ('value' in nextProps) {
+    if (nextProps.value !== undefined && nextProps.value !== null) {
       this.setState({
         value: nextProps.value
       });

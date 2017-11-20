@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 
 import Form from './Form';
 import FormField from './FormField';
+import FieldGroupList from './FieldGroupList';
 import ValidateRules from './ValidateRules';
 
 import RedWordInput from './RedWordInput';
@@ -19,10 +20,9 @@ import ImageInput from './ImageInput';
 class AutoForm extends React.Component {
   constructor(props) {
     super(props);
-    this.items = {};
   }
 
-  switchItem = (item) => {
+  switchFieldControl = (item) => {
     const control = item.control;
     switch (control) {
       case 'RedWordInput':
@@ -52,26 +52,40 @@ class AutoForm extends React.Component {
       if(arg === true){
         return ValidateRules[key];
       }
-      return ValidateRules[key].apply(arg);
+      return ValidateRules[key](arg);
     });
   };
 
-  render() {
-    const formItems = this.props.descriptor.map((item, index) => {
-      const validateRules = this.getValidateRules(item.rules);
-      return (
-        <FormField
-          key={index}
-          name={item.name}
-          label={item.label}
-          rules={validateRules}
-          defaultValue={item.defaultValue}
-          tips={item.tips}
-        >
-          {this.switchItem(item)}
-        </FormField>
-      );
+  getFormFields = (descriptor) => {
+    const fields = descriptor.map((item, index) => {
+      if(item.control == 'FieldGroupList'){
+        const fieldGroup = this.getFormFields(item.content);
+        return (
+          <FieldGroupList key={index} name={item.name} length={item.length}>
+            {fieldGroup}
+          </FieldGroupList>
+        );
+      } else {
+        const validateRules = this.getValidateRules(item.rules);
+        return (
+          <FormField
+            key={index}
+            name={item.name}
+            label={item.label}
+            rules={validateRules}
+            defaultValue={item.defaultValue}
+            tips={item.tips}
+          >
+            {this.switchFieldControl(item)}
+          </FormField>
+        );
+      }
     });
+    return fields;
+  };
+
+  render() {
+    const formItems = this.getFormFields(this.props.descriptor);
     return (
       <Form
         data={this.props.data}

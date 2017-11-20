@@ -10,6 +10,7 @@ const checkMaxBytes = (rule, value, callback) => {
 
 const validateRules = {
   required: {required: true, whitespace: true, message: '请填写该必填项'},
+  imageRequired: {required: true, message: '请上传图片'},
   url: {type: 'url', message: '请输入有效的url'},
   email: {type: 'email', message: '请输入有效的email地址'},
   date: {type: 'date', message: '请输入有效的日期'},

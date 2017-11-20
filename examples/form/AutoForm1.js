@@ -1,7 +1,7 @@
 import React from 'react';
 import AutoForm from '../../src/components/AutoForm';
 
-import descriptor from '../json/form_desc.json';
+import descriptor from '../json/list_form.json';
 
 class AutoFormTest extends React.Component {
   constructor(props) {

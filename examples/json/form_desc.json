@@ -5,7 +5,7 @@
     "label": "标题",
     "defaultValue": "{哈哈哈}我是标题",
     "limiter": {"max": 24},
-    "rules": {"required": true, "maxBytes":24s}
+    "rules": {"required": true, "maxBytes":24}
   },
   {
     "name": "link",
