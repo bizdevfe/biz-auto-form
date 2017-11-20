@@ -79,7 +79,7 @@ class FormTest extends React.Component {
           />
         </FormField>
 
-        <FieldGroupList name="bigImageList" length={3}>
+        <FieldGroupList name="bigImageList" length={[3,4]}>
           <FormField name="link" label="链接" defaultValue="http://" rules={[ValidateRules.url]}>
             <Input limiter={{max: 512}} />
           </FormField>

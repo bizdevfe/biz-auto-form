@@ -1,0 +1,91 @@
+[
+  {
+    "name": "bigImageList",
+    "control": "FieldGroupList",
+    "length": [1,2,3,4],
+    "content": [
+      {
+        "name": "image",
+        "control": "ImageInput",
+        "label": "大图",
+        "rules": {"imageRequired": true},
+        "uploadRules": {
+          "size": 100,
+          "types": ["png"],
+          "key": "750x320"
+        }
+      },
+      {
+        "name": "link",
+        "control": "Input",
+        "label": "大图链接",
+        "defaultValue": "http://",
+        "limiter": {"max": 512},
+        "rules": {"required": true, "url": true}
+      }
+    ]
+  },
+  {
+    "name": "smallImageList",
+    "control": "FieldGroupList",
+    "length": 4,
+    "content": [
+      {
+        "name": "image",
+        "control": "ImageInput",
+        "label": "小图",
+        "rules": {"imageRequired": true},
+        "uploadRules": {
+          "size": 50,
+          "types": ["png"],
+          "key": "240x240"
+        }
+      },
+      {
+        "name": "text",
+        "control": "Input",
+        "label": "小图文字",
+        "limiter": {"max": 8},
+        "rules": {"required": true, "maxBytes": 8}
+      },
+      {
+        "name": "link",
+        "control": "Input",
+        "label": "小图链接",
+        "defaultValue": "http://",
+        "limiter": {"max": 512},
+        "rules": {"required": true, "url": true}
+      }
+    ]
+  },
+  {
+    "name": "buttonText",
+    "control": "Input",
+    "label": "按钮文字",
+    "limiter": {"max": 14},
+    "rules": {"required": true, "maxBytes": 14}
+  },
+  {
+    "name": "buttonLink",
+    "control": "Input",
+    "label": "按钮链接",
+    "defaultValue": "http://",
+    "limiter": {"max": 512},
+    "rules": {"required": true, "url": true}
+  },
+  {
+    "name": "brandText",
+    "control": "Input",
+    "label": "品牌文字",
+    "limiter": {"max": 12},
+    "rules": {"required": true, "maxBytes": 12}
+  },
+  {
+    "name": "brandLink",
+    "control": "Input",
+    "label": "品牌链接",
+    "defaultValue": "http://",
+    "limiter": {"max": 512},
+    "rules": {"required": true, "url": true}
+  }
+]
