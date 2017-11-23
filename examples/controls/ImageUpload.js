@@ -1,11 +1,11 @@
 import React from 'react';
-import Textarea from '../../src/components/Textarea';
+import ImageUpload from '../../src/components/controls/ImageUpload';
 
-class TextareaTest extends React.Component {
+class ImageUploadTest extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 'test'
+      value: 'http://xx.png'
     }
   }
 
@@ -17,10 +17,12 @@ class TextareaTest extends React.Component {
 
   render() {
     return (
-      <Textarea
+      <ImageUpload
         value={this.state.value}
-        limiter={{
-          max: 24
+        uploadRules={{
+          size: 20,
+          types: ['png'],
+          key: '200x100'
         }}
         onChange={this.handleChange}
       />
@@ -28,4 +30,4 @@ class TextareaTest extends React.Component {
   }
 }
 
-export default TextareaTest;
+export default ImageUploadTest;

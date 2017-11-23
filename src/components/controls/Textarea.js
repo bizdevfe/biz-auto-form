@@ -1,15 +1,15 @@
 /**
  * author: KCFE
  * date: 2017/10/12
- * description: 文本输入
+ * description: 区块文本输入
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Limiter from './Limiter';
+import Limiter from '../common/Limiter';
 
-import '../styles/radio.less';
+import '../../styles/textarea.less';
 
-class Radio extends React.Component {
+class Textarea extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -44,19 +44,19 @@ class Radio extends React.Component {
   };
 
   render() {
-    const {limiter, disabled, inputRef} = this.props;
+    const {limiter, disabled, textRef} = this.props;
     return (
       <span>
-        <input
-          type="text"
-          className="input"
+        <textarea
+          className="textarea"
           value={this.state.value}
           onChange={this.handleChange}
           disabled={disabled}
-          ref={inputRef}
+          ref={textRef}
         />
         {limiter ?
           <Limiter
+            style={{verticalAlign: 'top'}}
             type={limiter.type || 'byte'}
             max={limiter.max}
             filterSymbol={limiter.filterSymbol}
@@ -69,7 +69,7 @@ class Radio extends React.Component {
   }
 }
 
-Radio.propTypes = {
+Textarea.propTypes = {
   value: PropTypes.string,
   limiter: PropTypes.shape({
     type: PropTypes.string,
@@ -77,12 +77,12 @@ Radio.propTypes = {
     filterSymbol: PropTypes.bool
   }),
   disabled: PropTypes.bool,
-  inputRef: PropTypes.func,
+  textRef: PropTypes.func,
   onChange: PropTypes.func
 };
 
-Radio.defaultProps = {
+Textarea.defaultProps = {
   disabled: false
 };
 
-export default Radio;
+export default Textarea;

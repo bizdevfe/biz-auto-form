@@ -7,7 +7,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {getStrBytes, trim, filterSymbol} from './Util';
 
-import '../styles/limiter.less';
+import '../../styles/limiter.less';
 
 class Limiter extends React.Component {
   constructor(props) {

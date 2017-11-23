@@ -1,15 +1,15 @@
 /**
  * author: KCFE
  * date: 2017/10/12
- * description: 带插入标红词功能的 输入框
+ * description: 带插入链接的区块文本输入
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Input from './Input';
+import Textarea from './Textarea';
 
-import '../styles/button.less';
+import '../../styles/button.less';
 
-class RedWordInput extends React.Component {
+class LinkTextarea extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -42,18 +42,22 @@ class RedWordInput extends React.Component {
     }
   };
 
-  insertRedWord = () => {
-    const elem = this.inputElem;
+  insertLink = () => {
+    const link = prompt('请输入超链接','http://');
+    if(!link){
+      return;
+    }
+    const elem = this.textareaElem;
     const str = elem.value;
     const strBefore = str.substring(0, elem.selectionStart);
     const strAfter = str.substring(elem.selectionEnd);
     const selectedStr = str.substring(elem.selectionStart, elem.selectionEnd);
-    const word = selectedStr ? selectedStr : '标红词';
-    const newStr = strBefore + '{' + word + '}' + strAfter;
+    const word = selectedStr ? selectedStr : '链接词';
+    const newStr = strBefore + '{' + word + '||'+ link + '}' + strAfter;
 
     this.setState({value: newStr}, () => {
       elem.selectionStart = newStr.indexOf('{') + 1;
-      elem.selectionEnd = newStr.indexOf('}');
+      elem.selectionEnd = newStr.indexOf('||');
       elem.blur();
       elem.focus();
     });
@@ -68,7 +72,7 @@ class RedWordInput extends React.Component {
     return (
       <div>
         <div>
-          <Input
+          <Textarea
             value={this.state.value}
             limiter={{
               ...limiter,
@@ -76,21 +80,21 @@ class RedWordInput extends React.Component {
             }}
             disabled={disabled}
             onChange={this.handleChange}
-            inputRef={(input) => { this.inputElem = input; }}
+            textRef={(textarea) => { this.textareaElem = textarea; }}
           />
         </div>
         <button
           type="button"
           className="btn"
-          onClick={this.insertRedWord}>
-          插入标红词
+          onClick={this.insertLink}>
+          插入链接
         </button>
       </div>
     );
   }
 }
 
-RedWordInput.propTypes = {
+LinkTextarea.propTypes = {
   value: PropTypes.string,
   limiter: PropTypes.shape({
     type: PropTypes.string,
@@ -101,8 +105,8 @@ RedWordInput.propTypes = {
   onChange: PropTypes.func
 };
 
-RedWordInput.defaultProps = {
+LinkTextarea.defaultProps = {
   disabled: false
 };
 
-export default RedWordInput;
+export default LinkTextarea;

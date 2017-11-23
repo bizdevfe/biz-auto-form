@@ -9,13 +9,14 @@ import PropTypes from 'prop-types';
 import Form from './Form';
 import FormField from './FormField';
 import FieldGroupList from './FieldGroupList';
-import ValidateRules from './ValidateRules';
+import ValidateRules from './common/ValidateRules';
 
-import RedWordInput from './RedWordInput';
-import Input from './Input';
-import Textarea from './Textarea';
-import LinkTextarea from './LinkTextarea';
-import ImageInput from './ImageInput';
+import RedWordInput from './controls/RedWordInput';
+import Input from './controls/Input';
+import Textarea from './controls/Textarea';
+import LinkTextarea from './controls/LinkTextarea';
+import ImageUpload from './controls/ImageUpload';
+import DateTimeInput from './controls/DateTimeInput';
 
 class AutoForm extends React.Component {
   constructor(props) {
@@ -37,8 +38,11 @@ class AutoForm extends React.Component {
       case 'LinkTextarea':
         return <LinkTextarea limiter={item.limiter} />;
         break;
-      case 'ImageInput':
-        return <ImageInput uploadRules={item.uploadRules} />;
+      case 'ImageUpload':
+        return <ImageUpload uploadRules={item.uploadRules} />;
+        break;
+      case 'DateTimeInput':
+        return <DateTimeInput />;
         break;
     }
   };

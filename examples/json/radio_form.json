@@ -1,0 +1,120 @@
+[
+  {
+    "name": "bgColor",
+    "control": "Radio",
+    "label": "背景色",
+    "defaultValue": "black",
+    "options": [
+      {"id": "black", "text": "黑色"},
+      {"id": "white", "text": "白色"}
+    ],
+    "rules": {"required": true}
+  },
+  {
+    "name": "image",
+    "control": "ImageUpload",
+    "label": "背景大图",
+    "rules": {"imageRequired": true},
+    "uploadRules": {
+      "size": 100,
+      "types": ["png"],
+      "key": "750x320"
+    }
+  },
+  {
+    "name": "imageLink",
+    "control": "Input",
+    "label": "大图链接",
+    "defaultValue": "http://",
+    "limiter": {"max": 512},
+    "rules": {"required": true, "url": true}
+  },
+  {
+    "name": "logo",
+    "control": "ImageUpload",
+    "label": "背景小图",
+    "rules": {"imageRequired": true},
+    "uploadRules": {
+      "size": 100,
+      "types": ["png"],
+      "key": "750x320"
+    }
+  },
+  {
+    "name": "logoLink",
+    "control": "Input",
+    "label": "大图链接",
+    "defaultValue": "http://",
+    "limiter": {"max": 512},
+    "rules": {"required": true, "url": true}
+  },
+  {
+    "name": "description",
+    "control": "Textarea",
+    "label": "描述",
+    "rules": {"required": true}
+  },
+  {
+    "name": "buttonText",
+    "control": "Input",
+    "label": "按钮文字",
+    "limiter": {"max": 14},
+    "rules": {"required": true, "maxBytes": 14}
+  },
+  {
+    "name": "buttonLink",
+    "control": "FieldGroupRadio",
+    "label": "按钮链接",
+    "content": [
+      {
+        "option": "官网链接",
+        "fields": [
+          {
+            "name": "webLink",
+            "control": "Input",
+            "label": "官网链接",
+            "defaultValue": "http://",
+            "limiter": {"max": 512},
+            "rules": {"required": true, "url": true}
+          }
+        ]
+      },
+      {
+        "option": "下载链接",
+        "fields": [
+          {
+            "name": "iosLink",
+            "control": "Input",
+            "label": "ios下载链接",
+            "defaultValue": "http://",
+            "limiter": {"max": 512},
+            "rules": {"required": true, "url": true}
+          },
+          {
+            "name": "androidLink",
+            "control": "Input",
+            "label": "android下载链接",
+            "defaultValue": "http://",
+            "limiter": {"max": 512},
+            "rules": {"required": true, "url": true}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "brandText",
+    "control": "Input",
+    "label": "品牌文字",
+    "limiter": {"max": 12},
+    "rules": {"required": true, "maxBytes": 12}
+  },
+  {
+    "name": "brandLink",
+    "control": "Input",
+    "label": "品牌链接",
+    "defaultValue": "http://",
+    "limiter": {"max": 512},
+    "rules": {"required": true, "url": true}
+  }
+]

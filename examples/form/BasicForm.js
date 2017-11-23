@@ -1,13 +1,14 @@
 import React from 'react';
-import Input from '../../src/components/Input';
-import RedWordInput from '../../src/components/RedWordInput';
-import Textarea from '../../src/components/Textarea';
-import LinkTextarea from '../../src/components/LinkTextarea';
-import ImageInput from '../../src/components/ImageInput';
+import Input from '../../src/components/controls/Input';
+import RedWordInput from '../../src/components/controls/RedWordInput';
+import Textarea from '../../src/components/controls/Textarea';
+import LinkTextarea from '../../src/components/controls/LinkTextarea';
+import ImageUpload from '../../src/components/controls/ImageUpload';
+import DateTimeInput from '../../src/components/controls/DateTimeInput';
 import FormField from '../../src/components/FormField';
 import FieldGroupList from '../../src/components/FieldGroupList';
 import Form from '../../src/components/Form';
-import ValidateRules from '../../src/components/ValidateRules';
+import ValidateRules from '../../src/components/common/ValidateRules';
 
 class FormTest extends React.Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class FormTest extends React.Component {
         <FormField
           name="title"
           label="标题"
-          tip="标题中可以插入标红词"
+          tips="标题中可以插入标红词"
           rules={[
             ValidateRules.required
           ]}
@@ -70,7 +71,7 @@ class FormTest extends React.Component {
             {required: true, message: '请上传图片'}
           ]}
         >
-          <ImageInput
+          <ImageUpload
             uploadRules={{
               size: 20,
               types: ['png'],
@@ -79,15 +80,15 @@ class FormTest extends React.Component {
           />
         </FormField>
 
-        <FieldGroupList name="bigImageList" length={[3,4]}>
-          <FormField name="link" label="链接" defaultValue="http://" rules={[ValidateRules.url]}>
-            <Input limiter={{max: 512}} />
-          </FormField>
-
-          <FormField name="text" label="文本" rules={[ValidateRules.required]}>
-            <Input limiter={{max: 20}} />
-          </FormField>
-        </FieldGroupList>
+        <FormField
+          name="date"
+          label="日期"
+          rules={[
+            ValidateRules.required
+          ]}
+        >
+          <DateTimeInput />
+        </FormField>
       </Form>
     );
   }

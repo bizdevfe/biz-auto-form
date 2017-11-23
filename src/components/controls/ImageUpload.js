@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import Upload from 'rc-upload';
 import Input from './Input';
 
-import '../styles/button.less';
+import '../../styles/button.less';
 
 const imageTypes = {
   'png': 'image/png',
@@ -16,7 +16,7 @@ const imageTypes = {
   'gif': 'image/gif'
 };
 
-class ImageInput extends React.Component {
+class ImageUpload extends React.Component {
   constructor(props) {
     super(props);
     const {uploadRules} = props;
@@ -31,7 +31,7 @@ class ImageInput extends React.Component {
           const types = uploadRules.types.map((type) => {
             return imageTypes[type];
           });
-          if(file.type.indexOf(types) == -1){
+          if(types.indexOf(file.type) == -1){
             console.log('图片格式不符合');
             return false;
           }
@@ -108,7 +108,7 @@ class ImageInput extends React.Component {
   }
 }
 
-ImageInput.propTypes = {
+ImageUpload.propTypes = {
   value: PropTypes.string,
   uploadRules: PropTypes.shape({
     size: PropTypes.number,
@@ -118,8 +118,8 @@ ImageInput.propTypes = {
   onChange: PropTypes.func
 };
 
-ImageInput.defaultProps = {
+ImageUpload.defaultProps = {
 
 };
 
-export default ImageInput;
+export default ImageUpload;

@@ -1,15 +1,15 @@
 /**
  * author: KCFE
  * date: 2017/10/12
- * description: 区块文本输入
+ * description: 文本输入
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Limiter from './Limiter';
+import Limiter from '../common/Limiter';
 
-import '../styles/textarea.less';
+import '../../styles/input.less';
 
-class Textarea extends React.Component {
+class Input extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -44,19 +44,19 @@ class Textarea extends React.Component {
   };
 
   render() {
-    const {limiter, disabled, textRef} = this.props;
+    const {limiter, disabled, inputRef} = this.props;
     return (
       <span>
-        <textarea
-          className="textarea"
+        <input
+          type="text"
+          className="input"
           value={this.state.value}
           onChange={this.handleChange}
           disabled={disabled}
-          ref={textRef}
+          ref={inputRef}
         />
         {limiter ?
           <Limiter
-            style={{verticalAlign: 'top'}}
             type={limiter.type || 'byte'}
             max={limiter.max}
             filterSymbol={limiter.filterSymbol}
@@ -69,7 +69,7 @@ class Textarea extends React.Component {
   }
 }
 
-Textarea.propTypes = {
+Input.propTypes = {
   value: PropTypes.string,
   limiter: PropTypes.shape({
     type: PropTypes.string,
@@ -77,12 +77,12 @@ Textarea.propTypes = {
     filterSymbol: PropTypes.bool
   }),
   disabled: PropTypes.bool,
-  textRef: PropTypes.func,
+  inputRef: PropTypes.func,
   onChange: PropTypes.func
 };
 
-Textarea.defaultProps = {
+Input.defaultProps = {
   disabled: false
 };
 
-export default Textarea;
+export default Input;

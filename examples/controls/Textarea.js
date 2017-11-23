@@ -1,11 +1,11 @@
 import React from 'react';
-import RedWordInput from '../../src/components/RedWordInput';
+import Textarea from '../../src/components/controls/Textarea';
 
-class InputTest extends React.Component {
+class TextareaTest extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: ''
+      value: 'test'
     }
   }
 
@@ -17,7 +17,7 @@ class InputTest extends React.Component {
 
   render() {
     return (
-      <RedWordInput
+      <Textarea
         value={this.state.value}
         limiter={{
           max: 24
@@ -28,4 +28,4 @@ class InputTest extends React.Component {
   }
 }
 
-export default InputTest;
+export default TextareaTest;

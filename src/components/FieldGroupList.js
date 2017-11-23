@@ -17,6 +17,9 @@ class FieldGroupList extends React.Component {
     if(Array.isArray(props.length)){
       length = props.length[0];
     }
+    if(props.value && Array.isArray(props.value)){
+      length = props.value.length;
+    }
     this.state = {
       length: length
     };
