@@ -7,45 +7,57 @@ import {
 } from 'react-router-dom'
 
 //引入组件
-import Input from './components/Input';
-import RedWordInput from './components/RedWordInput';
-import ImageInput from './components/ImageInput';
-import Textarea from './components/Textarea';
-import LinkTextarea from './components/LinkTextarea';
+import Home from './Home';
+import Input from './controls/Input';
+import RedWordInput from './controls/RedWordInput';
+import ImageUpload from './controls/ImageUpload';
+import Textarea from './controls/Textarea';
+import LinkTextarea from './controls/LinkTextarea';
+import RadioGroup from './controls/RadioGroup';
+
+import FieldGroupList from './form/FieldGroupList';
+
 import BasicForm from './form/BasicForm';
 import AutoForm from './form/AutoForm';
 import AutoForm1 from './form/AutoForm1';
 
 const Router = () => (
   <BrowserRouter>
-    <div>
-      <ul>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/Input">Input</Link></li>
-        <li><Link to="/RedWordInput">插入标红词</Link></li>
-        <li><Link to="/ImageInput">图片上传</Link></li>
-        <li><Link to="/Textarea">文本区</Link></li>
-        <li><Link to="/LinkTextarea">输入链接的文本区</Link></li>
-        <li><Link to="/BasicForm">基础表单</Link></li>
-        <li><Link to="/AutoForm">自动表单</Link></li>
-        <li><Link to="/AutoForm1">自动表单(带列表)</Link></li>
-      </ul>
+    <div style={{ display: 'flex' }}>
+      <div style={{padding: '10px', width: '200px', background: '#f0f0f0'}}>
+        <ul>
+          <li>基础控件：</li>
+          <li><Link to="/Input">Input</Link></li>
+          <li><Link to="/RedWordInput">插入标红词</Link></li>
+          <li><Link to="/ImageUpload">图片上传</Link></li>
+          <li><Link to="/Textarea">文本区</Link></li>
+          <li><Link to="/LinkTextarea">输入链接的文本区</Link></li>
+          <li><Link to="/RadioGroup">Radio</Link></li>
+          <li>复合结构：</li>
+          <li><Link to="/FieldGroupList">组合字段列表</Link></li>
+          <li>表单生成：</li>
+          <li><Link to="/BasicForm">基础表单</Link></li>
+          <li><Link to="/AutoForm">自动表单</Link></li>
+          <li><Link to="/AutoForm1">自动表单(带列表)</Link></li>
+        </ul>
+      </div>
 
-      <hr/>
-
-      <Switch>
-        <Route exact path="/" component={Input}/>
-        <Route path="/Input" component={Input}/>
-        <Route path="/RedWordInput" component={RedWordInput}/>
-        <Route path="/ImageInput" component={ImageInput}/>
-        <Route path="/Textarea" component={Textarea}/>
-        <Route path="/LinkTextarea" component={LinkTextarea}/>
-        <Route path="/BasicForm" component={BasicForm}/>
-        <Route path="/AutoForm" component={AutoForm}/>
-        <Route path="/AutoForm1" component={AutoForm1}/>
-      </Switch>
+      <div style={{padding: '10px', flex: 1}}>
+        <Switch>
+          <Route exact path="/" component={Home}/>
+          <Route path="/Input" component={Input}/>
+          <Route path="/RedWordInput" component={RedWordInput}/>
+          <Route path="/ImageUpload" component={ImageUpload}/>
+          <Route path="/Textarea" component={Textarea}/>
+          <Route path="/LinkTextarea" component={LinkTextarea}/>
+          <Route path="/RadioGroup" component={RadioGroup}/>
+          <Route path="/FieldGroupList" component={FieldGroupList}/>
+          <Route path="/BasicForm" component={BasicForm}/>
+          <Route path="/AutoForm" component={AutoForm}/>
+          <Route path="/AutoForm1" component={AutoForm1}/>
+        </Switch>
+      </div>
     </div>
-
   </BrowserRouter>
 );
 

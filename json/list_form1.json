@@ -26,37 +26,17 @@
     ]
   },
   {
-    "name": "smallImageList",
-    "control": "FieldGroupList",
-    "length": 4,
-    "content": [
-      {
-        "name": "image",
-        "control": "ImageUpload",
-        "label": "小图",
-        "rules": {"imageRequired": true},
-        "uploadRules": {
-          "size": 50,
-          "types": ["png"],
-          "key": "240x240"
-        }
-      },
-      {
-        "name": "text",
-        "control": "Input",
-        "label": "小图文字",
-        "limiter": {"max": 8},
-        "rules": {"required": true, "maxBytes": 8}
-      },
-      {
-        "name": "link",
-        "control": "Input",
-        "label": "小图链接",
-        "defaultValue": "http://",
-        "limiter": {"max": 512},
-        "rules": {"required": true, "url": true}
-      }
-    ]
+    "name": "countdownTime",
+    "control": "DateTimeInput",
+    "label": "设定时间",
+    "rules": {"required": true}
+  },
+  {
+    "name": "countdownText",
+    "control": "Input",
+    "label": "事件名称",
+    "limiter": {"max": 24},
+    "rules": {"required": true, "maxBytes": 24}
   },
   {
     "name": "buttonText",

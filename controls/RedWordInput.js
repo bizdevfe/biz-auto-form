@@ -1,11 +1,11 @@
 import React from 'react';
-import ImageInput from '../../src/components/ImageInput';
+import RedWordInput from '../../src/components/controls/RedWordInput';
 
-class ImageInputTest extends React.Component {
+class InputTest extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 'http://xx.png'
+      value: ''
     }
   }
 
@@ -17,12 +17,10 @@ class ImageInputTest extends React.Component {
 
   render() {
     return (
-      <ImageInput
+      <RedWordInput
         value={this.state.value}
-        uploadRules={{
-          size: 20,
-          types: ['png'],
-          key: '200x100'
+        limiter={{
+          max: 24
         }}
         onChange={this.handleChange}
       />
@@ -30,4 +28,4 @@ class ImageInputTest extends React.Component {
   }
 }
 
-export default ImageInputTest;
+export default InputTest;

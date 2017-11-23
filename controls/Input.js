@@ -1,5 +1,5 @@
 import React from 'react';
-import Input from '../../src/components/Input';
+import Input from '../../src/components/controls/Input';
 
 class InputTest extends React.Component {
   constructor(props) {
