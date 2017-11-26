@@ -1,7 +1,8 @@
 [
   {
     "name": "bigImageList",
-    "control": "FieldGroupList",
+    "fieldType": "ListField",
+    "label": "大图数",
     "length": [1,2,3,4],
     "content": [
       {
@@ -27,7 +28,8 @@
   },
   {
     "name": "smallImageList",
-    "control": "FieldGroupList",
+    "fieldType": "ListField",
+    "label": "小图数",
     "length": 4,
     "content": [
       {

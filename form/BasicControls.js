@@ -5,9 +5,10 @@ import Textarea from '../../src/components/controls/Textarea';
 import LinkTextarea from '../../src/components/controls/LinkTextarea';
 import ImageUpload from '../../src/components/controls/ImageUpload';
 import DateTimeInput from '../../src/components/controls/DateTimeInput';
-import FormField from '../../src/components/FormField';
-import FieldGroupList from '../../src/components/FieldGroupList';
+import RadioGroup from '../../src/components/controls/RadioGroup';
+
 import Form from '../../src/components/Form';
+import FormField from '../../src/components/FormField';
 import ValidateRules from '../../src/components/common/ValidateRules';
 
 class FormTest extends React.Component {
@@ -88,6 +89,22 @@ class FormTest extends React.Component {
           ]}
         >
           <DateTimeInput />
+        </FormField>
+
+        <FormField
+          name="bgColor"
+          label="背景色"
+          defaultValue="black"
+          rules={[
+            ValidateRules.required
+          ]}
+        >
+          <RadioGroup
+            options={[
+              {"value": "black", "text": "黑色"},
+              {"value": "white", "text": "白色"}
+            ]}
+          />
         </FormField>
       </Form>
     );

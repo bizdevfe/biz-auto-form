@@ -15,9 +15,10 @@ import Textarea from './controls/Textarea';
 import LinkTextarea from './controls/LinkTextarea';
 import RadioGroup from './controls/RadioGroup';
 
-import FieldGroupList from './form/FieldGroupList';
+import ListField from './form/ListField';
+import RadioField from './form/RadioField';
 
-import BasicForm from './form/BasicForm';
+import BasicControls from './form/BasicControls';
 import AutoForm from './form/AutoForm';
 import AutoForm1 from './form/AutoForm1';
 
@@ -34,9 +35,10 @@ const Router = () => (
           <li><Link to="/LinkTextarea">输入链接的文本区</Link></li>
           <li><Link to="/RadioGroup">Radio</Link></li>
           <li>复合结构：</li>
-          <li><Link to="/FieldGroupList">组合字段列表</Link></li>
+          <li><Link to="/ListField">组合字段列表</Link></li>
+          <li><Link to="/RadioField">Radio字段组合</Link></li>
           <li>表单生成：</li>
-          <li><Link to="/BasicForm">基础表单</Link></li>
+          <li><Link to="/BasicControls">基础控件表单</Link></li>
           <li><Link to="/AutoForm">自动表单</Link></li>
           <li><Link to="/AutoForm1">自动表单(带列表)</Link></li>
         </ul>
@@ -51,8 +53,9 @@ const Router = () => (
           <Route path="/Textarea" component={Textarea}/>
           <Route path="/LinkTextarea" component={LinkTextarea}/>
           <Route path="/RadioGroup" component={RadioGroup}/>
-          <Route path="/FieldGroupList" component={FieldGroupList}/>
-          <Route path="/BasicForm" component={BasicForm}/>
+          <Route path="/ListField" component={ListField}/>
+          <Route path="/RadioField" component={RadioField}/>
+          <Route path="/BasicControls" component={BasicControls}/>
           <Route path="/AutoForm" component={AutoForm}/>
           <Route path="/AutoForm1" component={AutoForm1}/>
         </Switch>
