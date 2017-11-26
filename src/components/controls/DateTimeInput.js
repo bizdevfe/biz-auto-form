@@ -41,7 +41,7 @@ function disabledDate(current) {
 class DateTimeInput extends React.Component {
   constructor(props) {
     super(props);
-    let value = now;
+    let value = null;
     if(props.value){
       value = moment(props.value, format)
     }
@@ -60,7 +60,7 @@ class DateTimeInput extends React.Component {
     });
     const {onChange} = this.props;
     if (onChange) {
-      onChange(value && value.format(getFormat(state.showTime)) || '');
+      onChange(value && value.format(getFormat(this.state.showTime)) || '');
     }
   };
 
@@ -69,7 +69,7 @@ class DateTimeInput extends React.Component {
     const calendar = (<Calendar
       locale={zhCN}
       style={{ zIndex: 1000 }}
-      dateInputPlaceholder="please input"
+      dateInputPlaceholder="请输入日期时间"
       formatter={getFormat(state.showTime)}
       timePicker={state.showTime ? timePickerElement : null}
       defaultValue={now}
@@ -96,7 +96,7 @@ class DateTimeInput extends React.Component {
               return (
                 <span tabIndex="0">
                   <input
-                    placeholder="please select"
+                    placeholder="请选择日期时间"
                     className="input"
                     disabled={state.disabled}
                     readOnly

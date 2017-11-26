@@ -6,7 +6,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import FormField from "./FormField";
+import FormField from './FormField';
+import {getValidateRules, switchFieldControl} from './common/Util';
 
 class FieldGroup extends React.Component {
   constructor(props) {
@@ -34,16 +35,23 @@ class FieldGroup extends React.Component {
 
   render() {
     const groupValue = this.props.value || {};
-    const fields = React.Children.map(this.props.children, (child) => {
-      if(child.type === FormField || child.type === FieldGroup){
-        const value = groupValue[child.props.name];
-        return React.cloneElement(child, {
-          value,
-          ref: (field) => {
-            this.fieldGroup[child.props.name] = field;
-          }
-        });
-      }
+    const fields = this.props.content.map((item, index) => {
+      return (
+        <FormField
+          key={index}
+          name={item.name}
+          label={item.label}
+          rules={getValidateRules(item.rules)}
+          defaultValue={item.defaultValue}
+          tips={item.tips}
+          value={groupValue[item.name]}
+          ref={(field) => {
+            this.fieldGroup[item.name] = field;
+          }}
+        >
+          {switchFieldControl(item)}
+        </FormField>
+      );
     });
     return (
       <div>
@@ -54,9 +62,9 @@ class FieldGroup extends React.Component {
 }
 
 FieldGroup.propTypes = {
-  children: PropTypes.any,
   name: PropTypes.string.isRequired,
-  value: PropTypes.any
+  value: PropTypes.any,
+  content: PropTypes.array
 };
 
 FieldGroup.defaultProps = {

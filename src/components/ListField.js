@@ -1,16 +1,17 @@
 /**
  * author: KCFE
  * date: 2017/10/12
- * description: 重复的表单项数组
+ * description: 值为重复结构数组的表单项
  */
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import FormField from "./FormField";
+import FormField from './FormField';
+import {getValidateRules, switchFieldControl} from './common/Util';
 import Select, { Option } from 'rc-select';
 import 'rc-select/assets/index.css';
 
-class FieldGroupList extends React.Component {
+class ListField extends React.Component {
   constructor(props) {
     super(props);
     let length = props.length;
@@ -27,10 +28,10 @@ class FieldGroupList extends React.Component {
   }
 
   validate = () => {
-    var listValid = true;
+    let listValid = true;
     for(let i = 0; i < this.state.length; i++){
       const fieldGroup = this.fieldGroupList[i];
-      var groupValid = Object.keys(fieldGroup).reduce((suc, key) => {
+      let groupValid = Object.keys(fieldGroup).reduce((suc, key) => {
         const valid = fieldGroup[key].validate();
         return suc && valid;
       }, true);
@@ -56,14 +57,33 @@ class FieldGroupList extends React.Component {
     return listValue;
   };
 
-  handleNumChange = (value) => {
+  handleNumChange = (num) => {
     this.setState({
-      length: value
+      length: num
     });
   };
 
-  componentDidUpdate() {
-
+  getSelectField = () => {
+    let selectField = null;
+    if(Array.isArray(this.props.length)){
+      const options = this.props.length.map((num, index) => {
+        return (
+          <Option key={index} value={num}>{num}</Option>
+        );
+      });
+      selectField = (
+        <FormField
+          label={this.props.label}
+          value={this.state.length}
+          onChange={this.handleNumChange}
+        >
+          <Select style={{ width: 100 }}>
+            {options}
+          </Select>
+        </FormField>
+      );
+    }
+    return selectField;
   };
 
   render() {
@@ -71,64 +91,43 @@ class FieldGroupList extends React.Component {
     let fieldsList = [];
     for(let i = 0; i< this.state.length; i++){
       const groupValue = listValue[i] || {};
-      const fields = React.Children.map(this.props.children, (child) => {
-        if(child.type === FormField || child.type === FieldGroup){
-          const value = groupValue[child.props.name];
-          const childProps = {
-            key: child.props.name + (i+1),
-            value,
-            label: child.props.label + (i+1),
-            ref: (item) => {
+      const fields = this.props.content.map((item) => {
+        return (
+          <FormField
+            key={item.name + (i+1)}
+            name={item.name}
+            label={item.label + (i+1)}
+            rules={getValidateRules(item.rules)}
+            defaultValue={item.defaultValue}
+            tips={item.tips}
+            value={groupValue[item.name]}
+            ref={(field) => {
               if(!this.fieldGroupList[i]){
                 this.fieldGroupList[i] = {};
               }
-              this.fieldGroupList[i][child.props.name] = item;
-            }
-          };
-          return React.cloneElement(child, childProps);
-        }
+              this.fieldGroupList[i][item.name] = field;
+            }}
+          >
+            {switchFieldControl(item)}
+          </FormField>
+        );
       });
       fieldsList.push(...fields);
     }
 
-    let selectField = null;
-    if(Array.isArray(this.props.length)){
-      const options = this.props.length.map((num) => {
-        return (
-          <Option key={num} value={num}>{num}</Option>
-        );
-      });
-      selectField = (
-        <div className="form-item">
-          <label className="item-title">
-            <em className="red-star">*</em>
-            数量：
-          </label>
-          <div className="item-con">
-            <Select
-              style={{ width: 100 }}
-              value={this.state.length}
-              onChange={this.handleNumChange}
-            >
-              {options}
-            </Select>
-          </div>
-        </div>
-      );
-    }
-
     return (
       <div>
-        {selectField}
+        {this.getSelectField()}
         {fieldsList}
       </div>
     );
   }
 }
 
-FieldGroupList.propTypes = {
-  children: PropTypes.any,
+ListField.propTypes = {
   name: PropTypes.string.isRequired,
+  label: PropTypes.string,
+  content: PropTypes.array,
   length: PropTypes.oneOfType([
     PropTypes.number.isRequired,
     PropTypes.array.isRequired,
@@ -136,8 +135,8 @@ FieldGroupList.propTypes = {
   value: PropTypes.any
 };
 
-FieldGroupList.defaultProps = {
+ListField.defaultProps = {
 
 };
 
-export default FieldGroupList;
+export default ListField;

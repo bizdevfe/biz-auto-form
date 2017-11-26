@@ -20,3 +20,4 @@ const validateRules = {
 };
 
 export default validateRules;
+

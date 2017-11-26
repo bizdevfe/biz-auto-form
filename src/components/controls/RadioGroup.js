@@ -18,16 +18,13 @@ class RadioGroup extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (this.props.value === nextProps.value) {
-      return false;
-    }
-    return true;
+    return this.props.value !== nextProps.value;
   }
 
   componentWillReceiveProps(nextProps) {
-    if ('value' in nextProps && nextProps.value != null && nextProps.value != undefined) {
+    if ('value' in nextProps && nextProps.value !== null && nextProps.value !== undefined) {
       this.setState({
-        value: nextProps.value || ''
+        value: nextProps.value
       });
     }
   }
@@ -46,17 +43,19 @@ class RadioGroup extends React.Component {
   render() {
     const {options} = this.props;
     const radios = options.map((option, index) => {
+      const optionValue = typeof option === 'string' ? option : option.value;
+      const optionText = typeof option === 'string' ? option : option.text;
       return (
         <label key={index} className="radio-label">
           <Radio
             type="radio"
             prefixCls="rc-radio"
-            checked={this.state.value === option.id}
-            value={option.id}
+            checked={this.state.value === optionValue}
+            value={optionValue}
             onChange={this.handleChange}
             disabled={this.props.disabled}
           />
-          <span className="radio-label-text">{option.text}</span>
+          <span className="radio-label-text">{optionText}</span>
         </label>
       );
     });
@@ -70,10 +69,15 @@ class RadioGroup extends React.Component {
 
 RadioGroup.propTypes = {
   value: PropTypes.string,
-  options: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string,
-    text: PropTypes.string
-  })),
+  options: PropTypes.arrayOf(
+    PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.shape({
+        value: PropTypes.string,
+        text: PropTypes.string
+      })
+    ])
+  ),
   disabled: PropTypes.bool,
   onChange: PropTypes.func
 };

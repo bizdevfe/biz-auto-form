@@ -1,7 +1,7 @@
 /**
  * author: KCFE
  * date: 2017/10/12
- * description: 表单单项
+ * description: 单项表单项,负责传值和校验
  */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -79,9 +79,9 @@ class FormField extends React.Component {
 }
 
 FormField.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.element.isRequired,
   label: PropTypes.string,
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string,
   tips: PropTypes.string,
   value: PropTypes.any,
   defaultValue: PropTypes.any,

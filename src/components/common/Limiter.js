@@ -34,7 +34,7 @@ class Limiter extends React.Component {
     const currentLen = this.getLength(str);
     return (
       <span className={currentLen > max ? 'limiter limiter-red' : 'limiter limiter-gray'} style={style}>
-        {currentLen} / {max} {type == 'char' ? '字符' : '字节'}
+        {currentLen} / {max} {type === 'char' ? '字符' : '字节'}
       </span>
     );
   }

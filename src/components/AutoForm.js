@@ -8,69 +8,40 @@ import PropTypes from 'prop-types';
 
 import Form from './Form';
 import FormField from './FormField';
-import FieldGroupList from './FieldGroupList';
-import ValidateRules from './common/ValidateRules';
+import ListField from './ListField';
+import RadioField from './RadioField'
+import {getValidateRules, switchFieldControl} from "./common/Util";
 
-import RedWordInput from './controls/RedWordInput';
-import Input from './controls/Input';
-import Textarea from './controls/Textarea';
-import LinkTextarea from './controls/LinkTextarea';
-import ImageUpload from './controls/ImageUpload';
-import DateTimeInput from './controls/DateTimeInput';
 
 class AutoForm extends React.Component {
   constructor(props) {
     super(props);
   }
 
-  switchFieldControl = (item) => {
-    const control = item.control;
-    switch (control) {
-      case 'RedWordInput':
-        return <RedWordInput limiter={item.limiter} />;
-        break;
-      case 'Input':
-        return <Input limiter={item.limiter} />;
-        break;
-      case 'Textarea':
-        return <Textarea limiter={item.limiter} />;
-        break;
-      case 'LinkTextarea':
-        return <LinkTextarea limiter={item.limiter} />;
-        break;
-      case 'ImageUpload':
-        return <ImageUpload uploadRules={item.uploadRules} />;
-        break;
-      case 'DateTimeInput':
-        return <DateTimeInput />;
-        break;
-    }
-  };
-
-  getValidateRules = (rules) => {
-    if( Array.isArray(rules) ){
-      return rules;
-    }
-    return Object.keys(rules).map((key) => {
-      const arg = rules[key];
-      if(arg === true){
-        return ValidateRules[key];
-      }
-      return ValidateRules[key](arg);
-    });
-  };
-
   getFormFields = (descriptor) => {
     const fields = descriptor.map((item, index) => {
-      if(item.control == 'FieldGroupList'){
-        const fieldGroup = this.getFormFields(item.content);
+      if (item.fieldType === 'ListField'){
         return (
-          <FieldGroupList key={index} name={item.name} length={item.length}>
-            {fieldGroup}
-          </FieldGroupList>
+          <ListField
+            key={index}
+            name={item.name}
+            label={item.label}
+            length={item.length}
+            content={item.content}
+          />
+        );
+      } else if (item.fieldType === 'RadioField'){
+        return (
+          <RadioField
+            key={index}
+            name={item.name}
+            label={item.label}
+            defaultValue={item.defaultValue}
+            content={item.content}
+          />
         );
       } else {
-        const validateRules = this.getValidateRules(item.rules);
+        const validateRules = getValidateRules(item.rules);
         return (
           <FormField
             key={index}
@@ -80,7 +51,7 @@ class AutoForm extends React.Component {
             defaultValue={item.defaultValue}
             tips={item.tips}
           >
-            {this.switchFieldControl(item)}
+            {switchFieldControl(item)}
           </FormField>
         );
       }
@@ -94,6 +65,7 @@ class AutoForm extends React.Component {
       <Form
         data={this.props.data}
         onSubmit={this.props.onSubmit}
+        ref={this.props.formRef}
       >
         {formItems}
       </Form>
