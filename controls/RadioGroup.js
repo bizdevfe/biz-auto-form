@@ -1,10 +1,9 @@
 import React from 'react';
-import RadioGroup from '../../src/components/controls/RadioGroup';
-
+import {RadioGroup} from '../../src/index';
 
 const options = [
-  {"id": "black", "text": "黑色"},
-  {"id": "white", "text": "白色"}
+  {"value": "black", "text": "黑色"},
+  {"value": "white", "text": "白色"}
 ];
 
 class RadioGroupTest extends React.Component {

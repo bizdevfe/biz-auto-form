@@ -1,5 +1,5 @@
 import React from 'react';
-import AutoForm from '../../src/components/AutoForm';
+import {AutoForm} from '../../src/index';
 
 import descriptor from '../json/basic_form.json';
 

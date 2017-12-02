@@ -1,6 +1,5 @@
 import React from 'react';
-import RadioField from '../../src/components/RadioField';
-import Form from '../../src/components/Form';
+import {RadioField, Form} from '../../src/index';
 
 const radioFieldContent = [
   {
