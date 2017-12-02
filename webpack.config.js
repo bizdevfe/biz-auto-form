@@ -1,49 +1,31 @@
 const webpack = require('webpack');
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   entry: {
     app: path.join(__dirname, 'src/index'),
   },
   output: {
-    path: path.join(__dirname, "dist"),
-    filename: 'auto-form.js'
+    path: path.join(__dirname, 'dist'),
+    library: 'biz-auto-form',
+    libraryTarget: 'umd',
+    filename: 'auto-form.min.js'
   },
+  externals: {'react': 'React'},
   module: {
     rules: [
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: 'babel-loader'
-      },
-      {
-        test: /\.css/,
-        use: ExtractTextPlugin.extract({
-          use: [
-            {
-              loader: "css-loader",
-              options: {minimize: true}
-            }
-          ]
-        })
-      },
-      {
-        test: /\.less/,
-        use: ExtractTextPlugin.extract({
-          use: [
-            {
-              loader: "css-loader",
-              options: {minimize: true}
-            },
-            {loader: "less-loader"}
-          ]
-        })
       }
     ]
   },
   plugins: [
-    new ExtractTextPlugin('auto-form.css')
-  ],
-  devtool: 'source-map',
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production')
+    }),
+    new UglifyJSPlugin()
+  ]
 };

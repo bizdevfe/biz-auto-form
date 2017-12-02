@@ -1,5 +1,5 @@
 import React from 'react';
-import RedWordInput from '../../src/components/controls/RedWordInput';
+import {RedWordInput} from '../../src/index';
 
 class InputTest extends React.Component {
   constructor(props) {

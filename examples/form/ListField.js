@@ -1,6 +1,5 @@
 import React from 'react';
-import ListField from '../../src/components/ListField';
-import Form from '../../src/components/Form';
+import {ListField, Form} from '../../src/index';
 
 const listFieldContent = [
   {

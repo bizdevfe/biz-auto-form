@@ -1,5 +1,5 @@
 import React from 'react';
-import Textarea from '../../src/components/controls/Textarea';
+import {Textarea} from '../../src/index.jsx';
 
 class TextareaTest extends React.Component {
   constructor(props) {

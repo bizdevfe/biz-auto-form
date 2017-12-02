@@ -1,5 +1,5 @@
 import React from 'react';
-import LinkTextarea from '../../src/components/controls/LinkTextarea';
+import {LinkTextarea} from '../../src/index';
 
 class TextareaTest extends React.Component {
   constructor(props) {

@@ -1,10 +1,13 @@
 {
-  "name": "biz-auto-form",
+  "name": "@bizfe/biz-auto-form",
   "version": "1.0.0",
-  "description": "some components for auto-generated in ad systems",
-  "main": "index.js",
+  "description": "some form components for auto-generated in ad systems",
+  "main": "lib/index.js",
   "scripts": {
-    "dev": "webpack-dev-server --config webpack.dev.js"
+    "dev": "webpack-dev-server --config webpack.dev.js",
+    "precompile": "rimraf lib",
+    "compile": "lessc assets/index.less assets/index.css && babel src --out-dir lib",
+    "prepublish": "npm run compile"
   },
   "repository": {
     "type": "git",
@@ -21,6 +24,10 @@
     "url": "https://github.com/galaxy-fe/biz-auto-form/issues"
   },
   "homepage": "https://github.com/galaxy-fe/biz-auto-form#readme",
+  "files": [
+    "assets/*.css",
+    "lib"
+  ],
   "dependencies": {
     "async-validator": "^1.8.1",
     "moment": "^2.19.2",
@@ -28,12 +35,10 @@
     "rc-checkbox": "^2.1.1",
     "rc-select": "^7.2.0",
     "rc-time-picker": "^3.1.0",
-    "rc-upload": "^2.4.1",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "rc-upload": "^2.4.1"
   },
   "devDependencies": {
-    "babel-core": "^6.26.0",
+    "babel-cli": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-import": "^1.6.2",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
@@ -47,7 +52,10 @@
     "less": "^2.7.3",
     "less-loader": "^4.0.5",
     "prop-types": "^15.6.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "react-router-dom": "^4.2.2",
+    "rimraf": "^2.6.2",
     "style-loader": "^0.19.0",
     "webpack": "^3.7.1",
     "webpack-dev-server": "^2.9.1"

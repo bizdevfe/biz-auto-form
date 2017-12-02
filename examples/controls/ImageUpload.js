@@ -1,5 +1,5 @@
 import React from 'react';
-import ImageUpload from '../../src/components/controls/ImageUpload';
+import {ImageUpload} from '../../src/index';
 
 class ImageUploadTest extends React.Component {
   constructor(props) {

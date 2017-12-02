@@ -4,7 +4,7 @@ import {
   Route,
   Link,
   Switch
-} from 'react-router-dom'
+} from 'react-router-dom';
 
 //引入组件
 import Home from './Home';

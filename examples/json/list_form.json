@@ -10,10 +10,11 @@
         "control": "ImageUpload",
         "label": "大图",
         "rules": {"imageRequired": true},
+        "tips": "图片尺寸：750x320，不超过100k，jpg、gif、png格式",
         "uploadRules": {
           "size": 100,
-          "types": ["png"],
-          "key": "750x320"
+          "types": ["png","gif","jpg"],
+          "key": "313-bigImageList-image"
         }
       },
       {
@@ -22,7 +23,7 @@
         "label": "大图链接",
         "defaultValue": "http://",
         "limiter": {"max": 512},
-        "rules": {"required": true, "url": true}
+        "rules": {"required": true, "url": true, "maxBytes": 512}
       }
     ]
   },
@@ -37,10 +38,11 @@
         "control": "ImageUpload",
         "label": "小图",
         "rules": {"imageRequired": true},
+        "tips": "图片尺寸：240x240，不超过50k，jpg、gif、png格式",
         "uploadRules": {
           "size": 50,
-          "types": ["png"],
-          "key": "240x240"
+          "types": ["png","gif","jpg"],
+          "key": "313-smallImageList-image"
         }
       },
       {
@@ -56,7 +58,7 @@
         "label": "小图链接",
         "defaultValue": "http://",
         "limiter": {"max": 512},
-        "rules": {"required": true, "url": true}
+        "rules": {"required": true, "url": true, "maxBytes": 512}
       }
     ]
   },
@@ -73,7 +75,7 @@
     "label": "按钮链接",
     "defaultValue": "http://",
     "limiter": {"max": 512},
-    "rules": {"required": true, "url": true}
+    "rules": {"required": true, "url": true, "maxBytes": 512}
   },
   {
     "name": "brandText",
@@ -88,6 +90,6 @@
     "label": "品牌链接",
     "defaultValue": "http://",
     "limiter": {"max": 512},
-    "rules": {"required": true, "url": true}
+    "rules": {"required": true, "url": true, "maxBytes": 512}
   }
 ]

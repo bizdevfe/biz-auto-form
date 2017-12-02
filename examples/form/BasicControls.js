@@ -1,15 +1,9 @@
 import React from 'react';
-import Input from '../../src/components/controls/Input';
-import RedWordInput from '../../src/components/controls/RedWordInput';
-import Textarea from '../../src/components/controls/Textarea';
-import LinkTextarea from '../../src/components/controls/LinkTextarea';
-import ImageUpload from '../../src/components/controls/ImageUpload';
-import DateTimeInput from '../../src/components/controls/DateTimeInput';
-import RadioGroup from '../../src/components/controls/RadioGroup';
+import {Input, RedWordInput,Textarea,LinkTextarea,
+  ImageUpload,DateTimeInput,RadioGroup,
+  Form,FormField} from '../../src/index.jsx';
 
-import Form from '../../src/components/Form';
-import FormField from '../../src/components/FormField';
-import ValidateRules from '../../src/components/common/ValidateRules';
+import ValidateRules from '../../src/common/validateRules.jsx';
 
 class FormTest extends React.Component {
   constructor(props) {
