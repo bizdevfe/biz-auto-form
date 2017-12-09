@@ -17,14 +17,14 @@
   },
   {
     "name": "description",
-    "control": "Textarea",
+    "control": "TextArea",
     "label": "描述",
     "limiter": {"max": 80},
     "rules": {"required": true}
   },
   {
     "name": "descriptionLink",
-    "control": "LinkTextarea",
+    "control": "LinkTextArea",
     "label": "子链描述",
     "limiter": {"max": 80},
     "rules": {"required": true}
