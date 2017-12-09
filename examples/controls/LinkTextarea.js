@@ -1,7 +1,7 @@
 import React from 'react';
-import {LinkTextarea} from '../../src/index';
+import {LinkTextArea} from '../../src/index';
 
-class TextareaTest extends React.Component {
+class TextAreaTest extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,7 +17,7 @@ class TextareaTest extends React.Component {
 
   render() {
     return (
-      <LinkTextarea
+      <LinkTextArea
         value={this.state.value}
         limiter={{
           max: 50
@@ -28,4 +28,4 @@ class TextareaTest extends React.Component {
   }
 }
 
-export default TextareaTest;
+export default TextAreaTest;

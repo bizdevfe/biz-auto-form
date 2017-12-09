@@ -5,10 +5,11 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import Limiter from '../common/Limiter';
 
 
-class Textarea extends React.Component {
+class TextArea extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -36,14 +37,16 @@ class Textarea extends React.Component {
   };
 
   render() {
-    const {limiter, disabled, textRef} = this.props;
+    const props = this.props;
+    const {limiter, textRef} = this.props;
     return (
       <span>
         <textarea
-          className="rc-textarea"
+          className={classNames('rc-textarea', props.className)}
+          style={props.style}
           value={this.state.value}
           onChange={this.handleChange}
-          disabled={disabled}
+          disabled={props.disabled}
           ref={textRef}
         />
         {limiter ?
@@ -61,7 +64,7 @@ class Textarea extends React.Component {
   }
 }
 
-Textarea.propTypes = {
+TextArea.propTypes = {
   value: PropTypes.string,
   limiter: PropTypes.shape({
     type: PropTypes.string,
@@ -73,8 +76,8 @@ Textarea.propTypes = {
   onChange: PropTypes.func
 };
 
-Textarea.defaultProps = {
+TextArea.defaultProps = {
   disabled: false
 };
 
-export default Textarea;
+export default TextArea;

@@ -5,10 +5,10 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Textarea from './Textarea';
+import TextArea from './TextArea';
+import Button from './Button';
 
-
-class LinkTextarea extends React.Component {
+class LinkTextArea extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -60,33 +60,37 @@ class LinkTextarea extends React.Component {
   };
 
   render() {
-    const {limiter, disabled} = this.props;
+    const props = this.props;
+    const {limiter} = this.props;
     return (
       <div>
         <div>
-          <Textarea
+          <TextArea
+            className={props.className}
             value={this.state.value}
             limiter={{
               ...limiter,
               filterSymbol: true
             }}
-            disabled={disabled}
+            disabled={props.disabled}
             onChange={this.handleChange}
             textRef={(textarea) => { this.textareaElem = textarea; }}
           />
         </div>
-        <button
-          type="button"
-          className="rc-btn"
-          onClick={this.insertLink}>
-          插入链接
-        </button>
+        <div style={{marginTop: 5}}>
+          <Button
+            onClick={this.insertLink}
+            disabled={props.disabled}
+          >
+            插入链接
+          </Button>
+        </div>
       </div>
     );
   }
 }
 
-LinkTextarea.propTypes = {
+LinkTextArea.propTypes = {
   value: PropTypes.string,
   limiter: PropTypes.shape({
     type: PropTypes.string,
@@ -97,8 +101,8 @@ LinkTextarea.propTypes = {
   onChange: PropTypes.func
 };
 
-LinkTextarea.defaultProps = {
+LinkTextArea.defaultProps = {
   disabled: false
 };
 
-export default LinkTextarea;
+export default LinkTextArea;
