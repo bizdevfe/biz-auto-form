@@ -16,9 +16,9 @@ class RadioGroup extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if ('value' in nextProps && nextProps.value !== null && nextProps.value !== undefined) {
+    if ('value' in nextProps) {
       this.setState({
-        value: nextProps.value
+        value: nextProps.value || ''
       });
     }
   }
@@ -35,19 +35,20 @@ class RadioGroup extends React.Component {
   };
 
   render() {
-    const {options} = this.props;
+    const props = this.props;
+    const {options} = props;
     const radios = options.map((option, index) => {
       const optionValue = typeof option === 'string' ? option : option.value;
       const optionText = typeof option === 'string' ? option : option.text;
       return (
-        <label key={index} className="radio-label">
+        <label key={index} className="rc-radio-label">
           <Radio
             type="radio"
             prefixCls="rc-radio"
             checked={this.state.value === optionValue}
             value={optionValue}
             onChange={this.handleChange}
-            disabled={this.props.disabled}
+            disabled={props.disabled}
           />
           <span className="rc-radio-label-text">{optionText}</span>
         </label>

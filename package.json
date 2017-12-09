@@ -30,6 +30,7 @@
   ],
   "dependencies": {
     "async-validator": "^1.8.1",
+    "classnames": "^2.2.5",
     "moment": "^2.19.2",
     "rc-calendar": "^9.3.0",
     "rc-checkbox": "^2.1.1",
@@ -41,6 +42,7 @@
     "babel-cli": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-import": "^1.6.2",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.0",

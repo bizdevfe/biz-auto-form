@@ -5,6 +5,7 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
+import Button from './controls/Button';
 
 
 class Form extends React.Component {
@@ -43,11 +44,13 @@ class Form extends React.Component {
   };
 
   render() {
-    const formData = this.props.data || {};
-    const formItems = React.Children.map(this.props.children, (child) => {
+    const props = this.props;
+    const formData = props.data || {};
+    const formItems = React.Children.map(props.children, (child) => {
       const value = formData[child.props.name];
       return React.cloneElement(child, {
         value,
+        labelWidth: child.props.labelWidth || props.labelWidth,
         ref: (item) => {this.items[child.props.name] = item;}
       });
     });
@@ -57,14 +60,10 @@ class Form extends React.Component {
       >
         {formItems}
         <div className="form-item">
-          <label className="item-title">
-          </label>
-          <div className="item-con">
-            <button
-                className="rc-btn"
-                type="submit">
+          <div className="item-con" style={{marginLeft: props.labelWidth + 10}}>
+            <Button htmlType="submit">
               保存
-            </button>
+            </Button>
           </div>
         </div>
       </form>
@@ -73,13 +72,14 @@ class Form extends React.Component {
 }
 
 Form.propTypes = {
+  labelWidth: PropTypes.number,
   children: PropTypes.node,
   data: PropTypes.object,
   onSubmit: PropTypes.func
 };
 
 Form.defaultProps = {
-
+  labelWidth: 140
 };
 
 export default Form;

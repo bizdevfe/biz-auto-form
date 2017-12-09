@@ -8,8 +8,8 @@ import FormField from '../FormField';
 
 import RedWordInput from '../controls/RedWordInput';
 import Input from '../controls/Input';
-import Textarea from '../controls/Textarea';
-import LinkTextarea from '../controls/LinkTextarea';
+import TextArea from '../controls/TextArea';
+import LinkTextArea from '../controls/LinkTextArea';
 import ImageUpload from '../controls/ImageUpload';
 import DateTimeInput from '../controls/DateTimeInput';
 import RadioGroup from '../controls/RadioGroup';
@@ -84,11 +84,11 @@ export const switchFieldControl = (field) => {
     case 'Input':
       return <Input limiter={field.limiter} />;
       break;
-    case 'Textarea':
-      return <Textarea limiter={field.limiter} />;
+    case 'TextArea':
+      return <TextArea limiter={field.limiter} />;
       break;
-    case 'LinkTextarea':
-      return <LinkTextarea limiter={field.limiter} />;
+    case 'LinkTextArea':
+      return <LinkTextArea limiter={field.limiter} />;
       break;
     case 'ImageUpload':
       return <ImageUpload uploadRules={field.uploadRules} />;

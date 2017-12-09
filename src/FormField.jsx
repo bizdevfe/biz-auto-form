@@ -57,18 +57,22 @@ class FormField extends React.Component {
   };
 
   render() {
-    const children = React.cloneElement(this.props.children, {
+    const childProps = {
       value: this.state.value,
       onChange: this.handleChange
-    });
+    };
+    if(this.state.errors){
+      childProps.className = 'error-control';
+    }
+    const props = this.props;
     return (
       <div className="form-item">
-        <label className="item-title">
+        <label className="item-label" style={{width: props.labelWidth}}>
           {this.props.required ? <em className="red-star">*</em> : null}
           {this.props.label}：
         </label>
-        <div className="item-con">
-          {children}
+        <div className="item-con" style={{marginLeft: props.labelWidth + 10}}>
+          {React.cloneElement(this.props.children, childProps)}
           {this.props.tips && <p className="form-item-tips">{this.props.tips}</p>}
           {this.state.errors && <p className="form-validator-error">{this.state.errors[0].message}</p>}
         </div>
@@ -80,6 +84,7 @@ class FormField extends React.Component {
 FormField.propTypes = {
   children: PropTypes.element.isRequired,
   label: PropTypes.string,
+  labelWidth: PropTypes.number,
   name: PropTypes.string,
   tips: PropTypes.string,
   value: PropTypes.any,
@@ -93,7 +98,8 @@ FormField.propTypes = {
 };
 
 FormField.defaultProps = {
-  required: true
+  required: true,
+  labelWidth: 140
 };
 
 export default FormField;

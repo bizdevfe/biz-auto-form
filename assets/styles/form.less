@@ -5,10 +5,6 @@
   background: #fafafa;
   border: 1px solid #e1e4e8;
 }
-.form-item-step {
-  padding: 20px 20px 0;
-  font-weight: bold;
-}
 .form-item {
   padding: 10px 0;
 }
@@ -21,30 +17,32 @@
   line-height: 0;
   clear: both;
 }
-.form-item .item-title {
+.form-item .item-label {
   float: left;
-  width: 140px;
   text-align: right;
   line-height: 28px;
 }
-.form-item .item-title em.red-star {
+.form-item .item-label em.red-star {
   color: #c00;
   margin-right: 5px;
 }
 .form-item .item-con{
-  margin-left: 150px;
   line-height: 30px;
+}
+.item-con .error-control {
+  border-color: #c00 !important;
 }
 .item-con .form-item-tips {
   margin: 10px 0 0;
   color: #999;
 }
+.form-upload-status {
+  margin: 0;
+  color: #c00;
+}
+
 .form-validator-error {
   display: block;
   color: #c00;
   margin-top: 10px;
-}
-.form-upload-status {
-  margin: 0;
-  color: #c00;
 }

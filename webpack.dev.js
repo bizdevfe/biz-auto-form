@@ -6,7 +6,8 @@ module.exports = {
     app: path.join(__dirname, 'examples', 'index.js'),
   },
   output: {
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    chunkFilename: '[name].bundle.js',
   },
   resolve: {
     extensions: ['.js', '.jsx']

@@ -52,7 +52,7 @@
   },
   {
     "name": "description",
-    "control": "Textarea",
+    "control": "TextArea",
     "label": "文字描述",
     "limiter": {"max": 32},
     "rules": {"required": true, "maxBytes": 32}

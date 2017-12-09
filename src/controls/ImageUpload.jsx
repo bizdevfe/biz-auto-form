@@ -7,6 +7,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Upload from 'rc-upload';
 import Input from './Input';
+import Button from './Button';
 
 const imageTypes = {
   'png': 'image/png',
@@ -49,12 +50,14 @@ class ImageUpload extends React.Component {
           self.handleChange(response.data);
         } else {
           self.setState({
+            value: '',
             status: '上传失败'
           });
         }
       },
       onError(err) {
         self.setState({
+          value: '',
           status: '上传失败：' + err.message
         });
       }
@@ -65,43 +68,45 @@ class ImageUpload extends React.Component {
     };
   }
 
-  shouldComponentUpdate(nextProps, nextState){
-
-  }
-
   componentWillReceiveProps(nextProps){
-
+    if ('value' in nextProps) {
+      this.setState({
+        value: nextProps.value,
+        status: null
+      });
+    }
   }
 
   handleChange = (value) => {
     const {onChange} = this.props;
-    this.setState({
-      value,
-      status: null
-    });
+    if (!('value' in this.props)) {
+      this.setState({
+        value,
+        status: null
+      });
+    }
     if (onChange) {
       onChange(value);
     }
   };
 
   render() {
+    const props = this.props;
     return (
       <div>
         <Upload
           {...this.uploaderProps}
           style={{outline: 'none', cursor: 'pointer'}}
+          disabled={props.disabled}
         >
           <Input
+            className={props.className}
             value={this.state.value}
             disabled
           />
-          <button
-            type="button"
-            className="rc-btn"
-            style={{marginLeft: 5}}
-          >
+          <Button style={{marginLeft: 5}} disabled={props.disabled}>
             上传图片
-          </button>
+          </Button>
         </Upload>
         {this.state.status ? <p className="form-upload-status">{this.state.status}</p> : null}
       </div>
@@ -117,11 +122,13 @@ ImageUpload.propTypes = {
     types: PropTypes.array,
     key: PropTypes.string
   }),
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  disabled: PropTypes.bool
 };
 
 ImageUpload.defaultProps = {
-  action: '/upload.do'
+  action: '/upload.do',
+  disabled: false
 };
 
 export default ImageUpload;

@@ -1,11 +1,11 @@
 import React from 'react';
-import {ImageUpload} from '../../src/index';
+import {DateTimeInput} from '../../src/index';
 
-class ImageUploadTest extends React.Component {
+class InputTest extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 'http://xx.png'
+      value: '2017-12-08 14:55:00'
     }
   }
 
@@ -18,17 +18,13 @@ class ImageUploadTest extends React.Component {
 
   render() {
     return (
-      <ImageUpload
+      <DateTimeInput
         value={this.state.value}
-        uploadRules={{
-          size: 2,
-          types: ['png'],
-          key: '200x100'
-        }}
         onChange={this.handleChange}
+        showTime={true}
       />
     );
   }
 }
 
-export default ImageUploadTest;
+export default InputTest;

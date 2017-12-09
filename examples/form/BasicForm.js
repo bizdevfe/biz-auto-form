@@ -1,5 +1,5 @@
 import React from 'react';
-import {Input, RedWordInput,Textarea,LinkTextarea,
+import {Input, RedWordInput,TextArea,LinkTextArea,
   ImageUpload,DateTimeInput,RadioGroup,
   Form,FormField} from '../../src/index.jsx';
 
@@ -46,7 +46,7 @@ class FormTest extends React.Component {
             ValidateRules.required
           ]}
         >
-          <Textarea limiter={{max: 24}} />
+          <TextArea limiter={{max: 24}} />
         </FormField>
 
         <FormField
@@ -56,7 +56,7 @@ class FormTest extends React.Component {
             ValidateRules.required
           ]}
         >
-          <LinkTextarea limiter={{max: 50}} />
+          <LinkTextArea limiter={{max: 50}} />
         </FormField>
 
         <FormField

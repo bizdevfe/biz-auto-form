@@ -5,6 +5,7 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import Limiter from '../common/Limiter';
 
 
@@ -20,7 +21,7 @@ class Input extends React.Component {
     //Lifting State Up
     if ('value' in nextProps) {
       this.setState({
-        value: nextProps.value
+        value: nextProps.value || ''
       });
     }
   }
@@ -37,15 +38,17 @@ class Input extends React.Component {
   };
 
   render() {
-    const {limiter, disabled, inputRef} = this.props;
+    const props = this.props;
+    const {limiter, inputRef} = props;
     return (
       <span>
         <input
           type="text"
-          className="rc-input"
+          className={classNames('rc-input', props.className)}
+          style={props.style}
           value={this.state.value}
           onChange={this.handleChange}
-          disabled={disabled}
+          disabled={props.disabled}
           ref={inputRef}
         />
         {limiter ?

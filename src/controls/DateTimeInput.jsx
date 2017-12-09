@@ -5,6 +5,7 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import Calendar from 'rc-calendar';
 import DatePicker from 'rc-calendar/lib/Picker';
 import zhCN from 'rc-calendar/lib/locale/zh_CN';
@@ -48,13 +49,13 @@ class DateTimeInput extends React.Component {
   }
 
   handleChange = (value) => {
-    console.log('DatePicker change: ', (value && value.format(format)));
+    //console.log('DatePicker change: ', (value && value.format(format)));
     this.setState({
       value,
     });
     const {onChange} = this.props;
     if (onChange) {
-      onChange(value && value.format(getFormat(this.state.showTime)) || '');
+      onChange(value && value.format(getFormat(this.props.showTime)) || '');
     }
   };
 
@@ -91,7 +92,7 @@ class DateTimeInput extends React.Component {
                 <span tabIndex="0">
                   <input
                     placeholder="请选择日期时间"
-                    className="rc-input"
+                    className={classNames('rc-input', props.className)}
                     disabled={props.disabled}
                     readOnly
                     tabIndex="-1"

@@ -76,7 +76,8 @@ class AutoForm extends React.Component {
 AutoForm.propTypes = {
   descriptor: PropTypes.arrayOf(PropTypes.object), //表单项描述数组
   data: PropTypes.object, //表单数据
-  onSubmit: PropTypes.func
+  onSubmit: PropTypes.func,
+  formRef: PropTypes.func,
 };
 
 AutoForm.defaultProps = {

@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  BrowserRouter,
+  HashRouter,
   Route,
   Link,
   Switch
@@ -11,19 +11,19 @@ import Home from './Home';
 import Input from './controls/Input';
 import RedWordInput from './controls/RedWordInput';
 import ImageUpload from './controls/ImageUpload';
-import Textarea from './controls/Textarea';
-import LinkTextarea from './controls/LinkTextarea';
+import TextArea from './controls/TextArea';
+import LinkTextArea from './controls/LinkTextArea';
 import RadioGroup from './controls/RadioGroup';
+import DateTimeInput from './controls/DateTimeInput';
 
 import ListField from './form/ListField';
 import RadioField from './form/RadioField';
 
-import BasicControls from './form/BasicControls';
-import AutoForm from './form/AutoForm';
-import AutoForm1 from './form/AutoForm1';
+import BasicForm from './form/BasicForm';
+import AutoFormTest from './form/AutoFormTest';
 
 const Router = () => (
-  <BrowserRouter>
+  <HashRouter>
     <div style={{ display: 'flex' }}>
       <div style={{padding: '10px', width: '200px', background: '#f0f0f0'}}>
         <ul>
@@ -31,16 +31,19 @@ const Router = () => (
           <li><Link to="/Input">Input</Link></li>
           <li><Link to="/RedWordInput">插入标红词</Link></li>
           <li><Link to="/ImageUpload">图片上传</Link></li>
-          <li><Link to="/Textarea">文本区</Link></li>
-          <li><Link to="/LinkTextarea">输入链接的文本区</Link></li>
+          <li><Link to="/TextArea">文本区</Link></li>
+          <li><Link to="/LinkTextArea">输入链接的文本区</Link></li>
           <li><Link to="/RadioGroup">Radio</Link></li>
-          <li>复合结构：</li>
+          <li><Link to="/DateTimeInput">日期时间</Link></li>
+
+          <li>表单：</li>
+          <li><Link to="/BasicForm">基础控件表单</Link></li>
           <li><Link to="/ListField">组合字段列表</Link></li>
           <li><Link to="/RadioField">Radio字段组合</Link></li>
+
           <li>表单生成：</li>
-          <li><Link to="/BasicControls">基础控件表单</Link></li>
-          <li><Link to="/AutoForm">自动表单</Link></li>
-          <li><Link to="/AutoForm1">自动表单(带列表)</Link></li>
+          <li><Link to="/AutoForm/basic_form">自动表单</Link></li>
+          <li><Link to="/AutoForm/list_form">自动表单(带列表)</Link></li>
         </ul>
       </div>
 
@@ -50,18 +53,21 @@ const Router = () => (
           <Route path="/Input" component={Input}/>
           <Route path="/RedWordInput" component={RedWordInput}/>
           <Route path="/ImageUpload" component={ImageUpload}/>
-          <Route path="/Textarea" component={Textarea}/>
-          <Route path="/LinkTextarea" component={LinkTextarea}/>
+          <Route path="/TextArea" component={TextArea}/>
+          <Route path="/LinkTextArea" component={LinkTextArea}/>
           <Route path="/RadioGroup" component={RadioGroup}/>
+          <Route path="/DateTimeInput" component={DateTimeInput}/>
+
+          <Route path="/BasicForm" component={BasicForm}/>
           <Route path="/ListField" component={ListField}/>
           <Route path="/RadioField" component={RadioField}/>
-          <Route path="/BasicControls" component={BasicControls}/>
-          <Route path="/AutoForm" component={AutoForm}/>
-          <Route path="/AutoForm1" component={AutoForm1}/>
+
+          <Route path="/AutoForm/:json" component={AutoFormTest}/>
+
         </Switch>
       </div>
     </div>
-  </BrowserRouter>
+  </HashRouter>
 );
 
 export default Router;

@@ -6,6 +6,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Input from './Input';
+import Button from './Button';
 
 class RedWordInput extends React.Component {
   constructor(props) {
@@ -55,27 +56,31 @@ class RedWordInput extends React.Component {
   };
 
   render() {
-    const {limiter, disabled} = this.props;
+    const props = this.props;
+    const {limiter} = this.props;
     return (
       <div>
         <div>
           <Input
+            className={props.className}
             value={this.state.value}
             limiter={{
               ...limiter,
               filterSymbol: true
             }}
-            disabled={disabled}
+            disabled={props.disabled}
             onChange={this.handleChange}
             inputRef={(input) => { this.inputElem = input; }}
           />
         </div>
-        <button
-          type="button"
-          className="rc-btn"
-          onClick={this.insertRedWord}>
-          插入标红词
-        </button>
+        <div style={{marginTop: 5}}>
+          <Button
+            onClick={this.insertRedWord}
+            disabled={props.disabled}
+          >
+            插入标红词
+          </Button>
+        </div>
       </div>
     );
   }
