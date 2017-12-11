@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  HashRouter,
+  BrowserRouter,
   Route,
   Link,
   Switch
@@ -23,7 +23,7 @@ import BasicForm from './form/BasicForm';
 import AutoFormTest from './form/AutoFormTest';
 
 const Router = () => (
-  <HashRouter>
+  <BrowserRouter>
     <div style={{ display: 'flex' }}>
       <div style={{padding: '10px', width: '200px', background: '#f0f0f0'}}>
         <ul>
@@ -42,8 +42,8 @@ const Router = () => (
           <li><Link to="/RadioField">Radio字段组合</Link></li>
 
           <li>表单生成：</li>
-          <li><Link to="/AutoForm/basic_form">自动表单</Link></li>
-          <li><Link to="/AutoForm/list_form">自动表单(带列表)</Link></li>
+          <li><Link to={{pathname: '/AutoForm', state: {descriptor: 'basic_form'}}}>自动表单</Link></li>
+          <li><Link to={{pathname: '/AutoForm', state: {descriptor: 'list_form'}}}>自动表单(带列表)</Link></li>
         </ul>
       </div>
 
@@ -62,12 +62,11 @@ const Router = () => (
           <Route path="/ListField" component={ListField}/>
           <Route path="/RadioField" component={RadioField}/>
 
-          <Route path="/AutoForm/:json" component={AutoFormTest}/>
-
+          <Route path="/AutoForm" component={AutoFormTest}/>
         </Switch>
       </div>
     </div>
-  </HashRouter>
+  </BrowserRouter>
 );
 
 export default Router;
