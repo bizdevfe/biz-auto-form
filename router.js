@@ -20,7 +20,7 @@ import ListField from './form/ListField';
 import RadioField from './form/RadioField';
 
 import BasicForm from './form/BasicForm';
-import AutoFormTest from './form/AutoFormTest';
+import AsyncAutoForm from './form/AsyncAutoForm';
 
 const Router = () => (
   <BrowserRouter>
@@ -43,7 +43,9 @@ const Router = () => (
 
           <li>表单生成：</li>
           <li><Link to={{pathname: '/AutoForm', state: {descriptor: 'basic_form'}}}>自动表单</Link></li>
-          <li><Link to={{pathname: '/AutoForm', state: {descriptor: 'list_form'}}}>自动表单(带列表)</Link></li>
+          <li><Link to={{pathname: '/AutoForm', state: {descriptor: 'list_form'}}}>自动表单(大小图)</Link></li>
+          <li><Link to={{pathname: '/AutoForm', state: {descriptor: 'list_form1'}}}>自动表单(大图倒计时)</Link></li>
+          <li><Link to={{pathname: '/AutoForm', state: {descriptor: 'radio_form'}}}>自动表单(背景图)</Link></li>
         </ul>
       </div>
 
@@ -62,7 +64,7 @@ const Router = () => (
           <Route path="/ListField" component={ListField}/>
           <Route path="/RadioField" component={RadioField}/>
 
-          <Route path="/AutoForm" component={AutoFormTest}/>
+          <Route path="/AutoForm" component={AsyncAutoForm}/>
         </Switch>
       </div>
     </div>
