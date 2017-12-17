@@ -6,6 +6,7 @@ export { default as GroupField } from './GroupField';
 export { default as ListField } from './ListField';
 export { default as RadioField } from './RadioField';
 
+export { default as Button } from './controls/Button';
 export { default as DateTimeInput } from './controls/DateTimeInput';
 export { default as ImageUpload } from './controls/ImageUpload';
 export { default as Input } from './controls/Input';
