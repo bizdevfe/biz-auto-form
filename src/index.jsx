@@ -9,6 +9,7 @@ export { default as RadioField } from './RadioField';
 export { default as Button } from './controls/Button';
 export { default as DateTimeInput } from './controls/DateTimeInput';
 export { default as ImageUpload } from './controls/ImageUpload';
+export { default as VideoUpload } from './controls/VideoUpload';
 export { default as Input } from './controls/Input';
 export { default as LinkTextArea } from './controls/LinkTextArea';
 export { default as RadioGroup } from './controls/RadioGroup';

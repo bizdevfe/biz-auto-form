@@ -15,7 +15,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'test/**/*.spec.js'
+      'test/index.js'
     ],
 
 
@@ -27,18 +27,19 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'src/**/*.jsx': ['webpack'],
-      'test/**/*.spec.js': ['webpack', 'coverage']
+      'test/index.js': ['webpack']
     },
 
     plugins: [
       'karma-webpack',
       'karma-mocha',
-      'karma-phantomjs-launcher',
-      'karma-coverage'
+      'karma-chrome-launcher',
+      'karma-coverage',
+      'karma-mocha-reporter'
     ],
 
     webpack: {
+      devtool: 'inline-source-map',
       resolve: {
         extensions: ['.js', '.jsx']
       },
@@ -47,7 +48,12 @@ module.exports = function(config) {
           {
             test: /\.jsx?$/,
             exclude: /node_modules/,
-            loader: 'babel-loader'
+            use: {
+              loader: 'babel-loader',
+              options: {
+                plugins: ['istanbul']   //引入istanbul插件来检测Coverage
+              }
+            }
           }
         ]
       }
@@ -57,11 +63,15 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress', 'coverage'],
+    reporters: ['mocha', 'coverage'],
 
     coverageReporter: {
-      type: 'html',
-      dir: 'coverage/'
+      dir: 'coverage/',
+      reporters: [
+        { type: 'html', subdir: 'report-html' },
+        { type: 'lcovonly', subdir: '.', file: 'report-lcovonly.txt' },
+        { type: 'text-summary', subdir: '.', file: 'text-summary.txt' }
+      ]
     },
 
 
@@ -84,7 +94,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['PhantomJS'],
+    browsers: ['Chrome'],
 
 
     // Continuous Integration mode
@@ -95,4 +105,4 @@ module.exports = function(config) {
     // how many browser should be started simultaneous
     concurrency: Infinity
   })
-}
+};
