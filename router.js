@@ -10,7 +10,7 @@ import {
 import Home from './Home';
 import Input from './controls/Input';
 import RedWordInput from './controls/RedWordInput';
-import ImageUpload from './controls/ImageUpload';
+import Upload from './controls/Upload';
 import TextArea from './controls/TextArea';
 import LinkTextArea from './controls/LinkTextArea';
 import RadioGroup from './controls/RadioGroup';
@@ -30,7 +30,7 @@ const Router = () => (
           <li>基础控件：</li>
           <li><Link to="/Input">Input</Link></li>
           <li><Link to="/RedWordInput">插入标红词</Link></li>
-          <li><Link to="/ImageUpload">图片上传</Link></li>
+          <li><Link to="/Upload">图片视频上传</Link></li>
           <li><Link to="/TextArea">文本区</Link></li>
           <li><Link to="/LinkTextArea">输入链接的文本区</Link></li>
           <li><Link to="/RadioGroup">Radio</Link></li>
@@ -54,7 +54,7 @@ const Router = () => (
           <Route exact path="/" component={Home}/>
           <Route path="/Input" component={Input}/>
           <Route path="/RedWordInput" component={RedWordInput}/>
-          <Route path="/ImageUpload" component={ImageUpload}/>
+          <Route path="/Upload" component={Upload}/>
           <Route path="/TextArea" component={TextArea}/>
           <Route path="/LinkTextArea" component={LinkTextArea}/>
           <Route path="/RadioGroup" component={RadioGroup}/>
