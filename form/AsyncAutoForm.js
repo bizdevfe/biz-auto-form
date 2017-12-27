@@ -29,6 +29,10 @@ class AsyncAutoForm extends React.Component {
     });
   }
 
+  handleSubmit = (values) => {
+    console.log(values);
+  };
+
   render() {
     return (
       <AutoForm
