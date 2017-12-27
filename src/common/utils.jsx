@@ -11,6 +11,7 @@ import Input from '../controls/Input';
 import TextArea from '../controls/TextArea';
 import LinkTextArea from '../controls/LinkTextArea';
 import ImageUpload from '../controls/ImageUpload';
+import VideoUpload from '../controls/VideoUpload';
 import DateTimeInput from '../controls/DateTimeInput';
 import RadioGroup from '../controls/RadioGroup';
 
@@ -92,6 +93,9 @@ export const switchFieldControl = (field) => {
       break;
     case 'ImageUpload':
       return <ImageUpload uploadRules={field.uploadRules} />;
+      break;
+    case 'VideoUpload':
+      return <VideoUpload uploadRules={field.uploadRules} />;
       break;
     case 'DateTimeInput':
       return <DateTimeInput />;

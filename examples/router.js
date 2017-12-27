@@ -46,6 +46,7 @@ const Router = () => (
           <li><Link to={{pathname: '/AutoForm', state: {descriptor: 'list_form'}}}>自动表单(大小图)</Link></li>
           <li><Link to={{pathname: '/AutoForm', state: {descriptor: 'list_form1'}}}>自动表单(大图倒计时)</Link></li>
           <li><Link to={{pathname: '/AutoForm', state: {descriptor: 'radio_form'}}}>自动表单(背景图)</Link></li>
+          <li><Link to={{pathname: '/AutoForm', state: {descriptor: 'video_form2'}}}>视频样式1</Link></li>
         </ul>
       </div>
 

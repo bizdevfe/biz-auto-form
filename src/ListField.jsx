@@ -97,6 +97,7 @@ class ListField extends React.Component {
             key={item.name + (i+1)}
             name={item.name}
             label={item.label + (i+1)}
+            required={item.required}
             rules={getValidateRules(item.rules)}
             defaultValue={item.defaultValue}
             tips={item.tips}

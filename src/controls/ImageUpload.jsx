@@ -51,7 +51,7 @@ class ImageUpload extends React.Component {
         } else {
           self.setState({
             value: '',
-            status: '上传失败'
+            status: '上传失败：'+ response.errors.join(',')
           });
         }
       },

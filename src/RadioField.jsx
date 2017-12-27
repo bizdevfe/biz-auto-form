@@ -94,6 +94,7 @@ class RadioField extends React.Component {
           key={`radio${radioIndex}-field${index}`}
           name={item.name}
           label={item.label}
+          required={item.required}
           rules={getValidateRules(item.rules)}
           defaultValue={item.defaultValue}
           tips={item.tips}

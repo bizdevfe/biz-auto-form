@@ -9,7 +9,8 @@ import PropTypes from 'prop-types';
 import Form from './Form';
 import FormField from './FormField';
 import ListField from './ListField';
-import RadioField from './RadioField'
+import RadioField from './RadioField';
+import GroupField from './GroupField';
 import {getValidateRules, switchFieldControl} from "./common/utils";
 
 
@@ -40,6 +41,14 @@ class AutoForm extends React.Component {
             content={item.content}
           />
         );
+      } else if (item.fieldType === 'GroupField'){
+        return (
+          <GroupField
+            key={index}
+            name={item.name}
+            content={item.content}
+          />
+        );
       } else {
         const validateRules = getValidateRules(item.rules);
         return (
@@ -47,6 +56,7 @@ class AutoForm extends React.Component {
             key={index}
             name={item.name}
             label={item.label}
+            required={item.required}
             rules={validateRules}
             defaultValue={item.defaultValue}
             tips={item.tips}
