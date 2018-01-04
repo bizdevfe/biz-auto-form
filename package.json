@@ -32,6 +32,7 @@
   "dependencies": {
     "async-validator": "^1.8.1",
     "classnames": "^2.2.5",
+    "marked": "^0.3.9",
     "moment": "^2.19.2",
     "rc-calendar": "^9.3.0",
     "rc-checkbox": "^2.1.1",
@@ -67,6 +68,7 @@
     "less-loader": "^4.0.5",
     "mocha": "^4.0.1",
     "prop-types": "^15.6.0",
+    "raw-loader": "^0.5.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",

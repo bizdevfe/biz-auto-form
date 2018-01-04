@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const marked = require("marked");
 
 module.exports = {
   entry: {
@@ -7,7 +8,7 @@ module.exports = {
   },
   output: {
     filename: 'bundle.js',
-    chunkFilename: '[name].bundle.js',
+    chunkFilename: '[name].bundle.js'
   },
   resolve: {
     extensions: ['.js', '.jsx']
@@ -18,6 +19,14 @@ module.exports = {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: 'babel-loader'
+      },
+      {
+        test: /\.md$/,
+        use: [
+          {
+            loader: "raw-loader"
+          }
+        ]
       },
       {
         test: /\.css/,
