@@ -4,6 +4,6 @@ import Router from './router';
 import '../assets/index.less';
 
 ReactDom.render(
-  <Router />,
+  <Router/>,
   document.getElementById('app')
 );

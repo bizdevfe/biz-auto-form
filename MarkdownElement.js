@@ -24,7 +24,7 @@ class MarkdownElement extends React.Component {
       html = marked(text);
 
     return (
-      <div>
+      <div className="markdown-body">
         <div dangerouslySetInnerHTML={{__html: html}}/>
       </div>
     );
