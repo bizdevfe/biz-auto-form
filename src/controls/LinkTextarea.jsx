@@ -82,7 +82,7 @@ class LinkTextArea extends React.Component {
             onClick={this.insertLink}
             disabled={props.disabled}
           >
-            插入链接
+            插入链接词
           </Button>
         </div>
       </div>

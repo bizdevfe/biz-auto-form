@@ -16,11 +16,8 @@ const Router = () => (
           <li>基础控件：</li>
           <li>
             <ul className="sub-nav">
-              <li><NavLink to="/Input" exact>Input</NavLink></li>
-              <li><NavLink to="/RedWordInput" exact>插入标红词</NavLink></li>
+              <li><NavLink to="/InputDemo" exact>输入框</NavLink></li>
               <li><NavLink to="/Upload" exact>图片视频上传</NavLink></li>
-              <li><NavLink to="/TextArea" exact>文本区</NavLink></li>
-              <li><NavLink to="/LinkTextArea" exact>输入链接的文本区</NavLink></li>
               <li><NavLink to="/RadioGroup" exact>Radio</NavLink></li>
               <li><NavLink to="/DateTimeInput" exact>日期时间</NavLink></li>
             </ul>
