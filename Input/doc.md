@@ -1,42 +1,88 @@
-# Input
-
-
-## Usage
+## Input Usage
 ```
-class InputTest extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: 'http://'
-    }
-  }
+<div className="example">
+  <Input
+    value={this.state.value}
+    limiter={{
+      type: 'byte',
+      max: 512
+    }}
+    onChange={this.handleChange}
+  />
+</div>
+<div className="example">
+  <Input
+    limiter={{
+      type: 'char',
+      max: 10
+    }}
+    onChange={(value) => {console.log(value);}}
+  />
+</div>
+<div className="example">
+  <Input
+    value="test"
+    limiter={{
+      type: 'char',
+      max: 10
+    }}
+    disabled
+  />
+</div>
+```
 
-  handleChange = (value) => {
-    this.setState({
-      value: value
-    });
-  };
+## TextArea Usage
+```
+  <div className="example">
+    <TextArea
+      value={this.state.value}
+      limiter={{
+        max: 30
+      }}
+      onChange={this.handleChange}
+    />
+  </div>
+```
 
-  render() {
-    return (
-      <Input
-        value={this.state.value}
-        limiter={{
-          type: 'byte',
-          max: 512
-        }}
-        onChange={this.handleChange}
-      />
-    );
-  }
-}
+## RedWordInput Usage
+```
+  <div className="example">
+    <RedWordInput
+      value={this.state.value}
+      limiter={{
+        max: 24
+      }}
+      onChange={this.handleChange}
+    />
+  </div>
+```
+
+## LinkTextArea Usage
+```
+  <div className="example">
+    <LinkTextArea
+      value={this.state.value}
+      limiter={{
+        max: 50
+      }}
+      onChange={this.handleChange}
+    />
+  </div>
 ```
 
 ## API
 
-### props
+### （Input、TextArea、RedWordInput、LinkTextArea） props
 |name    | type   | default | description |
 |--------|--------|---------|-------------|
 |value | string |  | 输入框的值 |
-|limiter | Object |  | 字节倒数限制 |
+|limiter | object |  | 字节倒数限制 |
+|disabled | boolean | false | 是否禁用状态 |
+|onChange | function |  | 输入变化的回调 |
 
+### Limiter props
+|name    | type   | default | description |
+|--------|--------|---------|-------------|
+|type | enum('char', 'byte') | 'byte' | 按字数或字节长度计数 |
+|filterSymbol | boolean | false | 是否过滤特殊字符，不计数（用于插入标红词和插入链接词） |
+|max | number |  | 最大长度 |
