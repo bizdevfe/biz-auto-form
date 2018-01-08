@@ -35,12 +35,18 @@ class AsyncAutoForm extends React.Component {
 
   render() {
     return (
-      <AutoForm
-        key={this.state.id}
-        onSubmit={this.handleSubmit}
-        descriptor={this.state.descriptor}
-      >
-      </AutoForm>
+      <div>
+        <h4>表单Json描述：</h4>
+        <div className="markdown-body" style={{marginBottom: '16px'}}>
+          <pre><code>{JSON.stringify(this.state.descriptor,null,2)}</code></pre>
+        </div>
+        <h4>表单：</h4>
+        <AutoForm
+          key={this.state.id}
+          onSubmit={this.handleSubmit}
+          descriptor={this.state.descriptor}
+        />
+      </div>
     );
   }
 }

@@ -19,11 +19,11 @@ const Router = () => (
           <li>
             <ul className="sub-nav">
               <li><NavLink to={{pathname: '/AutoForm/basic'}} exact >自动表单</NavLink></li>
-              <li><NavLink to={{pathname: '/AutoForm/311'}} exact>自动表单(大小图)</NavLink></li>
-              <li><NavLink to={{pathname: '/AutoForm/313'}} exact>自动表单(大图倒计时)</NavLink></li>
-              <li><NavLink to={{pathname: '/AutoForm/314'}} exact>自动表单(背景图)</NavLink></li>
-              <li><NavLink to={{pathname: '/AutoForm/315'}} exact>视频样式1</NavLink></li>
-              <li><NavLink to={{pathname: '/AutoForm/316'}} exact>视频样式2</NavLink></li>
+              <li><NavLink to={{pathname: '/AutoForm/311'}} exact>背景图样式（311）</NavLink></li>
+              <li><NavLink to={{pathname: '/AutoForm/313'}} exact>大图样式（313）</NavLink></li>
+              <li><NavLink to={{pathname: '/AutoForm/314'}} exact>大图倒计时样式（314）</NavLink></li>
+              <li><NavLink to={{pathname: '/AutoForm/315'}} exact>视频样式1（315）</NavLink></li>
+              <li><NavLink to={{pathname: '/AutoForm/316'}} exact>视频样式2（316）</NavLink></li>
             </ul>
           </li>
 
