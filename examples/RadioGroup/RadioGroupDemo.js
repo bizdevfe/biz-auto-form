@@ -6,7 +6,7 @@ const options = [
   {"value": "white", "text": "白色"}
 ];
 
-class RadioGroupTest extends React.Component {
+class RadioGroupDemo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,13 +23,15 @@ class RadioGroupTest extends React.Component {
 
   render() {
     return (
-      <RadioGroup
-        options={options}
-        value={this.state.value}
-        onChange={this.handleChange}
-      />
+      <div className="example">
+        <RadioGroup
+          options={options}
+          value={this.state.value}
+          onChange={this.handleChange}
+        />
+      </div>
     );
   }
 }
 
-export default RadioGroupTest;
+export default RadioGroupDemo;

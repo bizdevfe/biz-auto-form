@@ -57,7 +57,7 @@ module.exports = {
     host: '0.0.0.0',
     inline: true,
     hot: true,
-    historyApiFallback: true,
+    // historyApiFallback: true,
     proxy: {
       '*.do': {
         bypass: function (req, res, proxyOptions) {

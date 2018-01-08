@@ -30,7 +30,7 @@ class ImageUpload extends React.Component {
           const types = uploadRules.types.map((type) => {
             return imageTypes[type];
           });
-          if(types.indexOf(file.type) == -1){
+          if(types.indexOf(file.type) === -1){
             self.setState({
               status: '图片格式不符合'
             });
@@ -46,7 +46,7 @@ class ImageUpload extends React.Component {
         }
       },
       onSuccess(response) {
-        if(response.status == 1) {
+        if(response.status === 1) {
           self.handleChange(response.data);
         } else {
           self.setState({
@@ -127,7 +127,7 @@ ImageUpload.propTypes = {
 };
 
 ImageUpload.defaultProps = {
-  action: '/upload.do',
+  action: '/uploadImage.do',
   disabled: false
 };
 

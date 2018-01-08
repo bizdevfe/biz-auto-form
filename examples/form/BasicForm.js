@@ -5,7 +5,7 @@ import {Input, RedWordInput,TextArea,LinkTextArea,
 
 import ValidateRules from '../../src/common/validateRules.jsx';
 
-class FormTest extends React.Component {
+class FormDemo extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -22,7 +22,7 @@ class FormTest extends React.Component {
           label="标题"
           tips="标题中可以插入标红词"
           rules={[
-            ValidateRules.required
+            ValidateRules.required, ValidateRules.maxBytes(24)
           ]}
         >
           <RedWordInput limiter={{max: 24}} />
@@ -33,7 +33,7 @@ class FormTest extends React.Component {
           label="链接"
           defaultValue="http://"
           rules={[
-            ValidateRules.url
+            ValidateRules.url, ValidateRules.maxBytes(512)
           ]}
         >
           <Input limiter={{max: 512}} />
@@ -43,17 +43,17 @@ class FormTest extends React.Component {
           name="description"
           label="描述"
           rules={[
-            ValidateRules.required
+            ValidateRules.required, ValidateRules.maxBytes(50)
           ]}
         >
-          <TextArea limiter={{max: 24}} />
+          <TextArea limiter={{max: 50}} />
         </FormField>
 
         <FormField
           name="descriptionLink"
-          label="子链描述"
+          label="描述(带链接词)"
           rules={[
-            ValidateRules.required
+            ValidateRules.required, ValidateRules.maxBytes(50), ValidateRules.minBytes(30)
           ]}
         >
           <LinkTextArea limiter={{max: 50}} />
@@ -66,13 +66,7 @@ class FormTest extends React.Component {
             {required: true, message: '请上传图片'}
           ]}
         >
-          <ImageUpload
-            uploadRules={{
-              size: 20,
-              types: ['png'],
-              key: '200x100'
-            }}
-          />
+          <ImageUpload uploadRules={{size: 20, types: ['png'], key: '200x100'}} />
         </FormField>
 
         <FormField
@@ -105,4 +99,4 @@ class FormTest extends React.Component {
   }
 }
 
-export default FormTest;
+export default FormDemo;

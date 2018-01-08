@@ -36,7 +36,7 @@ class VideoUpload extends React.Component {
         }
       },
       onSuccess(response) {
-        if(response.status == 1) {
+        if(response.status === 1) {
           self.handleChange(response.data);
         } else {
           self.setState({
@@ -116,7 +116,7 @@ VideoUpload.propTypes = {
 };
 
 VideoUpload.defaultProps = {
-  action: '/upload.do',
+  action: '/uploadVideo.do',
   disabled: false
 };
 

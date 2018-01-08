@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  BrowserRouter,
+  HashRouter,
   Route,
   NavLink,
   Switch
@@ -8,38 +8,41 @@ import {
 import routes from './routes';
 
 const Router = () => (
-  <BrowserRouter>
+  <HashRouter>
     <div className="container-inner">
       <nav className="aside-nav" style={{}}>
         <ul>
           <li><NavLink to="/" exact>首页介绍</NavLink></li>
-          <li>基础控件：</li>
+          <li><NavLink to="/BasicForm" exact>基础表单示例</NavLink></li>
+
+          <li>表单自动生成：</li>
           <li>
             <ul className="sub-nav">
-              <li><NavLink to="/InputDemo" exact>输入框</NavLink></li>
-              <li><NavLink to="/Upload" exact>图片视频上传</NavLink></li>
-              <li><NavLink to="/RadioGroup" exact>Radio</NavLink></li>
-              <li><NavLink to="/DateTimeInput" exact>日期时间</NavLink></li>
+              <li><NavLink to={{pathname: '/AutoForm/basic'}} exact >自动表单</NavLink></li>
+              <li><NavLink to={{pathname: '/AutoForm/311'}} exact>自动表单(大小图)</NavLink></li>
+              <li><NavLink to={{pathname: '/AutoForm/313'}} exact>自动表单(大图倒计时)</NavLink></li>
+              <li><NavLink to={{pathname: '/AutoForm/314'}} exact>自动表单(背景图)</NavLink></li>
+              <li><NavLink to={{pathname: '/AutoForm/315'}} exact>视频样式1</NavLink></li>
+              <li><NavLink to={{pathname: '/AutoForm/316'}} exact>视频样式2</NavLink></li>
             </ul>
           </li>
 
-          <li>表单：</li>
+          <li>controls基础控件：</li>
           <li>
             <ul className="sub-nav">
-              <li><NavLink to="/BasicForm" exact>基础控件表单</NavLink></li>
+              <li><NavLink to="/Input" exact>输入框</NavLink></li>
+              <li><NavLink to="/Upload" exact>图片视频上传</NavLink></li>
+              <li><NavLink to="/RadioGroup" exact>RadioGroup</NavLink></li>
+              <li><NavLink to="/DateTimeInput" exact>日期时间输入</NavLink></li>
+            </ul>
+          </li>
+
+          <li>动态表单结构：</li>
+          <li>
+            <ul className="sub-nav">
+
               <li><NavLink to="/ListField" exact>组合字段列表</NavLink></li>
               <li><NavLink to="/RadioField" exact>Radio字段组合</NavLink></li>
-            </ul>
-          </li>
-
-          <li>表单生成：</li>
-          <li>
-            <ul className="sub-nav">
-              <li><NavLink to={{pathname: '/AutoForm', state: {descriptor: 'basic_form'}}}>自动表单</NavLink></li>
-              <li><NavLink to={{pathname: '/AutoForm', state: {descriptor: 'list_form'}}}>自动表单(大小图)</NavLink></li>
-              <li><NavLink to={{pathname: '/AutoForm', state: {descriptor: 'list_form1'}}}>自动表单(大图倒计时)</NavLink></li>
-              <li><NavLink to={{pathname: '/AutoForm', state: {descriptor: 'radio_form'}}}>自动表单(背景图)</NavLink></li>
-              <li><NavLink to={{pathname: '/AutoForm', state: {descriptor: 'video_form2'}}}>视频样式1</NavLink></li>
             </ul>
           </li>
         </ul>
@@ -56,7 +59,7 @@ const Router = () => (
         </div>
       </div>
     </div>
-  </BrowserRouter>
+  </HashRouter>
 );
 
 export default Router;

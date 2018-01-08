@@ -5,7 +5,7 @@ class AsyncAutoForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
+      id: '',
       descriptor: []
     };
   }
@@ -21,9 +21,9 @@ class AsyncAutoForm extends React.Component {
   }
 
   load(props) {
-    import(`../json/${props.location.state.descriptor}.json`).then((descriptor) => {
+    import(`../json/${props.match.params.id}.json`).then((descriptor) => {
       this.setState({
-        name: props.location.state.descriptor,
+        id: props.match.params.id,
         descriptor: descriptor
       });
     });
@@ -36,7 +36,7 @@ class AsyncAutoForm extends React.Component {
   render() {
     return (
       <AutoForm
-        key={this.state.name}
+        key={this.state.id}
         onSubmit={this.handleSubmit}
         descriptor={this.state.descriptor}
       >
