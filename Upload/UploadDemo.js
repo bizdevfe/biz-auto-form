@@ -2,7 +2,7 @@ import React from 'react';
 import {ImageUpload} from '../../src/index';
 import {VideoUpload} from '../../src/index';
 
-class UploadTest extends React.Component {
+class UploadDemo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -28,7 +28,7 @@ class UploadTest extends React.Component {
   render() {
     return (
       <div>
-        <div>
+        <div className="example">
           <ImageUpload
             value={this.state.imageValue}
             uploadRules={{
@@ -40,7 +40,7 @@ class UploadTest extends React.Component {
           />
         </div>
 
-        <div style={{marginTop: 10}}>
+        <div className="example">
           <VideoUpload
             value={this.state.videoValue}
             uploadRules={{
@@ -55,4 +55,4 @@ class UploadTest extends React.Component {
   }
 }
 
-export default UploadTest;
+export default UploadDemo;
