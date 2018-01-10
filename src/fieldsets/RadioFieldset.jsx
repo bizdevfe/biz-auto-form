@@ -10,7 +10,7 @@ import FormField from '../FormField';
 import RadioGroup from '../controls/RadioGroup';
 import {getValidateRules, switchFieldControl} from '../common/utils'
 
-class RadioField extends React.Component {
+class RadioFieldset extends React.Component {
   constructor(props) {
     super(props);
     let radioValue = props.content[0].option;
@@ -121,7 +121,7 @@ class RadioField extends React.Component {
   }
 }
 
-RadioField.propTypes = {
+RadioFieldset.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string,
   value: PropTypes.any,
@@ -135,8 +135,8 @@ RadioField.propTypes = {
   }))
 };
 
-RadioField.defaultProps = {
+RadioFieldset.defaultProps = {
 
 };
 
-export default RadioField;
+export default RadioFieldset;

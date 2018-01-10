@@ -11,7 +11,7 @@ import {getValidateRules, switchFieldControl} from '../common/utils';
 import Select, { Option } from 'rc-select';
 
 
-class ListField extends React.Component {
+class ListFieldset extends React.Component {
   constructor(props) {
     super(props);
     let length = props.length;
@@ -125,7 +125,7 @@ class ListField extends React.Component {
   }
 }
 
-ListField.propTypes = {
+ListFieldset.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string,
   content: PropTypes.array,
@@ -136,8 +136,8 @@ ListField.propTypes = {
   value: PropTypes.any
 };
 
-ListField.defaultProps = {
+ListFieldset.defaultProps = {
 
 };
 
-export default ListField;
+export default ListFieldset;

@@ -7,12 +7,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import FormField from '../FormField';
-import ListField from './ListField';
-import RadioField from './RadioField';
-import GroupField from './GroupField';
+import ListField from './ListFieldset';
+import RadioField from './RadioFieldset';
+import GroupField from './GroupFieldset';
 import {getValidateRules, switchFieldControl} from '../common/utils';
 
-class FieldGroup extends React.Component {
+class GroupFieldset extends React.Component {
   constructor(props) {
     super(props);
     this.fieldGroup = {};
@@ -110,14 +110,14 @@ class FieldGroup extends React.Component {
   }
 }
 
-FieldGroup.propTypes = {
+GroupFieldset.propTypes = {
   name: PropTypes.string.isRequired,
   value: PropTypes.any,
   content: PropTypes.array
 };
 
-FieldGroup.defaultProps = {
+GroupFieldset.defaultProps = {
 
 };
 
-export default FieldGroup;
+export default GroupFieldset;
