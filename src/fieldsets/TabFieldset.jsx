@@ -1,17 +1,18 @@
 /**
  * author: KCFE
- * date: 2017/10/12
- * description: 值为重复结构数组的表单项
+ * date: 2018/01/08
+ * description: 内容为Tab形式的字段组
  */
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import FormField from './FormField';
-import {getValidateRules, switchFieldControl} from './common/utils';
+import FormField from '../FormField';
+import {getValidateRules, switchFieldControl} from '../common/utils';
 import Select, { Option } from 'rc-select';
+import Tabs, { TabPane } from 'rc-tabs';
 
 
-class ListField extends React.Component {
+class TabFieldset extends React.Component {
   constructor(props) {
     super(props);
     let length = props.length;
@@ -24,37 +25,37 @@ class ListField extends React.Component {
     this.state = {
       length: length
     };
-    this.fieldGroupList = [];
+    //存放所有Tab下字段
+    this.fieldsInTabs = [];
   }
 
   validate = () => {
-    let listValid = true;
+    let resValid = true;
     for(let i = 0; i < this.state.length; i++){
-      const fieldGroup = this.fieldGroupList[i];
-      let groupValid = Object.keys(fieldGroup).reduce((suc, key) => {
-        const valid = fieldGroup[key].validate();
+      const tabFields = this.fieldsInTabs[i];
+      let tabValid = Object.keys(tabFields).reduce((suc, key) => {
+        const valid = tabFields[key].validate();
         return suc && valid;
       }, true);
-      listValid = listValid && groupValid;
+      resValid = resValid && tabValid;
     }
-    return listValid;
+    return resValid;
   };
 
   getValue = () => {
-    const listValue = [];
+    const tabsValue = [];
     for(let i = 0; i < this.state.length; i++){
-      const fieldGroup = this.fieldGroupList[i];
-      const groupValue = {};
-      Object.keys(fieldGroup).forEach((key) => {
-        const value = fieldGroup[key].getValue();
+      const tabFields = this.fieldsInTabs[i];
+      const tabValue = {};
+      Object.keys(tabFields).forEach((key) => {
+        const value = tabFields[key].getValue();
         if(value){
-          Object.assign(groupValue, {[key]: value});
+          Object.assign(tabValue, {[key]: value});
         }
       });
-      listValue.push(groupValue);
+      tabsValue.push(tabValue);
     }
-
-    return listValue;
+    return tabsValue;
   };
 
   handleNumChange = (num) => {
@@ -86,58 +87,78 @@ class ListField extends React.Component {
     return selectField;
   };
 
-  render() {
-    const listValue = this.props.value || [];
-    let fieldsList = [];
+  getTabFields = () => {
+    const tabsValue = this.props.value || [];
+    let tabPanels = [];
     for(let i = 0; i< this.state.length; i++){
-      const groupValue = listValue[i] || {};
-      const fields = this.props.content.map((item) => {
+      const tabValue = tabsValue[i] || {};
+      const tabFields = this.props.content.map((item) => {
+        const fieldProps = {
+          value: tabValue[item.name],
+          ref: (field) => {
+            if(!this.fieldsInTabs[i]){
+              this.fieldsInTabs[i] = {};
+            }
+            this.fieldsInTabs[i][item.name] = field;
+          }
+        };
         return (
           <FormField
-            key={item.name + (i+1)}
+            key={`tab${i+1}-${item.name}`}
             name={item.name}
-            label={item.label + (i+1)}
+            label={item.label}
             required={item.required}
             rules={getValidateRules(item.rules)}
             defaultValue={item.defaultValue}
             tips={item.tips}
-            value={groupValue[item.name]}
-            ref={(field) => {
-              if(!this.fieldGroupList[i]){
-                this.fieldGroupList[i] = {};
-              }
-              this.fieldGroupList[i][item.name] = field;
-            }}
+            {...fieldProps}
           >
             {switchFieldControl(item)}
           </FormField>
         );
       });
-      fieldsList.push(...fields);
     }
+
+  };
+
+  render() {
+
 
     return (
       <div>
         {this.getSelectField()}
+        <Tabs
+          activeKey={this.state.activeKey}
+          onChange={this.onChange}
+        >
+          <TabPane></TabPane>
+          <TabPane></TabPane>
+          <TabPane></TabPane>
+        </Tabs>
         {fieldsList}
       </div>
     );
   }
 }
 
-ListField.propTypes = {
+TabFieldset.propTypes = {
+  //字段组名
   name: PropTypes.string.isRequired,
+  //Tab选择标签文本
   label: PropTypes.string,
+  //Tab内字段组的json描述
   content: PropTypes.array,
+  //Tab 个数，可固定可变动
   length: PropTypes.oneOfType([
     PropTypes.number.isRequired,
     PropTypes.array.isRequired,
   ]),
+  //字段组的值
   value: PropTypes.any
 };
 
-ListField.defaultProps = {
-
+TabFieldset.defaultProps = {
+  label: 'Tab个数'
 };
 
-export default ListField;
+export default TabFieldset;

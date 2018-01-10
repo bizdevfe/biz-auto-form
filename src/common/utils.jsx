@@ -128,3 +128,20 @@ export const generateFormFields = (jsonConfig) => {
   });
   return fields;
 };
+
+/**
+ * 过滤props中的key
+ * @param obj
+ * @param keys
+ * @returns {{}}
+ */
+export const omit = (obj, keys) => {
+  const shallowCopy = {
+    ...obj,
+  };
+  for (let i = 0; i < keys.length; i++) {
+    const key = keys[i];
+    delete shallowCopy[key];
+  }
+  return shallowCopy;
+};

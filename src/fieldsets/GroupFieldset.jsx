@@ -6,11 +6,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import FormField from './FormField';
+import FormField from '../FormField';
 import ListField from './ListField';
 import RadioField from './RadioField';
 import GroupField from './GroupField';
-import {getValidateRules, switchFieldControl} from './common/utils';
+import {getValidateRules, switchFieldControl} from '../common/utils';
 
 class FieldGroup extends React.Component {
   constructor(props) {

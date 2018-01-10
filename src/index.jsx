@@ -2,9 +2,9 @@ export { default as AutoForm } from './AutoForm';
 
 export { default as Form } from './Form';
 export { default as FormField } from './FormField';
-export { default as GroupField } from './GroupField';
-export { default as ListField } from './ListField';
-export { default as RadioField } from './RadioField';
+export { default as GroupField } from './fieldsets/GroupField';
+export { default as ListField } from './fieldsets/ListField';
+export { default as RadioField } from './fieldsets/RadioField';
 
 export { default as Button } from './controls/Button';
 export { default as DateTimeInput } from './controls/DateTimeInput';

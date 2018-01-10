@@ -8,9 +8,9 @@ import PropTypes from 'prop-types';
 
 import Form from './Form';
 import FormField from './FormField';
-import ListField from './ListField';
-import RadioField from './RadioField';
-import GroupField from './GroupField';
+import ListField from './fieldsets/ListField';
+import RadioField from './fieldsets/RadioField';
+import GroupField from './fieldsets/GroupField';
 import {getValidateRules, switchFieldControl} from "./common/utils";
 
 

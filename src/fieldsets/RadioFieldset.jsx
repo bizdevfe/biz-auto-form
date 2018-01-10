@@ -6,9 +6,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import FormField from './FormField';
-import RadioGroup from './controls/RadioGroup';
-import {getValidateRules, switchFieldControl} from './common/utils'
+import FormField from '../FormField';
+import RadioGroup from '../controls/RadioGroup';
+import {getValidateRules, switchFieldControl} from '../common/utils'
 
 class RadioField extends React.Component {
   constructor(props) {
