@@ -6,15 +6,6 @@
 import React from 'react';
 import FormField from '../FormField';
 
-import RedWordInput from '../controls/RedWordInput';
-import Input from '../controls/Input';
-import TextArea from '../controls/TextArea';
-import LinkTextArea from '../controls/LinkTextArea';
-import ImageUpload from '../controls/ImageUpload';
-import VideoUpload from '../controls/VideoUpload';
-import DateTimeInput from '../controls/DateTimeInput';
-import RadioGroup from '../controls/RadioGroup';
-
 import ValidateRules from './validateRules';
 
 
@@ -81,61 +72,46 @@ export const switchFieldControl = (field) => {
   switch (control) {
     case 'RedWordInput':
       return <RedWordInput limiter={field.limiter} />;
-      break;
     case 'Input':
       return <Input limiter={field.limiter} />;
-      break;
     case 'TextArea':
       return <TextArea limiter={field.limiter} />;
-      break;
     case 'LinkTextArea':
       return <LinkTextArea limiter={field.limiter} />;
-      break;
     case 'ImageUpload':
       return <ImageUpload uploadRules={field.uploadRules} />;
-      break;
     case 'VideoUpload':
       return <VideoUpload uploadRules={field.uploadRules} />;
-      break;
     case 'DateTimeInput':
       return <DateTimeInput />;
-      break;
     case 'RadioGroup':
       return <RadioGroup options={field.options} />;
-      break;
   }
 };
 
 /**
- * 根据json配置生成FormField
- * @param jsonConfig
- */
-export const generateFormFields = (jsonConfig) => {
-  const fields = jsonConfig.map((item, index) => {
-    const validateRules = getValidateRules(item.rules);
-    return (
-      <FormField
-        key={`field{index}`}
-        name={item.name}
-        label={item.label}
-        rules={validateRules}
-        defaultValue={item.defaultValue}
-        tips={item.tips}
-      >
-        {switchFieldControl(item)}
-      </FormField>
-    );
-  });
-  return fields;
-};
-
-/**
- * 过滤props中的key
+ * 筛选出props中的key
  * @param obj
  * @param keys
  * @returns {{}}
  */
-export const omit = (obj, keys) => {
+export const pick = (obj, ...keys) => {
+  let result = {};
+  for (let i = 0; i < keys.length; i++) {
+    if(key in obj){
+      result[keys[i]] = obj[keys[i]];
+    }
+  }
+  return result;
+};
+
+/**
+ * 过滤除去props中的key
+ * @param obj
+ * @param keys
+ * @returns {{}}
+ */
+export const omit = (obj, ...keys) => {
   const shallowCopy = {
     ...obj,
   };
