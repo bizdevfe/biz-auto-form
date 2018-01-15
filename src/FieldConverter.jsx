@@ -12,6 +12,13 @@ export const FormFieldConverter = (props) => {
   const fieldProps = pick(restProps, fieldPropKeys);
   const Control = controls[control];
   const controlProps = omit(restProps, fieldPropKeys);
+  //自动根据校验规则补充输入的limiter
+  if(fieldProps.rules && fieldProps.rules.maxBytes){
+    const controlsWithLimiter = ['Input','RedWordInput','TextArea', 'LinkTextArea'];
+    if(controlsWithLimiter.indexOf(control) !== -1){
+      controlProps.limiter = {max: fieldProps.rules.maxBytes};
+    }
+  }
   return (
     <FormField ref={fieldRef} {...fieldProps}>
       <Control {...controlProps} />

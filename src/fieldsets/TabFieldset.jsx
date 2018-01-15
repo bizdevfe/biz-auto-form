@@ -11,7 +11,7 @@ import FieldConverter from '../FieldConverter';
 import Select, { Option } from 'rc-select';
 import Tabs, { TabPane } from 'rc-tabs';
 import TabContent from 'rc-tabs/lib/TabContent';
-import TabBar from 'rc-tabs/lib/TabBar';
+import ScrollableInkTabBar from 'rc-tabs/lib/ScrollableInkTabBar';
 
 
 class TabFieldset extends React.Component {
@@ -96,14 +96,31 @@ class TabFieldset extends React.Component {
   };
 
   render() {
-    const fieldsetValue = this.props.value || [];
+    const props = this.props;
+    const fieldsetValue = props.value || [];
+    let tabNumIndex = 0;
+    if(Array.isArray(props.length)){
+      tabNumIndex = props.length.indexOf(this.state.length);
+    }
     let tabPanels = [];
     for(let i = 0; i< this.state.length; i++){
       const tabValue = fieldsetValue[i] || {};
       const tabFields = this.props.fields.map((item) => {
+        const fieldProps = {...item};
+        if(item.rules && (item.rules.maxBytes || item.rules.minBytes)){
+          const rules = {...item.rules};
+          if(Array.isArray(rules.maxBytes)){
+            rules.maxBytes = rules.maxBytes[tabNumIndex];
+          }
+          if(Array.isArray(rules.minBytes)){
+            rules.minBytes = rules.minBytes[tabNumIndex];
+          }
+          fieldProps.rules = rules;
+        }
+
         return (
           <FieldConverter
-            {...item}
+            {...fieldProps}
             key={`tab${i+1}-${item.name}`}
             value={tabValue[item.name]}
             fieldRef={(field) => {
@@ -115,7 +132,11 @@ class TabFieldset extends React.Component {
           />
         );
       });
-      tabPanels.push(<TabPane key={i+1} tab={`Tab ${i+1}`}>{tabFields}</TabPane>);
+      tabPanels.push(
+        <TabPane key={i+1} tab={`Tab ${i+1}`} style={{padding: '10px 0',maxHeight: '500px'}} forceRender>
+          {tabFields}
+        </TabPane>
+      );
     }
 
     return (
@@ -124,8 +145,9 @@ class TabFieldset extends React.Component {
         <Tabs
           activeKey={this.state.activeTabKey}
           onChange={this.handleTabChange}
-          renderTabBar={()=><TabBar />}
-          renderTabContent={()=><TabContent />}
+          renderTabBar={()=><ScrollableInkTabBar />}
+          renderTabContent={()=><TabContent animated={false} />}
+          style={{border: '2px solid #f3f3f3', margin: '10px 0 20px'}}
         >
           {tabPanels}
         </Tabs>

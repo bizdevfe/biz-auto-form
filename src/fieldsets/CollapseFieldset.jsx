@@ -15,15 +15,22 @@ const Panel = Collapse.Panel;
 class CollapseFieldset extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      activeKey: '0'
+    };
     //字段组关联的字段实例
     this.refFields = {};
   }
 
   validate = () => {
-    return Object.keys(this.refFields).reduce((suc, key) => {
+    const resValid = Object.keys(this.refFields).reduce((suc, key) => {
       const valid = this.refFields[key].validate();
       return suc && valid;
     }, true);
+    if(!resValid){
+      this.setState({activeKey: '0'});
+    }
+    return resValid;
   };
 
   getValue = () => {
@@ -46,6 +53,10 @@ class CollapseFieldset extends React.Component {
     }
   };
 
+  handleCollapseChange = (key) => {
+    this.setState({activeKey: key});
+  };
+
   render() {
     const fieldsetValue = this.props.value || {};
     const fields = this.props.fields.map((item, index) => {
@@ -65,7 +76,7 @@ class CollapseFieldset extends React.Component {
       );
     });
     return (
-      <Collapse defaultActiveKey="0">
+      <Collapse activeKey={this.state.activeKey} onChange={this.handleCollapseChange}>
         <Panel header={this.props.panelTitle}>
           {fields}
           <div className="form-item">
