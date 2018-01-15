@@ -1,10 +1,10 @@
 [
   {
     "name": "bigImageList",
-    "fieldType": "ListField",
-    "label": "大图数",
+    "fieldset": "ListFieldset",
+    "numLabel": "大图数",
     "length": [1,2,3,4],
-    "content": [
+    "fields": [
       {
         "name": "image",
         "control": "ImageUpload",

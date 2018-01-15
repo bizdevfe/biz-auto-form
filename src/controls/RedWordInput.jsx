@@ -6,7 +6,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Input from './Input';
-import Button from './Button';
+import Button from '../common/Button';
 
 class RedWordInput extends React.Component {
   constructor(props) {

@@ -1,8 +1,8 @@
 [
   {
     "name": "head",
-    "fieldType": "GroupField",
-    "content": [
+    "fieldset": "GroupFieldset",
+    "fields": [
       {
         "name": "thumbnail",
         "control": "ImageUpload",
@@ -30,9 +30,9 @@
   },
   {
     "name": "imageList",
-    "fieldType": "ListField",
+    "fieldset": "ListFieldset",
     "length": 4,
-    "content": [
+    "fields": [
       {
         "name": "image",
         "control": "ImageUpload",
@@ -64,12 +64,12 @@
   },
   {
     "name": "bottom",
-    "fieldType": "GroupField",
-    "content": [
+    "fieldset": "GroupFieldset",
+    "fields": [
       {
         "name": "button",
-        "fieldType": "GroupField",
-        "content": [
+        "fieldset": "GroupFieldset",
+        "fields": [
           {
             "name": "text",
             "control": "Input",
@@ -89,8 +89,8 @@
       },
       {
         "name": "brand",
-        "fieldType": "GroupField",
-        "content": [
+        "fieldset": "GroupFieldset",
+        "fields": [
           {
             "name": "text",
             "control": "Input",

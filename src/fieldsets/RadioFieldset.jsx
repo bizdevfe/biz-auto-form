@@ -1,19 +1,19 @@
 /**
  * author: KCFE
  * date: 2017/10/12
- * description: 表单项分组,带radio可切换
+ * description: 带radio可切换的字段组
  */
 import React from 'react';
 import PropTypes from 'prop-types';
 
 import FormField from '../FormField';
 import RadioGroup from '../controls/RadioGroup';
-import {getValidateRules, switchFieldControl} from '../common/utils';
+import FieldConverter from '../FieldConverter';
 
 class RadioFieldset extends React.Component {
   constructor(props) {
     super(props);
-    let radioValue = props.content[0].option;
+    let radioValue = props.optionFields[0].option;
     if(typeof radioValue === 'object'){
       radioValue = radioValue.value;
     }
@@ -26,27 +26,26 @@ class RadioFieldset extends React.Component {
     this.state = {
       radioValue: radioValue
     };
-    this.fieldGroup = {};
+    //字段组关联的字段实例
+    this.refFields = {};
   }
 
   validate = () => {
-    return Object.keys(this.fieldGroup).reduce((suc, key) => {
-      const valid = this.fieldGroup[key].validate();
+    return Object.keys(this.refFields).reduce((suc, key) => {
+      const valid = this.refFields[key].validate();
       return suc && valid;
     }, true);
   };
 
   getValue = () => {
-    const groupValue = {
+    const fieldsetValue = {
       radioValue: this.state.radioValue
     };
-    Object.keys(this.fieldGroup).forEach((key) => {
-      const value = this.fieldGroup[key].getValue();
-      if(value){
-        Object.assign(groupValue, {[key]: value});
-      }
+    Object.keys(this.refFields).forEach((key) => {
+      const value = this.refFields[key].getValue();
+      Object.assign(fieldsetValue, {[key]: value});
     });
-    return groupValue;
+    return fieldsetValue;
   };
 
   handleRadioChange = (value) => {
@@ -56,13 +55,12 @@ class RadioFieldset extends React.Component {
   };
 
   getRadioGroup = () => {
-    const {content} = this.props;
-    const options = content.map((item, index) => {
+    const options = this.props.optionFields.map((item, index) => {
       return item.option;
     });
     return (
       <FormField
-        label={this.props.label}
+        label={this.props.radioLabel}
         value={this.state.radioValue}
         onChange={this.handleRadioChange}
       >
@@ -72,10 +70,10 @@ class RadioFieldset extends React.Component {
   };
 
   getRadioIndex = () => {
-    const {content} = this.props;
+    const {optionFields} = this.props;
     let i = 0;
-    for(; i < content.length; i++) {
-      const option = content[i].option;
+    for(; i < optionFields.length; i++) {
+      const option = optionFields[i].option;
       const optionValue = typeof option === 'string' ? option : option.value;
       if(optionValue === this.state.radioValue) {
         break;
@@ -86,29 +84,22 @@ class RadioFieldset extends React.Component {
 
   render() {
     const radioIndex = this.getRadioIndex();
-    const radioFields = this.props.content[radioIndex].fields || [];
-    const groupValue = this.props.value || {};
-    const fields = radioFields.map((item, index) => {
+    const jsonFields = this.props.optionFields[radioIndex].fields || [];
+    const fieldsetValue = this.props.value || {};
+    const fields = jsonFields.map((item, index) => {
       return (
-        <FormField
+        <FieldConverter
+          {...item}
           key={`radio${radioIndex}-field${index}`}
-          name={item.name}
-          label={item.label}
-          required={item.required}
-          rules={getValidateRules(item.rules)}
-          defaultValue={item.defaultValue}
-          tips={item.tips}
-          value={groupValue[item.name]}
-          ref={(field) => {
+          value={fieldsetValue[item.name]}
+          fieldRef={(field) => {
             if(field){
-              this.fieldGroup[item.name] = field;
+              this.refFields[item.name] = field;
             } else {
-              delete this.fieldGroup[item.name];
+              delete this.refFields[item.name];
             }
           }}
-        >
-          {switchFieldControl(item)}
-        </FormField>
+        />
       );
     });
 
@@ -123,10 +114,10 @@ class RadioFieldset extends React.Component {
 
 RadioFieldset.propTypes = {
   name: PropTypes.string.isRequired,
-  label: PropTypes.string,
+  radioLabel: PropTypes.string,
   value: PropTypes.any,
   defaultRadio: PropTypes.string,
-  content: PropTypes.arrayOf(PropTypes.shape({
+  optionFields: PropTypes.arrayOf(PropTypes.shape({
     option: PropTypes.oneOfType([
       PropTypes.string.isRequired,
       PropTypes.object.isRequired

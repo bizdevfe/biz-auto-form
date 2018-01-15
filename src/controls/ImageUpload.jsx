@@ -7,7 +7,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Upload from 'rc-upload';
 import Input from './Input';
-import Button from './Button';
+import Button from '../common/Button';
 
 const imageTypes = {
   'png': 'image/png',

@@ -1,13 +1,13 @@
 /**
  * author: KCFE
  * date: 2017/10/12
- * description: 值为重复结构数组的表单项
+ * description: 按个数重复的字段组
  */
 import React from 'react';
 import PropTypes from 'prop-types';
 
 import FormField from '../FormField';
-import {getValidateRules, switchFieldControl} from '../common/utils';
+import FieldConverter from '../FieldConverter';
 import Select, { Option } from 'rc-select';
 
 
@@ -24,37 +24,36 @@ class ListFieldset extends React.Component {
     this.state = {
       length: length
     };
-    this.fieldGroupList = [];
+    //字段组关联的字段实例
+    this.refFields = [];
   }
 
   validate = () => {
-    let listValid = true;
+    let resValid = true;
     for(let i = 0; i < this.state.length; i++){
-      const fieldGroup = this.fieldGroupList[i];
-      let groupValid = Object.keys(fieldGroup).reduce((suc, key) => {
-        const valid = fieldGroup[key].validate();
+      const groupFields = this.refFields[i];
+      let groupValid = Object.keys(groupFields).reduce((suc, key) => {
+        const valid = groupFields[key].validate();
         return suc && valid;
       }, true);
-      listValid = listValid && groupValid;
+      resValid = resValid && groupValid;
     }
-    return listValid;
+    return resValid;
   };
 
   getValue = () => {
-    const listValue = [];
+    const fieldsetValue = [];
     for(let i = 0; i < this.state.length; i++){
-      const fieldGroup = this.fieldGroupList[i];
+      const groupFields = this.refFields[i];
       const groupValue = {};
-      Object.keys(fieldGroup).forEach((key) => {
-        const value = fieldGroup[key].getValue();
-        if(value){
-          Object.assign(groupValue, {[key]: value});
-        }
+      Object.keys(groupFields).forEach((key) => {
+        const value = groupFields[key].getValue();
+        Object.assign(groupValue, {[key]: value});
       });
-      listValue.push(groupValue);
+      fieldsetValue.push(groupValue);
     }
 
-    return listValue;
+    return fieldsetValue;
   };
 
   handleNumChange = (num) => {
@@ -73,7 +72,7 @@ class ListFieldset extends React.Component {
       });
       selectField = (
         <FormField
-          label={this.props.label}
+          label={this.props.numLabel}
           value={this.state.length}
           onChange={this.handleNumChange}
         >
@@ -87,39 +86,33 @@ class ListFieldset extends React.Component {
   };
 
   render() {
-    const listValue = this.props.value || [];
-    let fieldsList = [];
+    const fieldsetValue = this.props.value || [];
+    let fields = [];
     for(let i = 0; i< this.state.length; i++){
-      const groupValue = listValue[i] || {};
-      const fields = this.props.content.map((item) => {
+      const groupValue = fieldsetValue[i] || {};
+      const groupFields = this.props.fields.map((item) => {
         return (
-          <FormField
+          <FieldConverter
+            {...item}
             key={item.name + (i+1)}
-            name={item.name}
             label={item.label + (i+1)}
-            required={item.required}
-            rules={getValidateRules(item.rules)}
-            defaultValue={item.defaultValue}
-            tips={item.tips}
             value={groupValue[item.name]}
-            ref={(field) => {
-              if(!this.fieldGroupList[i]){
-                this.fieldGroupList[i] = {};
+            fieldRef={(field) => {
+              if(!this.refFields[i]){
+                this.refFields[i] = {};
               }
-              this.fieldGroupList[i][item.name] = field;
+              this.refFields[i][item.name] = field;
             }}
-          >
-            {switchFieldControl(item)}
-          </FormField>
+          />
         );
       });
-      fieldsList.push(...fields);
+      fields.push(...groupFields);
     }
 
     return (
       <div>
         {this.getSelectField()}
-        {fieldsList}
+        {fields}
       </div>
     );
   }
@@ -127,13 +120,13 @@ class ListFieldset extends React.Component {
 
 ListFieldset.propTypes = {
   name: PropTypes.string.isRequired,
-  label: PropTypes.string,
-  content: PropTypes.array,
+  numLabel: PropTypes.string,
   length: PropTypes.oneOfType([
     PropTypes.number.isRequired,
     PropTypes.array.isRequired,
   ]),
-  value: PropTypes.any
+  value: PropTypes.any,
+  fields: PropTypes.array
 };
 
 ListFieldset.defaultProps = {

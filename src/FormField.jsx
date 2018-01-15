@@ -6,7 +6,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Validator from 'async-validator';
+import ValidateRules from './common/validateRules';
 
+/**
+ * 将json配置中校验规则转化为校验规则对象数组
+ * @param rules
+ * @returns {*}
+ */
+const getValidateRules = (rules) => {
+  if( Array.isArray(rules) ){
+    return rules;
+  }
+  return Object.keys(rules).map((key) => {
+    const arg = rules[key];
+    if(arg === true){
+      return ValidateRules[key];
+    }
+    return ValidateRules[key](arg);
+  });
+};
 
 class FormField extends React.Component {
   constructor(props) {
@@ -17,7 +35,7 @@ class FormField extends React.Component {
     };
     if(props.rules) {
       const rulesDescriptor = {
-        [props.name]: props.rules
+        [props.name]: getValidateRules(props.rules)
       };
       this.validator = new Validator(rulesDescriptor);
     }

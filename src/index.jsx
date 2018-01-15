@@ -2,11 +2,12 @@ export { default as AutoForm } from './AutoForm';
 
 export { default as Form } from './Form';
 export { default as FormField } from './FormField';
-export { default as GroupField } from './fieldsets/GroupField';
-export { default as ListField } from './fieldsets/ListField';
-export { default as RadioField } from './fieldsets/RadioField';
 
-export { default as Button } from './controls/Button';
+export { default as GroupFieldset } from './fieldsets/GroupFieldset';
+export { default as ListFieldset } from './fieldsets/ListFieldset';
+export { default as RadioFieldset } from './fieldsets/RadioFieldset';
+
+
 export { default as DateTimeInput } from './controls/DateTimeInput';
 export { default as ImageUpload } from './controls/ImageUpload';
 export { default as VideoUpload } from './controls/VideoUpload';

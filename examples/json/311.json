@@ -66,9 +66,9 @@
   },
   {
     "name": "buttonLink",
-    "fieldType": "RadioField",
-    "label": "按钮链接",
-    "content": [
+    "fieldset": "RadioFieldset",
+    "radioLabel": "按钮链接",
+    "optionFields": [
       {
         "option": {"value": "official", "text": "官网链接"},
         "fields": [

@@ -6,7 +6,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TextArea from './TextArea';
-import Button from './Button';
+import Button from '../common/Button';
 
 class LinkTextArea extends React.Component {
   constructor(props) {

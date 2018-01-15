@@ -1,0 +1,35 @@
+[
+  {
+    "name": "tabs",
+    "fieldset": "TabFieldset",
+    "length": [3,4,5],
+    "fields": [
+      {
+        "name": "tabName",
+        "control": "Input",
+        "label": "tab文字",
+        "limiter": {"max": 8},
+        "rules": {"required": true, "url": true, "maxBytes": 512}
+      },
+      {
+        "name": "image",
+        "control": "ImageUpload",
+        "label": "图片",
+        "rules": {"imageRequired": true},
+        "tips": "图片尺寸：240x240，不超过50k，jpg、gif、png格式。",
+        "uploadRules": {
+          "size": 50,
+          "types": ["gif","jpg","png"],
+          "key": "316-imageList-image"
+        }
+      },
+      {
+        "name": "description",
+        "control": "TextArea",
+        "label": "文字描述",
+        "limiter": {"max": 30},
+        "rules": {"required": true, "maxBytes": 8}
+      }
+    ]
+  }
+]

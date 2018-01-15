@@ -5,7 +5,8 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from './controls/Button';
+import Button from './common/Button';
+import FieldConverter from './FieldConverter';
 
 
 class Form extends React.Component {
@@ -48,10 +49,11 @@ class Form extends React.Component {
     const formData = props.data || {};
     const formItems = React.Children.map(props.children, (child) => {
       const value = formData[child.props.name];
+      const refKey = child.type === FieldConverter ? 'fieldRef' : 'ref';
       return React.cloneElement(child, {
         value,
         labelWidth: child.props.labelWidth || props.labelWidth,
-        ref: (item) => {this.items[child.props.name] = item;}
+        [refKey]: (item) => {this.items[child.props.name] = item;}
       });
     });
     return (

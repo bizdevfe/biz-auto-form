@@ -7,11 +7,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Form from './Form';
-import FormField from './FormField';
-import ListField from './fieldsets/ListField';
-import RadioField from './fieldsets/RadioField';
-import GroupField from './fieldsets/GroupField';
-import {getValidateRules, switchFieldControl} from "./common/utils";
+import FieldConverter from './FieldConverter';
 
 
 class AutoForm extends React.Component {
@@ -21,50 +17,12 @@ class AutoForm extends React.Component {
 
   getFormFields = (descriptor) => {
     const fields = descriptor.map((item, index) => {
-      if (item.fieldType === 'ListField'){
-        return (
-          <ListField
-            key={index}
-            name={item.name}
-            label={item.label}
-            length={item.length}
-            content={item.content}
-          />
-        );
-      } else if (item.fieldType === 'RadioField'){
-        return (
-          <RadioField
-            key={index}
-            name={item.name}
-            label={item.label}
-            defaultValue={item.defaultValue}
-            content={item.content}
-          />
-        );
-      } else if (item.fieldType === 'GroupField'){
-        return (
-          <GroupField
-            key={index}
-            name={item.name}
-            content={item.content}
-          />
-        );
-      } else {
-        const validateRules = getValidateRules(item.rules);
-        return (
-          <FormField
-            key={index}
-            name={item.name}
-            label={item.label}
-            required={item.required}
-            rules={validateRules}
-            defaultValue={item.defaultValue}
-            tips={item.tips}
-          >
-            {switchFieldControl(item)}
-          </FormField>
-        );
-      }
+      return (
+        <FieldConverter
+          {...item}
+          key={item.name}
+        />
+      );
     });
     return fields;
   };
