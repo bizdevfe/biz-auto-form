@@ -1,7 +1,8 @@
 [
   {
     "name": "tabs",
-    "fieldset": "TabFieldset",
+    "fieldset": "CollapseFieldset",
+    "panelTitle": "XXXXXXXXX",
     "length": [3,4,5],
     "fields": [
       {
