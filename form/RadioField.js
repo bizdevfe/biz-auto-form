@@ -1,5 +1,5 @@
 import React from 'react';
-import {RadioField, Form} from '../../src/index';
+import {RadioFieldset, Form} from '../../src/index';
 
 const radioFieldContent = [
   {
@@ -50,12 +50,12 @@ class FormTest extends React.Component {
   render() {
     return (
       <Form onSubmit={this.handleSubmit}>
-        <RadioField
+        <RadioFieldset
           name="buttonLink"
-          label="按钮链接"
-          content={radioFieldContent}
+          radioLabel="按钮链接"
+          optionFields={radioFieldContent}
         >
-        </RadioField>
+        </RadioFieldset>
       </Form>
     );
   }

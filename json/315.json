@@ -1,8 +1,8 @@
 [
   {
     "name": "head",
-    "fieldType": "GroupField",
-    "content": [
+    "fieldset": "GroupFieldset",
+    "fields": [
       {
         "name": "title",
         "control": "RedWordInput",
@@ -48,8 +48,8 @@
   },
   {
     "name": "middle",
-    "fieldType": "GroupField",
-    "content": [
+    "fieldset": "GroupFieldset",
+    "fields": [
       {
         "name": "thumbnail",
         "control": "ImageUpload",
@@ -77,14 +77,14 @@
   },
   {
     "name": "bottom",
-    "fieldType": "GroupField",
-    "content": [
+    "fieldset": "GroupFieldset",
+    "fields": [
       {
         "name": "buttonList",
-        "fieldType": "ListField",
-        "label": "按钮数",
+        "fieldset": "ListFieldset",
+        "numLabel": "按钮数",
         "length": 3,
-        "content": [
+        "fields": [
           {
             "name": "text",
             "control": "Input",
@@ -104,8 +104,8 @@
       },
       {
         "name": "brand",
-        "fieldType": "GroupField",
-        "content": [
+        "fieldset": "GroupFieldset",
+        "fields": [
           {
             "name": "text",
             "control": "Input",

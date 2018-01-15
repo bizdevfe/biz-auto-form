@@ -1,5 +1,5 @@
 import React from 'react';
-import {ListField, Form} from '../../src/index';
+import {ListFieldset, Form} from '../../src/index';
 
 const listFieldContent = [
   {
@@ -35,13 +35,13 @@ class FormTest extends React.Component {
   render() {
     return (
       <Form onSubmit={this.handleSubmit}>
-        <ListField
+        <ListFieldset
           name="bigImageList"
           length={[3,4]}
-          label="大图数"
-          content={listFieldContent}
+          numLabel="大图数"
+          fields={listFieldContent}
         >
-        </ListField>
+        </ListFieldset>
       </Form>
     );
   }
