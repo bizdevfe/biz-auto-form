@@ -6,50 +6,92 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Form from './Form';
+import Button from './common/Button';
 import FieldConverter from './FieldConverter';
 
 
 class AutoForm extends React.Component {
   constructor(props) {
     super(props);
+    //关联的字段和字段组的实例
+    this.refFields = {};
   }
 
-  getFormFields = (descriptor) => {
-    const fields = descriptor.map((item, index) => {
-      return (
-        <FieldConverter
-          {...item}
-          key={item.name}
-        />
-      );
+  handleSubmit = (event) => {
+    event && event.preventDefault();
+    if( !this.validate() ){
+      return;
+    }
+    if(this.props.onSubmit){
+      const values = this.getValues();
+      this.props.onSubmit(values);
+    }
+  };
+
+  getValues = () => {
+    const values = {};
+    Object.keys(this.refFields).forEach((key) => {
+      const value = this.refFields[key].getValue();
+      Object.assign(values, {[key]: value});
     });
-    return fields;
+    return values;
+  };
+
+  validate = () => {
+    return Object.keys(this.refFields).reduce((suc, key) => {
+      const valid = this.refFields[key].validate();
+      return suc && valid;
+    }, true);
   };
 
   render() {
-    const formItems = this.getFormFields(this.props.descriptor);
+    const props = this.props;
+    const formData = props.data || {};
+    const fields = props.descriptor.map((item, index) => {
+      const fieldProps = {
+        ...item,
+        value: formData[item.name],
+        fieldRef: (field) => {this.refFields[item.name] = field;}
+      };
+      if(item.fieldset === 'CollapseFieldset'){
+        fieldProps.onSubmit = props.onSubmit;
+      }
+      return (
+        <FieldConverter
+          key={item.name}
+          labelWidth={props.labelWidth}
+          {...fieldProps}
+        />
+      );
+    });
     return (
-      <Form
-        data={this.props.data}
-        onSubmit={this.props.onSubmit}
-        ref={this.props.formRef}
-      >
-        {formItems}
-      </Form>
+      <form onSubmit={this.handleSubmit}>
+        {fields}
+        <div className="form-item">
+          <div className="item-con" style={{marginLeft: props.labelWidth + 10}}>
+            <Button htmlType="submit">
+              确定提交
+            </Button>
+          </div>
+        </div>
+      </form>
     );
   }
 }
 
 AutoForm.propTypes = {
-  descriptor: PropTypes.arrayOf(PropTypes.object), //表单项描述数组
-  data: PropTypes.object, //表单数据
-  onSubmit: PropTypes.func,
-  formRef: PropTypes.func,
+  //字段标签宽度
+  labelWidth: PropTypes.number,
+  //表单项描述 json数组
+  descriptor: PropTypes.arrayOf(PropTypes.object),
+  //表单数据 json对象
+  data: PropTypes.object,
+  //表单提交回调
+  onSubmit: PropTypes.func
 };
 
 AutoForm.defaultProps = {
-
+  labelWidth: 140
 };
 
 export default AutoForm;

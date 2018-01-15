@@ -6,13 +6,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from './common/Button';
-import FieldConverter from './FieldConverter';
 
 
 class Form extends React.Component {
   constructor(props) {
     super(props);
-    this.items = {};
+    //关联的字段和字段组的实例
+    this.refFields = {};
   }
 
   handleSubmit = (event) => {
@@ -28,18 +28,16 @@ class Form extends React.Component {
 
   getValues = () => {
     const values = {};
-    Object.keys(this.items).forEach((key) => {
-      const value = this.items[key].getValue();
-      if(value){
-        Object.assign(values, {[key]: value});
-      }
+    Object.keys(this.refFields).forEach((key) => {
+      const value = this.refFields[key].getValue();
+      Object.assign(values, {[key]: value});
     });
     return values;
   };
 
   validate = () => {
-    return Object.keys(this.items).reduce((suc, key) => {
-      const valid = this.items[key].validate();
+    return Object.keys(this.refFields).reduce((suc, key) => {
+      const valid = this.refFields[key].validate();
       return suc && valid;
     }, true);
   };
@@ -47,24 +45,21 @@ class Form extends React.Component {
   render() {
     const props = this.props;
     const formData = props.data || {};
-    const formItems = React.Children.map(props.children, (child) => {
+    const fields = React.Children.map(props.children, (child) => {
       const value = formData[child.props.name];
-      const refKey = child.type === FieldConverter ? 'fieldRef' : 'ref';
       return React.cloneElement(child, {
         value,
         labelWidth: child.props.labelWidth || props.labelWidth,
-        [refKey]: (item) => {this.items[child.props.name] = item;}
+        ref: (field) => {this.refFields[child.props.name] = field;}
       });
     });
     return (
-      <form
-        onSubmit={this.handleSubmit}
-      >
-        {formItems}
+      <form onSubmit={this.handleSubmit}>
+        {fields}
         <div className="form-item">
           <div className="item-con" style={{marginLeft: props.labelWidth + 10}}>
             <Button htmlType="submit">
-              保存
+              确定提交
             </Button>
           </div>
         </div>
@@ -74,9 +69,13 @@ class Form extends React.Component {
 }
 
 Form.propTypes = {
+  //字段标签宽度
   labelWidth: PropTypes.number,
+  //表单字段节点
   children: PropTypes.node,
+  //表单数据 json对象
   data: PropTypes.object,
+  //表单提交回调
   onSubmit: PropTypes.func
 };
 

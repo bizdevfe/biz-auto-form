@@ -51,3 +51,4 @@ node_modules
 lib
 coverage
 package-lock.json
+assets/*.css
