@@ -6,6 +6,7 @@ import ImageUpload from './ImageUpload';
 import VideoUpload from './VideoUpload';
 import DateTimeInput from './DateTimeInput';
 import RadioGroup from './RadioGroup';
+import Select from './Select';
 
 export default {
   RedWordInput,
@@ -15,5 +16,6 @@ export default {
   ImageUpload,
   VideoUpload,
   DateTimeInput,
-  RadioGroup
+  RadioGroup,
+  Select
 };

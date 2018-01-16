@@ -1,35 +1,30 @@
 [
   {
-    "name": "tabs",
-    "fieldset": "CollapseFieldset",
-    "panelTitle": "XXXXXXXXX",
-    "length": [3,4,5],
-    "fields": [
+    "name": "table",
+    "fieldset": "TableFieldset",
+    "rowNum": [3,4,5],
+    "colNum": [4,5,6],
+    "headerFields": [
       {
-        "name": "tabName",
+        "name": "text",
         "control": "Input",
-        "label": "tab文字",
-        "limiter": {"max": 8},
-        "rules": {"required": true, "url": true, "maxBytes": 512}
-      },
-      {
-        "name": "image",
-        "control": "ImageUpload",
-        "label": "图片",
-        "rules": {"imageRequired": true},
-        "tips": "图片尺寸：240x240，不超过50k，jpg、gif、png格式。",
-        "uploadRules": {
-          "size": 50,
-          "types": ["gif","jpg","png"],
-          "key": "316-imageList-image"
-        }
-      },
-      {
-        "name": "description",
-        "control": "TextArea",
-        "label": "文字描述",
-        "limiter": {"max": 30},
+        "label": "文本",
         "rules": {"required": true, "maxBytes": 8}
+      }
+    ],
+    "rowFields": [
+      {
+        "name": "text",
+        "control": "Input",
+        "label": "文本",
+        "rules": {"required": true, "maxBytes": 8}
+      },
+      {
+        "name": "link",
+        "control": "Input",
+        "label": "链接",
+        "defaultValue": "http://",
+        "rules": {"required": true, "url": true, "maxBytes": 512}
       }
     ]
   }

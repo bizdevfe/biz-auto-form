@@ -3,11 +3,13 @@ import ListFieldset from './ListFieldset';
 import RadioFieldset from './RadioFieldset';
 import TabFieldset from './TabFieldset';
 import CollapseFieldset from './CollapseFieldset';
+import TableFieldset from './TableFieldset';
 
 export default {
   GroupFieldset,
   ListFieldset,
   RadioFieldset,
   TabFieldset,
-  CollapseFieldset
+  CollapseFieldset,
+  TableFieldset
 };
