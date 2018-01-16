@@ -8,7 +8,6 @@
         "name": "title",
         "control": "RedWordInput",
         "label": "主标题",
-        "limiter": {"max": 60},
         "rules": {"required": true, "minBytes": 10, "maxBytes": 60}
       },
       {
@@ -16,14 +15,12 @@
         "control": "Input",
         "defaultValue": "http://",
         "label": "主标题链接",
-        "limiter": {"max": 512},
         "rules": {"required": true, "url": true, "maxBytes": 512}
       },
       {
         "name": "subTitle",
         "control": "Input",
         "label": "副标题",
-        "limiter": {"max": 30},
         "rules": {"required": true, "minBytes": 10, "maxBytes": 30}
       },
       {
@@ -35,7 +32,6 @@
           {
             "control": "Input",
             "label": "描述",
-            "limiter": {"max": 20},
             "rules": {"required": true, "minBytes": 10, "maxBytes": 20}
           }
         ]
@@ -57,7 +53,6 @@
         "control": "Input",
         "defaultValue": "http://",
         "label": "图片链接",
-        "limiter": {"max": 512},
         "rules": {"required": true, "url": true, "maxBytes": 512}
       },
       {
@@ -77,29 +72,27 @@
         "control": "Input",
         "defaultValue": "http://",
         "label": "LOGO链接",
-        "limiter": {"max": 512},
         "rules": {"required": true, "url": true, "maxBytes": 512}
       },
       {
         "name": "showUrl",
         "control": "Input",
         "label": "显示URL",
-        "limiter": {"max": 30},
         "rules": {"required": true, "maxBytes": 30}
       },
       {
         "name": "buttonText",
         "control": "Input",
         "label": "Button文字",
-        "limiter": {"max": 10},
-        "rules": {"required": true, "minBytes": 4, "maxBytes": 10}
+        "required": false,
+        "tips": "不填则广告中按钮文字默认显示\"立即播放\"",
+        "rules": {"minBytes": 4, "maxBytes": 10}
       },
       {
         "name": "buttonLink",
         "control": "Input",
         "defaultValue": "http://",
         "label": "Button链接",
-        "limiter": {"max": 512},
         "rules": {"required": true, "url": true, "maxBytes": 512}
       }
     ]
@@ -113,8 +106,9 @@
         "name": "tabText",
         "control": "Input",
         "label": "Tab链接文字",
-        "defaultValue": "查看更多视频>>",
-        "rules": {"required": true, "minBytes": 10, "maxBytes": 20}
+        "required": false,
+        "tips": "不填则广告中链接文字默认显示\"查看更多视频>>\"",
+        "rules": {"minBytes": 10, "maxBytes": 20}
       },
       {
         "name": "tabLink",
