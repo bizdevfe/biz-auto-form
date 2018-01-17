@@ -1,7 +1,7 @@
 [
   {
     "name": "head",
-    "fieldset": "CollapseFieldset",
+    "fieldset": "GroupFieldset",
     "panelTitle": "宽版综艺节目样式——头部物料",
     "fields": [
       {
@@ -95,11 +95,12 @@
         "label": "Button链接",
         "rules": {"required": true, "url": true, "maxBytes": 512}
       }
-    ]
+    ],
+    "submit": true
   },
   {
     "name": "middle",
-    "fieldset": "CollapseFieldset",
+    "fieldset": "GroupFieldset",
     "panelTitle": "宽版综艺节目样式——Tab区域物料",
     "fields": [
       {
@@ -168,11 +169,13 @@
           }
         ]
       }
-    ]
+    ],
+    "submit": true
   },
   {
     "name": "buttonList",
     "fieldset": "ListFieldset",
+    "panelTitle": "宽版综艺节目样式——底部按钮",
     "length": [3,4,5,6],
     "numLabel": "底部按钮数",
     "fields": [

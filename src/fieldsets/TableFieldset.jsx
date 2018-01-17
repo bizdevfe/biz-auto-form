@@ -8,6 +8,8 @@ import PropTypes from 'prop-types';
 
 import FormField from '../FormField';
 import ListFieldset from './ListFieldset';
+import Button from '../common/Button';
+import Collapse, { Panel } from 'rc-collapse';
 import Select, { Option } from 'rc-select';
 import Tabs, { TabPane } from 'rc-tabs';
 import TabContent from 'rc-tabs/lib/TabContent';
@@ -33,6 +35,7 @@ class TableFieldset extends React.Component {
     this.state = {
       rowNum,
       colNum,
+      activePanelKey: '0',
       activeTabKey: '1'
     };
     //字段组关联的字段实例
@@ -44,6 +47,9 @@ class TableFieldset extends React.Component {
     for(let i = 0; i < this.state.rowNum; i++){
       let tabValid = this.refFields[i].validate();
       resValid = resValid && tabValid;
+    }
+    if(!resValid){
+      this.setState({activePanelKey: '0'});
     }
     return resValid;
   };
@@ -84,7 +90,7 @@ class TableFieldset extends React.Component {
     });
   };
 
-  getRowSelect = () => {
+  renderRowSelect = () => {
     let selectField = null;
     if(Array.isArray(this.props.rowNum)){
       const options = this.props.rowNum.map((num, index) => {
@@ -107,7 +113,7 @@ class TableFieldset extends React.Component {
     return selectField;
   };
 
-  getColSelect = () => {
+  renderColSelect = () => {
     let selectField = null;
     if(Array.isArray(this.props.colNum)){
       const options = this.props.colNum.map((num, index) => {
@@ -128,6 +134,33 @@ class TableFieldset extends React.Component {
       );
     }
     return selectField;
+  };
+
+  handleSubmit = () => {
+    if( !this.validate() ){
+      return;
+    }
+    if(this.props.onSubmit){
+      this.props.onSubmit({
+        [this.props.name]: this.getValue()
+      });
+    }
+  };
+
+  handleCollapseChange = (key) => {
+    this.setState({activePanelKey: key});
+  };
+
+  renderSubmit = () => {
+    return (
+      <div className="form-item">
+        <div className="item-con" style={{marginLeft: this.props.labelWidth + 10}}>
+          <Button onClick={this.handleSubmit}>
+            保存
+          </Button>
+        </div>
+      </div>
+    );
   };
 
   render() {
@@ -169,10 +202,10 @@ class TableFieldset extends React.Component {
       );
     }
 
-    return (
+    const fieldset = (
       <div>
-        {this.getRowSelect()}
-        {this.getColSelect()}
+        {this.renderRowSelect()}
+        {this.renderColSelect()}
         <Tabs
           activeKey={this.state.activeTabKey}
           onChange={this.handleTabChange}
@@ -185,6 +218,16 @@ class TableFieldset extends React.Component {
         </Tabs>
       </div>
     );
+    if(!!this.props.panelTitle){
+      return (
+        <Collapse activeKey={this.state.activePanelKey} onChange={this.handleCollapseChange}>
+          <Panel header={this.props.panelTitle}>
+            {fieldset}
+          </Panel>
+        </Collapse>
+      );
+    }
+    return fieldset;
   }
 }
 
@@ -193,17 +236,22 @@ TableFieldset.propTypes = {
   name: PropTypes.string.isRequired,
   //字段组的值
   value: PropTypes.any,
-  //Tab 个数，可固定可变动
+  //表格行数，列数
   rowNum: PropTypes.array,
   colNum: PropTypes.array,
-  //Tab内字段组的json描述
+  //表头字段组的json描述
   headerFields: PropTypes.array,
-  //Tab内字段组的json描述
+  //表格行字段组的json描述
   rowFields: PropTypes.array,
+  //折叠面板标题
+  panelTitle: PropTypes.string,
+  //是否可以分段保存提交
+  submit: PropTypes.bool
 };
 
 TableFieldset.defaultProps = {
-
+  labelWidth: 140,
+  submit: false
 };
 
 export default TableFieldset;

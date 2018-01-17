@@ -9,6 +9,8 @@ import PropTypes from 'prop-types';
 import FormField from '../FormField';
 import FieldConverter from '../FieldConverter';
 import Select, { Option } from 'rc-select';
+import Collapse, { Panel } from 'rc-collapse';
+import Button from '../common/Button';
 
 
 class ListFieldset extends React.Component {
@@ -22,7 +24,8 @@ class ListFieldset extends React.Component {
       length = props.value.length;
     }
     this.state = {
-      length: length
+      length: length,
+      activePanelKey: '0'
     };
     //字段组关联的字段实例
     this.refFields = [];
@@ -44,6 +47,9 @@ class ListFieldset extends React.Component {
         }, true);
       }
       resValid = resValid && groupValid;
+    }
+    if(!resValid){
+      this.setState({activePanelKey: '0'});
     }
     return resValid;
   };
@@ -75,7 +81,7 @@ class ListFieldset extends React.Component {
     });
   };
 
-  getSelectField = () => {
+  renderSelectField = () => {
     let selectField = null;
     if(Array.isArray(this.props.length)){
       const options = this.props.length.map((num, index) => {
@@ -96,6 +102,33 @@ class ListFieldset extends React.Component {
       );
     }
     return selectField;
+  };
+
+  handleSubmit = () => {
+    if( !this.validate() ){
+      return;
+    }
+    if(this.props.onSubmit){
+      this.props.onSubmit({
+        [this.props.name]: this.getValue()
+      });
+    }
+  };
+
+  handleCollapseChange = (key) => {
+    this.setState({activePanelKey: key});
+  };
+
+  renderSubmit = () => {
+    return (
+      <div className="form-item">
+        <div className="item-con" style={{marginLeft: this.props.labelWidth + 10}}>
+          <Button onClick={this.handleSubmit}>
+            保存
+          </Button>
+        </div>
+      </div>
+    );
   };
 
   render() {
@@ -157,12 +190,23 @@ class ListFieldset extends React.Component {
       }
     }
 
-    return (
+    const fieldset = (
       <div>
-        {this.getSelectField()}
+        {this.renderSelectField()}
         {fields}
+        {this.props.submit && this.renderSubmit()}
       </div>
     );
+    if(!!this.props.panelTitle){
+      return (
+        <Collapse activeKey={this.state.activePanelKey} onChange={this.handleCollapseChange}>
+          <Panel header={this.props.panelTitle}>
+            {fieldset}
+          </Panel>
+        </Collapse>
+      );
+    }
+    return fieldset;
   }
 }
 
@@ -174,11 +218,16 @@ ListFieldset.propTypes = {
     PropTypes.array.isRequired,
   ]),
   value: PropTypes.any,
-  fields: PropTypes.array
+  fields: PropTypes.array,
+  //折叠面板标题
+  panelTitle: PropTypes.string,
+  //是否可以分段保存提交
+  submit: PropTypes.bool
 };
 
 ListFieldset.defaultProps = {
-
+  labelWidth: 140,
+  submit: false
 };
 
 export default ListFieldset;

@@ -6,20 +6,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Collapse, { Panel } from 'rc-collapse';
 import FieldConverter from '../FieldConverter';
+import Button from '../common/Button';
+
 
 class GroupFieldset extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      activePanelKey: '0'
+    };
     //字段组关联的字段实例
     this.refFields = {};
   }
 
   validate = () => {
-    return Object.keys(this.refFields).reduce((suc, key) => {
+    const resValid = Object.keys(this.refFields).reduce((suc, key) => {
       const valid = this.refFields[key].validate();
       return suc && valid;
     }, true);
+    if(!resValid){
+      this.setState({activePanelKey: '0'});
+    }
+    return resValid;
   };
 
   getValue = () => {
@@ -29,6 +39,33 @@ class GroupFieldset extends React.Component {
       Object.assign(fieldsetValue, {[key]: value});
     });
     return fieldsetValue;
+  };
+
+  handleSubmit = () => {
+    if( !this.validate() ){
+      return;
+    }
+    if(this.props.onSubmit){
+      this.props.onSubmit({
+        [this.props.name]: this.getValue()
+      });
+    }
+  };
+
+  handleCollapseChange = (key) => {
+    this.setState({activePanelKey: key});
+  };
+
+  renderSubmit = () => {
+    return (
+      <div className="form-item">
+        <div className="item-con" style={{marginLeft: this.props.labelWidth + 10}}>
+          <Button onClick={this.handleSubmit}>
+            保存
+          </Button>
+        </div>
+      </div>
+    );
   };
 
   render() {
@@ -49,22 +86,41 @@ class GroupFieldset extends React.Component {
         />
       );
     });
+    if(!!this.props.panelTitle){
+      return (
+        <Collapse activeKey={this.state.activePanelKey} onChange={this.handleCollapseChange}>
+          <Panel header={this.props.panelTitle}>
+            {fields}
+            {this.props.submit && this.renderSubmit()}
+          </Panel>
+        </Collapse>
+      );
+    }
     return (
       <div>
         {fields}
+        {this.props.submit && this.renderSubmit()}
       </div>
     );
   }
 }
 
 GroupFieldset.propTypes = {
+  //字段组名
   name: PropTypes.string.isRequired,
+  //字段组的值
   value: PropTypes.any,
-  fields: PropTypes.array
+  //字段组中字段的json描述
+  fields: PropTypes.array,
+  //折叠面板标题
+  panelTitle: PropTypes.string,
+  //是否可以分段保存提交
+  submit: PropTypes.bool
 };
 
 GroupFieldset.defaultProps = {
-
+  labelWidth: 140,
+  submit: false
 };
 
 export default GroupFieldset;

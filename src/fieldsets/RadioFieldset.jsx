@@ -9,6 +9,8 @@ import PropTypes from 'prop-types';
 import FormField from '../FormField';
 import RadioGroup from '../controls/RadioGroup';
 import FieldConverter from '../FieldConverter';
+import Button from '../common/Button';
+import Collapse, { Panel } from 'rc-collapse';
 
 class RadioFieldset extends React.Component {
   constructor(props) {
@@ -24,17 +26,22 @@ class RadioFieldset extends React.Component {
       radioValue = props.value.radioValue;
     }
     this.state = {
-      radioValue: radioValue
+      radioValue: radioValue,
+      activePanelKey: '0'
     };
     //字段组关联的字段实例
     this.refFields = {};
   }
 
   validate = () => {
-    return Object.keys(this.refFields).reduce((suc, key) => {
+    const resValid = Object.keys(this.refFields).reduce((suc, key) => {
       const valid = this.refFields[key].validate();
       return suc && valid;
     }, true);
+    if(!resValid){
+      this.setState({activePanelKey: '0'});
+    }
+    return resValid;
   };
 
   getValue = () => {
@@ -54,7 +61,7 @@ class RadioFieldset extends React.Component {
     });
   };
 
-  getRadioGroup = () => {
+  renderRadioGroup = () => {
     const options = this.props.optionFields.map((item, index) => {
       return item.option;
     });
@@ -82,6 +89,33 @@ class RadioFieldset extends React.Component {
     return i;
   };
 
+  handleSubmit = () => {
+    if( !this.validate() ){
+      return;
+    }
+    if(this.props.onSubmit){
+      this.props.onSubmit({
+        [this.props.name]: this.getValue()
+      });
+    }
+  };
+
+  handleCollapseChange = (key) => {
+    this.setState({activePanelKey: key});
+  };
+
+  renderSubmit = () => {
+    return (
+      <div className="form-item">
+        <div className="item-con" style={{marginLeft: this.props.labelWidth + 10}}>
+          <Button onClick={this.handleSubmit}>
+            保存
+          </Button>
+        </div>
+      </div>
+    );
+  };
+
   render() {
     const radioIndex = this.getRadioIndex();
     const jsonFields = this.props.optionFields[radioIndex].fields || [];
@@ -103,12 +137,23 @@ class RadioFieldset extends React.Component {
       );
     });
 
-    return (
+    const fieldset = (
       <div>
-        {this.getRadioGroup()}
+        {this.renderRadioGroup()}
         {fields}
+        {this.props.submit && this.renderSubmit()}
       </div>
     );
+    if(!!this.props.panelTitle){
+      return (
+        <Collapse activeKey={this.state.activePanelKey} onChange={this.handleCollapseChange}>
+          <Panel header={this.props.panelTitle}>
+            {fieldset}
+          </Panel>
+        </Collapse>
+      );
+    }
+    return fieldset;
   }
 }
 
@@ -123,11 +168,16 @@ RadioFieldset.propTypes = {
       PropTypes.object.isRequired
     ]),
     fields: PropTypes.any.isRequired
-  }))
+  })),
+  //折叠面板标题
+  panelTitle: PropTypes.string,
+  //是否可以分段保存提交
+  submit: PropTypes.bool
 };
 
 RadioFieldset.defaultProps = {
-
+  labelWidth: 140,
+  submit: false
 };
 
 export default RadioFieldset;

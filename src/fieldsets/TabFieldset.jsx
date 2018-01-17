@@ -8,6 +8,8 @@ import PropTypes from 'prop-types';
 
 import FormField from '../FormField';
 import FieldConverter from '../FieldConverter';
+import Button from '../common/Button';
+import Collapse, { Panel } from 'rc-collapse';
 import Select, { Option } from 'rc-select';
 import Tabs, { TabPane } from 'rc-tabs';
 import TabContent from 'rc-tabs/lib/TabContent';
@@ -26,6 +28,7 @@ class TabFieldset extends React.Component {
     }
     this.state = {
       length: length,
+      activePanelKey: '0',
       activeTabKey: '1'
     };
     //字段组关联的字段实例
@@ -41,6 +44,9 @@ class TabFieldset extends React.Component {
         return suc && valid;
       }, true);
       resValid = resValid && tabValid;
+    }
+    if(!resValid){
+      this.setState({activePanelKey: '0'});
     }
     return resValid;
   };
@@ -72,7 +78,7 @@ class TabFieldset extends React.Component {
     });
   };
 
-  getSelectField = () => {
+  renderSelectField = () => {
     let selectField = null;
     if(Array.isArray(this.props.length)){
       const options = this.props.length.map((num, index) => {
@@ -93,6 +99,33 @@ class TabFieldset extends React.Component {
       );
     }
     return selectField;
+  };
+
+  handleSubmit = () => {
+    if( !this.validate() ){
+      return;
+    }
+    if(this.props.onSubmit){
+      this.props.onSubmit({
+        [this.props.name]: this.getValue()
+      });
+    }
+  };
+
+  handleCollapseChange = (key) => {
+    this.setState({activePanelKey: key});
+  };
+
+  renderSubmit = () => {
+    return (
+      <div className="form-item">
+        <div className="item-con" style={{marginLeft: this.props.labelWidth + 10}}>
+          <Button onClick={this.handleSubmit}>
+            保存
+          </Button>
+        </div>
+      </div>
+    );
   };
 
   render() {
@@ -139,9 +172,9 @@ class TabFieldset extends React.Component {
       );
     }
 
-    return (
+    const fieldset = (
       <div>
-        {this.getSelectField()}
+        {this.renderSelectField()}
         <Tabs
           activeKey={this.state.activeTabKey}
           onChange={this.handleTabChange}
@@ -151,8 +184,19 @@ class TabFieldset extends React.Component {
         >
           {tabPanels}
         </Tabs>
+        {this.props.submit && this.renderSubmit()}
       </div>
     );
+    if(!!this.props.panelTitle){
+      return (
+        <Collapse activeKey={this.state.activePanelKey} onChange={this.handleCollapseChange}>
+          <Panel header={this.props.panelTitle}>
+            {fieldset}
+          </Panel>
+        </Collapse>
+      );
+    }
+    return fieldset;
   }
 }
 
@@ -169,11 +213,17 @@ TabFieldset.propTypes = {
     PropTypes.array.isRequired,
   ]),
   //字段组的值
-  value: PropTypes.any
+  value: PropTypes.any,
+  //折叠面板标题
+  panelTitle: PropTypes.string,
+  //是否可以分段保存提交
+  submit: PropTypes.bool
 };
 
 TabFieldset.defaultProps = {
-  numLabel: 'Tab个数'
+  numLabel: 'Tab个数',
+  labelWidth: 140,
+  submit: false
 };
 
 export default TabFieldset;
