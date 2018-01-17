@@ -1,7 +1,7 @@
 [
   {
     "name": "head",
-    "fieldset": "CollapseFieldset",
+    "fieldset": "GroupFieldset",
     "panelTitle": "大图轮展表格样式——头部物料",
     "fields": [
       {
@@ -99,13 +99,15 @@
           }
         ]
       }
-    ]
+    ],
+    "submit": true
   },
   {
     "name": "table",
     "fieldset": "TableFieldset",
+    "panelTitle": "大图轮展表格样式——表格物料",
     "rowNum": [5],
-    "colNum": [4,5,6],
+    "colNum": [3,4,5],
     "headerFields": [
       {
         "name": "text",
@@ -126,8 +128,9 @@
         "control": "Input",
         "label": "链接",
         "defaultValue": "http://",
-        "rules": {"required": true, "url": true, "maxBytes": 512}
+        "rules": {"required": true, "url": true, "maxBytes": 1024}
       }
-    ]
+    ],
+    "submit": true
   }
 ]

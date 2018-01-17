@@ -24,12 +24,13 @@
         "rules": {"required": true, "minBytes": 10, "maxBytes": 30}
       },
       {
-        "name": "description",
+        "name": "descriptionList",
         "fieldset": "ListFieldset",
         "numLabel": "描述个数",
         "length": [3,4,5,6],
         "fields": [
           {
+            "name": "text",
             "control": "Input",
             "label": "描述",
             "rules": {"required": true, "minBytes": 10, "maxBytes": 20}
@@ -143,7 +144,7 @@
                 "uploadRules": {
                   "size": 20,
                   "types": ["jpg","png"],
-                  "key": "108-middle-tabList-image"
+                  "key": "108-middle-tabList-imageList-image"
                 }
               },
               {
@@ -192,6 +193,7 @@
         "defaultValue": "http://",
         "rules": {"required": true, "url": true, "maxBytes": 512}
       }
-    ]
+    ],
+    "submit": true
   }
 ]
