@@ -53,7 +53,7 @@ class AutoForm extends React.Component {
         value: formData[item.name],
         fieldRef: (field) => {this.refFields[item.name] = field;}
       };
-      if(item.fieldset === 'CollapseFieldset'){
+      if(('fieldset' in item) && !!item.submit){
         fieldProps.onSubmit = props.onSubmit;
       }
       return (

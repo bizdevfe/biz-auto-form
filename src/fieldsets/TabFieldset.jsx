@@ -89,7 +89,7 @@ class TabFieldset extends React.Component {
       selectField = (
         <FormField
           label={this.props.numLabel}
-          value={this.state.length}
+          value={this.state.length+''}
           onChange={this.handleNumChange}
         >
           <Select style={{ width: 100 }}>

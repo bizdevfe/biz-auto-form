@@ -22,6 +22,7 @@ const validateRules = {
   url: {type: 'url', message: '请输入有效的url'},
   email: {type: 'email', message: '请输入有效的email地址'},
   date: {type: 'date', message: '请输入有效的日期'},
+  number: {type: 'number', message: '请输入有效数字'},
   maxBytes: (num) => {
     return { maxBytes: num, message: `该项字节长度不能超过${num}字节`, validator: checkMaxBytes}
   },

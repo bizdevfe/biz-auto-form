@@ -101,7 +101,7 @@ class TableFieldset extends React.Component {
       selectField = (
         <FormField
           label="表格行数"
-          value={this.state.rowNum}
+          value={this.state.rowNum+''}
           onChange={this.handleRowNumChange}
         >
           <Select style={{ width: 100 }}>
@@ -124,7 +124,7 @@ class TableFieldset extends React.Component {
       selectField = (
         <FormField
           label="表格列数"
-          value={this.state.colNum}
+          value={this.state.colNum+''}
           onChange={this.handleColNumChange}
         >
           <Select style={{ width: 100 }}>
@@ -216,6 +216,7 @@ class TableFieldset extends React.Component {
           {headerTab}
           {rowTabs}
         </Tabs>
+        {this.props.submit && this.renderSubmit()}
       </div>
     );
     if(!!this.props.panelTitle){

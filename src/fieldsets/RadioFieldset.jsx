@@ -22,8 +22,8 @@ class RadioFieldset extends React.Component {
     if(props.defaultRadio){
       radioValue = props.defaultRadio;
     }
-    if(props.value && props.value.radioValue){
-      radioValue = props.value.radioValue;
+    if(props.value && props.value[props.radioValueKey]){
+      radioValue = props.value[props.radioValueKey];
     }
     this.state = {
       radioValue: radioValue,
@@ -46,7 +46,7 @@ class RadioFieldset extends React.Component {
 
   getValue = () => {
     const fieldsetValue = {
-      radioValue: this.state.radioValue
+      [this.props.radioValueKey]: this.state.radioValue
     };
     Object.keys(this.refFields).forEach((key) => {
       const value = this.refFields[key].getValue();
@@ -161,6 +161,7 @@ RadioFieldset.propTypes = {
   name: PropTypes.string.isRequired,
   radioLabel: PropTypes.string,
   value: PropTypes.any,
+  radioValueKey: PropTypes.string,
   defaultRadio: PropTypes.string,
   optionFields: PropTypes.arrayOf(PropTypes.shape({
     option: PropTypes.oneOfType([
@@ -176,6 +177,7 @@ RadioFieldset.propTypes = {
 };
 
 RadioFieldset.defaultProps = {
+  radioValueKey: 'radioValue',
   labelWidth: 140,
   submit: false
 };

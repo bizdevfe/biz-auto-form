@@ -91,7 +91,7 @@ class DateTimeInput extends React.Component {
               return (
                 <span tabIndex="0">
                   <input
-                    placeholder="请选择日期时间"
+                    placeholder={props.showTime ? "请选择日期时间": "请选择日期"}
                     className={classNames('rc-input', props.className)}
                     disabled={props.disabled}
                     readOnly

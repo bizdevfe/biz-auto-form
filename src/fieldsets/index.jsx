@@ -2,7 +2,6 @@ import GroupFieldset from './GroupFieldset';
 import ListFieldset from './ListFieldset';
 import RadioFieldset from './RadioFieldset';
 import TabFieldset from './TabFieldset';
-import CollapseFieldset from './CollapseFieldset';
 import TableFieldset from './TableFieldset';
 
 export default {
@@ -10,6 +9,5 @@ export default {
   ListFieldset,
   RadioFieldset,
   TabFieldset,
-  CollapseFieldset,
   TableFieldset
 };
