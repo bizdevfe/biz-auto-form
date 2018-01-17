@@ -1,6 +1,6 @@
 {
   "name": "@bizfe/biz-auto-form",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "some form components for auto-generated in ad systems",
   "main": "lib/index.js",
   "scripts": {
