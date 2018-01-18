@@ -131,6 +131,7 @@ class TabFieldset extends React.Component {
   render() {
     const props = this.props;
     const fieldsetValue = props.value || [];
+    //所选tab 个数在数组中的下标
     let tabNumIndex = 0;
     if(Array.isArray(props.length)){
       tabNumIndex = props.length.indexOf(this.state.length);
@@ -153,6 +154,7 @@ class TabFieldset extends React.Component {
 
         return (
           <FieldConverter
+            labelWidth={props.labelWidth}
             {...fieldProps}
             key={`tab${i+1}-${item.name}`}
             value={tabValue[item.name]}

@@ -31,6 +31,16 @@ class ListFieldset extends React.Component {
     this.refFields = [];
   }
 
+  componentWillReceiveProps(nextProps){
+    if ('length' in nextProps) {
+      let length = nextProps.length;
+      if(Array.isArray(nextProps.length)){
+        length = nextProps.length[0];
+      }
+      this.setState({ length });
+    }
+  }
+
   validate = () => {
     const props = this.props;
     let resValid = true;
@@ -135,6 +145,7 @@ class ListFieldset extends React.Component {
   render() {
     const props = this.props;
     const fieldsetValue = props.value || [];
+    //所选长度 在数组中的下标
     let numIndex = 0;
     if(Array.isArray(props.length)){
       numIndex = props.length.indexOf(this.state.length);
@@ -146,6 +157,7 @@ class ListFieldset extends React.Component {
       for(let i = 0; i< this.state.length; i++) {
         const field = (
           <FieldConverter
+            labelWidth={props.labelWidth}
             {...item}
             key={props.name + (i + 1)}
             label={item.label + (i + 1)}
@@ -174,6 +186,7 @@ class ListFieldset extends React.Component {
           }
           return (
             <FieldConverter
+              labelWidth={props.labelWidth}
               {...fieldProps}
               key={item.name + (i+1)}
               label={item.label + (i+1)}

@@ -73,6 +73,7 @@ class GroupFieldset extends React.Component {
     const fields = this.props.fields.map((item, index) => {
       return (
         <FieldConverter
+          labelWidth={this.props.labelWidth}
           {...item}
           key={item.name}
           value={fieldsetValue[item.name]}

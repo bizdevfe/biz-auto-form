@@ -94,7 +94,7 @@ class VideoUpload extends React.Component {
             value={this.state.value}
             disabled
           />
-          <Button style={{marginLeft: 5}} disabled={props.disabled}>
+          <Button className="ghost-btn" style={{marginLeft: 5}} disabled={props.disabled}>
             上传视频
           </Button>
         </Upload>

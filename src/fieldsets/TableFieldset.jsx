@@ -2,6 +2,7 @@
  * author: KCFE
  * date: 2018/01/08
  * description: 收取Table数据的字段组
+ * 字段组值的格式 value: {header:[], rows: []}
  */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -168,13 +169,47 @@ class TableFieldset extends React.Component {
     const fieldsetValue = props.value || {};
     const headerValue = fieldsetValue.header;
     const rowsValue = fieldsetValue.rows || [];
+    //所选列数 在数组中的下标
+    let numIndex = 0;
+    if(Array.isArray(props.colNum)){
+      numIndex = props.colNum.indexOf(this.state.colNum);
+    }
+    //第一行字段
+    const headerFields = props.headerFields.map((item) => {
+      if(item.rules && (item.rules.maxBytes || item.rules.minBytes)){
+        const rules = {...item.rules};
+        if(Array.isArray(rules.maxBytes)){
+          rules.maxBytes = rules.maxBytes[numIndex];
+        }
+        if(Array.isArray(rules.minBytes)){
+          rules.minBytes = rules.minBytes[numIndex];
+        }
+        return {...item, rules};
+      }
+      return item;
+    });
+    //其他行字段
+    const rowFields = props.rowFields.map((item) => {
+      if(item.rules && (item.rules.maxBytes || item.rules.minBytes)){
+        const rules = {...item.rules};
+        if(Array.isArray(rules.maxBytes)){
+          rules.maxBytes = rules.maxBytes[numIndex];
+        }
+        if(Array.isArray(rules.minBytes)){
+          rules.minBytes = rules.minBytes[numIndex];
+        }
+        return {...item, rules};
+      }
+      return item;
+    });
     const headerTab = (
       <TabPane key="1" tab="第 1 行" style={{padding: '10px 0',maxHeight: '500px'}} forceRender>
         <ListFieldset
-          key={`row1-${this.state.colNum}cols`}
+          labelWidth={props.labelWidth}
+          key={`row1`}
           name="header"
           length={this.state.colNum}
-          fields={props.headerFields}
+          fields={headerFields}
           value={headerValue}
           ref={(field) => {
             this.refFields[0] = field;
@@ -189,10 +224,11 @@ class TableFieldset extends React.Component {
       rowTabs.push(
         <TabPane key={i+1} tab={`第 ${i+1} 行`} style={{padding: '10px 0',maxHeight: '500px'}} forceRender>
           <ListFieldset
-            key={`row${i+1}-${this.state.colNum}cols`}
+            labelWidth={props.labelWidth}
+            key={`row${i+1}`}
             name={`row${i+1}`}
             length={this.state.colNum}
-            fields={props.rowFields}
+            fields={rowFields}
             value={colsValue.cols}
             ref={(field) => {
               this.refFields[i] = field;

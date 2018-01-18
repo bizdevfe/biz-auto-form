@@ -104,7 +104,7 @@ class ImageUpload extends React.Component {
             value={this.state.value}
             disabled
           />
-          <Button style={{marginLeft: 5}} disabled={props.disabled}>
+          <Button className="ghost-btn" style={{marginLeft: 5}} disabled={props.disabled}>
             上传图片
           </Button>
         </Upload>

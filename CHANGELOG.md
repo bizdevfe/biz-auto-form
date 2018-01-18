@@ -1,8 +1,14 @@
 # 更新日志
 
+## 1.1.3
+`2018-01-18`
+- 修改 ListFieldset，TableFieldset组件,可变字节倒计。
+- 修改按钮样式。
+- fix labelWidth props传入。
+
 ## 1.1.2
 `2018-01-17`
-- 修复radioFieldset组件。
+- 修复RadioFieldset组件。
 - 修改DateTimeInput 输入控件。
 
 ## 1.1.1
