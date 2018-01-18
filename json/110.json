@@ -76,7 +76,7 @@
         "control": "Input",
         "label": "按钮链接",
         "defaultValue": "http://",
-        "rules": {"required": true, "url": true, "maxBytes": 512}
+        "rules": {"required": true, "url": true, "maxBytes": 256}
       }
     ],
     "submit": true
@@ -88,6 +88,10 @@
     "radioValueKey": "type",
     "radioLabel": "倒计时类型",
     "optionFields": [
+      {
+        "option": {"value": "0", "text": "无"},
+        "fields": []
+      },
       {
         "option": {"value": "1", "text": "按秒"},
         "fields": [
