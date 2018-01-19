@@ -1,5 +1,6 @@
 import React from 'react';
-import {RedWordInput} from '../../src/index';
+import {Controls} from '../../src/index';
+const RedWordInput = Controls.RedWordInput;
 
 class RedWordInputDemo extends React.Component {
   constructor(props) {

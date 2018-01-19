@@ -1,5 +1,6 @@
 import React from 'react';
-import {DateTimeInput} from '../../src/index';
+import {Controls} from '../../src/index';
+const DateTimeInput = Controls.DateTimeInput;
 
 class DateTimeInputDemo extends React.Component {
   constructor(props) {

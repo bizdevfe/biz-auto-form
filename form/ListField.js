@@ -1,5 +1,6 @@
 import React from 'react';
-import {ListFieldset, Form} from '../../src/index';
+import {Form, Fieldsets} from '../../src/index';
+const ListFieldset = Fieldsets.ListFieldset;
 
 const listFieldContent = [
   {
