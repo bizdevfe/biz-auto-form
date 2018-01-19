@@ -1,5 +1,6 @@
 import React from 'react';
-import {LinkTextArea} from '../../src/index';
+import {Controls} from '../../src/index';
+const LinkTextArea = Controls.LinkTextArea;
 
 class LinkTextAreaDemo extends React.Component {
   constructor(props) {

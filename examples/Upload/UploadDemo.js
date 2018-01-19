@@ -1,6 +1,8 @@
 import React from 'react';
-import {ImageUpload} from '../../src/index';
-import {VideoUpload} from '../../src/index';
+import {Controls} from '../../src/index';
+const ImageUpload = Controls.ImageUpload;
+const VideoUpload = Controls.VideoUpload;
+
 
 class UploadDemo extends React.Component {
   constructor(props) {

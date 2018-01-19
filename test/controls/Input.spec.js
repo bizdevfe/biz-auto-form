@@ -3,7 +3,7 @@ import sinon from 'sinon';
 import {shallow} from 'enzyme';
 import {expect} from 'chai';
 
-import Input from '../../src/controls/Input';
+import Input from '../../src/controls';
 import Limiter from '../../src/common/Limiter';
 
 describe('Input', () => {

@@ -1,5 +1,6 @@
 import React from 'react';
-import {TextArea} from '../../src/index';
+import {Controls} from '../../src/index';
+const TextArea = Controls.TextArea;
 
 class TextAreaDemo extends React.Component {
   constructor(props) {

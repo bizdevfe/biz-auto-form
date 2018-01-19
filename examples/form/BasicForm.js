@@ -1,9 +1,6 @@
 import React from 'react';
-import {Input, RedWordInput,TextArea,LinkTextArea,
-  ImageUpload,DateTimeInput,RadioGroup,
-  Form,FormField} from '../../src/index.jsx';
+import {Form, FormField, Controls, ValidateRules} from '../../src/index.jsx';
 
-import ValidateRules from '../../src/common/validateRules.jsx';
 
 class FormDemo extends React.Component {
   constructor(props) {
@@ -25,7 +22,7 @@ class FormDemo extends React.Component {
             ValidateRules.required, ValidateRules.maxBytes(24)
           ]}
         >
-          <RedWordInput limiter={{max: 24}} />
+          <Controls.RedWordInput limiter={{max: 24}} />
         </FormField>
 
         <FormField
@@ -36,7 +33,7 @@ class FormDemo extends React.Component {
             ValidateRules.url, ValidateRules.maxBytes(512)
           ]}
         >
-          <Input limiter={{max: 512}} />
+          <Controls.Input limiter={{max: 512}} />
         </FormField>
 
         <FormField
@@ -46,7 +43,7 @@ class FormDemo extends React.Component {
             ValidateRules.required, ValidateRules.maxBytes(50)
           ]}
         >
-          <TextArea limiter={{max: 50}} />
+          <Controls.TextArea limiter={{max: 50}} />
         </FormField>
 
         <FormField
@@ -56,7 +53,7 @@ class FormDemo extends React.Component {
             ValidateRules.required, ValidateRules.maxBytes(50), ValidateRules.minBytes(30)
           ]}
         >
-          <LinkTextArea limiter={{max: 50}} />
+          <Controls.LinkTextArea limiter={{max: 50}} />
         </FormField>
 
         <FormField
@@ -66,7 +63,7 @@ class FormDemo extends React.Component {
             {required: true, message: '请上传图片'}
           ]}
         >
-          <ImageUpload uploadRules={{size: 20, types: ['png'], key: '200x100'}} />
+          <Controls.ImageUpload uploadRules={{size: 20, types: ['png'], key: '200x100'}} />
         </FormField>
 
         <FormField
@@ -76,7 +73,7 @@ class FormDemo extends React.Component {
             ValidateRules.required
           ]}
         >
-          <DateTimeInput />
+          <Controls.DateTimeInput />
         </FormField>
 
         <FormField
@@ -87,7 +84,7 @@ class FormDemo extends React.Component {
             ValidateRules.required
           ]}
         >
-          <RadioGroup
+          <Controls.RadioGroup
             options={[
               {"value": "black", "text": "黑色"},
               {"value": "white", "text": "白色"}

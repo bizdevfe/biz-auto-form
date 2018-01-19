@@ -1,5 +1,5 @@
 import React from 'react';
-import {AutoForm} from '../../src/index';
+import AutoForm from '../../src/index';
 
 class AsyncAutoForm extends React.Component {
   constructor(props) {

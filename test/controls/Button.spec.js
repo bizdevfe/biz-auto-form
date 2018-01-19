@@ -3,7 +3,7 @@ import sinon from 'sinon';
 import {shallow} from 'enzyme';
 import {expect} from 'chai';
 
-import Button from '../../src/controls/Button';
+import Button from '../../src/common/Button';
 
 describe('Button', () => {
   describe('Default', () => {

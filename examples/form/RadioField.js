@@ -1,5 +1,6 @@
 import React from 'react';
-import {RadioFieldset, Form} from '../../src/index';
+import {Form, Fieldsets} from '../../src/index';
+const RadioFieldset = Fieldsets.RadioFieldset;
 
 const radioFieldContent = [
   {
