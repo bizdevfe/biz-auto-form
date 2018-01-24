@@ -52,3 +52,4 @@ lib
 coverage
 package-lock.json
 assets/*.css
+examples/dist

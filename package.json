@@ -5,6 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "dev": "webpack-dev-server --config webpack.dev.js",
+    "doc": "webpack --config webpack.docs.js",
     "test": "karma start",
     "precompile": "rimraf lib",
     "compile": "lessc assets/index.less assets/index.css && babel src --out-dir lib",
