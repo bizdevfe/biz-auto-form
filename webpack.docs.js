@@ -9,7 +9,7 @@ module.exports = {
     path: path.join(__dirname, 'examples/dist'),
     filename: '[name].js',
     chunkFilename: '[name].chunk.js',
-    publicPath: './dist/'
+    publicPath: 'dist/'
   },
   resolve: {
     extensions: ['.js', '.jsx']
