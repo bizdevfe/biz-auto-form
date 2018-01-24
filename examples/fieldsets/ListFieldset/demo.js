@@ -1,12 +1,12 @@
 import React from 'react';
-import {Form, Fieldsets} from '../../src/index';
+import {Form, Fieldsets} from '../../../src/index';
 const ListFieldset = Fieldsets.ListFieldset;
 
-const listFieldContent = [
+const fields = [
   {
     "name": "image",
     "control": "ImageUpload",
-    "label": "大图",
+    "label": "图片",
     "rules": {"imageRequired": true},
     "uploadRules": {
       "size": 100,
@@ -17,14 +17,14 @@ const listFieldContent = [
   {
     "name": "link",
     "control": "Input",
-    "label": "大图链接",
+    "label": "图片链接",
     "defaultValue": "http://",
     "limiter": {"max": 512},
-    "rules": {"required": true, "url": true}
+    "rules": {"required": true, "url": true, "maxBytes": 512}
   }
 ];
 
-class FormTest extends React.Component {
+class Demo extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -37,10 +37,11 @@ class FormTest extends React.Component {
     return (
       <Form onSubmit={this.handleSubmit}>
         <ListFieldset
-          name="bigImageList"
-          length={[3,4]}
-          numLabel="大图数"
-          fields={listFieldContent}
+          name="imageList"
+          length={[2,3,4]}
+          numLabel="图片数"
+          panelTitle="ListFieldset"
+          fields={fields}
         >
         </ListFieldset>
       </Form>
@@ -48,4 +49,4 @@ class FormTest extends React.Component {
   }
 }
 
-export default FormTest;
+export default Demo;

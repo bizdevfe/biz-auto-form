@@ -1,12 +1,12 @@
 import React from 'react';
-import {Controls} from '../../src/index';
-const DateTimeInput = Controls.DateTimeInput;
+import {Controls} from '../../../src/index';
+const TextArea = Controls.TextArea;
 
-class DateTimeInputDemo extends React.Component {
+class TextAreaDemo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: '2017-12-08 14:55:00'
+      value: 'test'
     }
   }
 
@@ -14,20 +14,21 @@ class DateTimeInputDemo extends React.Component {
     this.setState({
       value: value
     });
-    console.log(value);
   };
 
   render() {
     return (
       <div className="example">
-        <DateTimeInput
+        <TextArea
           value={this.state.value}
+          limiter={{
+            max: 30
+          }}
           onChange={this.handleChange}
-          showTime={true}
         />
       </div>
     );
   }
 }
 
-export default DateTimeInputDemo;
+export default TextAreaDemo;

@@ -1,8 +1,12 @@
-[
+import React from 'react';
+import AutoForm from '../../src/index';
+
+const descriptor = [
   {
     "name": "title",
     "control": "RedWordInput",
     "label": "标题",
+    "tips": "标题中可以插入标红词",
     "limiter": {"max": 24},
     "rules": {"required": true, "maxBytes":24}
   },
@@ -69,4 +73,25 @@
       {"value": "white", "text": "白色"}
     ]
   }
-]
+];
+
+class AutoFormDemo extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  handleSubmit = (values) => {
+    console.log(values);
+  };
+
+  render() {
+    return (
+      <AutoForm
+        onSubmit={this.handleSubmit}
+        descriptor={descriptor}
+      />
+    );
+  }
+}
+
+export default AutoFormDemo;

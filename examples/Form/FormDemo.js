@@ -91,6 +91,22 @@ class FormDemo extends React.Component {
             ]}
           />
         </FormField>
+
+        <FormField
+          name="color"
+          label="颜色"
+          defaultValue="white"
+          rules={[
+            ValidateRules.required
+          ]}
+        >
+          <Controls.Select
+            options={[
+              {"value": "black", "text": "黑色"},
+              {"value": "white", "text": "白色"}
+            ]}
+          />
+        </FormField>
       </Form>
     );
   }

@@ -1,12 +1,12 @@
 import React from 'react';
-import {Controls} from '../../src/index';
-const TextArea = Controls.TextArea;
+import {Controls} from '../../../src/index';
+const RedWordInput = Controls.RedWordInput;
 
-class TextAreaDemo extends React.Component {
+class RedWordInputDemo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 'test'
+      value: ''
     }
   }
 
@@ -19,10 +19,10 @@ class TextAreaDemo extends React.Component {
   render() {
     return (
       <div className="example">
-        <TextArea
+        <RedWordInput
           value={this.state.value}
           limiter={{
-            max: 30
+            max: 24
           }}
           onChange={this.handleChange}
         />
@@ -31,4 +31,4 @@ class TextAreaDemo extends React.Component {
   }
 }
 
-export default TextAreaDemo;
+export default RedWordInputDemo;

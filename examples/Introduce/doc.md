@@ -46,6 +46,7 @@ import { ListFieldset } from '@bizfe/biz-auto-form';
 const ListFieldset = Fieldsets.ListFieldset;
 ```
 
+
 ## 设计方案
 ![image](/images/auto-form.png)
 
@@ -61,3 +62,24 @@ Fieldsets组件以FormField为基础，也可以嵌套Fieldsets组件。
 
 Controls中的组件和Fieldsets中的组件，是可以扩展的，以满足更多的表单输入需求。
 扩展开发的Controls 组件和Fieldsets 组件，添加至 Controls 和 Fieldsets 中即可用于自动生成。
+
+## 目录结构
+```
+assets        //各组件样式
+├── styles
+└── index.less
+examples     //示例及文档
+src          //源码
+├── common      
+    ├── 
+├── controls   //各输入控件
+    ├── 
+├── fieldsets  //各形式字段组
+    ├── 
+├── AutoForm.jsx
+├── FieldConverter.jsx
+├── Form.jsx
+├── FormField.jsx
+└── index.jsx
+test          //单元测试
+```

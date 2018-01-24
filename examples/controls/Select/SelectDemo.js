@@ -1,12 +1,17 @@
 import React from 'react';
-import {Controls} from '../../src/index';
-const LinkTextArea = Controls.LinkTextArea;
+import {Controls} from '../../../src/index';
+const Select = Controls.Select;
 
-class LinkTextAreaDemo extends React.Component {
+const options = [
+  {"value": "black", "text": "黑色"},
+  {"value": "white", "text": "白色"}
+];
+
+class SelectDemo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: ''
+      value: 'white'
     }
   }
 
@@ -14,16 +19,15 @@ class LinkTextAreaDemo extends React.Component {
     this.setState({
       value: value
     });
+    console.log(value);
   };
 
   render() {
     return (
       <div className="example">
-        <LinkTextArea
+        <Select
+          options={options}
           value={this.state.value}
-          limiter={{
-            max: 50
-          }}
           onChange={this.handleChange}
         />
       </div>
@@ -31,4 +35,4 @@ class LinkTextAreaDemo extends React.Component {
   }
 }
 
-export default LinkTextAreaDemo;
+export default SelectDemo;
