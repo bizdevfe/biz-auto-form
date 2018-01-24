@@ -1,5 +1,5 @@
 import React from 'react';
-import {Controls} from '../../src/index';
+import {Controls} from '../../../src/index';
 const Input = Controls.Input;
 
 class InputDemo extends React.Component {

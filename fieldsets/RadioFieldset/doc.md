@@ -1,8 +1,9 @@
-import React from 'react';
-import {Form, Fieldsets} from '../../src/index';
-const RadioFieldset = Fieldsets.RadioFieldset;
+## RadioFieldset 字段组说明
+用于选择性地使用字段组，可根据 radio 切换字段的组合，见示例
 
-const radioFieldContent = [
+## Usage
+```
+const optionFields = [
   {
     "option": {"value": "official", "text": "官网链接"},
     "fields": [
@@ -39,7 +40,7 @@ const radioFieldContent = [
   }
 ];
 
-class FormTest extends React.Component {
+class Demo extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -54,12 +55,27 @@ class FormTest extends React.Component {
         <RadioFieldset
           name="buttonLink"
           radioLabel="按钮链接"
-          optionFields={radioFieldContent}
+          defaultRadio="download"
+          panelTitle="RadioFieldset"
+          optionFields={optionFields}
         >
         </RadioFieldset>
       </Form>
     );
   }
 }
+```
 
-export default FormTest;
+## API
+
+### RadioFieldset props
+|name    | type   | default | description |
+|--------|--------|---------|-------------|
+|name | string |  | 字段组名，用于存取字段组的值 |
+|value | object |  | 字段组的值 |
+|radioLabel | string |  | radio 字段标签 |
+|radioValueKey | string | 'radioValue' | radio 字段名，用于存取radio 的值 |
+|defaultRadio | string |  | radio 默认选中值 |
+|optionFields | array |  | 字段组中字段json描述，json数组 |
+|panelTitle | string |  | 折叠面板标题 |
+|submit | bool | false | 是否可以分段保存提交 |

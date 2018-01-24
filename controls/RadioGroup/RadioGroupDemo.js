@@ -1,5 +1,5 @@
 import React from 'react';
-import {Controls} from '../../src/index';
+import {Controls} from '../../../src/index';
 const RadioGroup = Controls.RadioGroup;
 
 const options = [

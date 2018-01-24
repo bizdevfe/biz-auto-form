@@ -1,9 +1,9 @@
 import React from 'react';
-import RadioGroupDemo from './RadioGroupDemo';
-import MarkdownElement from '../MarkdownElement';
+import Demo from './demo';
+import MarkdownElement from '../../MarkdownElement';
 import doc from './doc.md';
 
-class RadioGroupDoc extends React.Component {
+class TableFieldsetDoc extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -11,13 +11,13 @@ class RadioGroupDoc extends React.Component {
   render() {
     return (
       <div>
-        <h1>RadioGroup</h1>
+        <h1>TableFieldset 字段组</h1>
         <h4>示例：</h4>
-        <RadioGroupDemo/>
+        <Demo/>
         <MarkdownElement text={doc}/>
       </div>
     );
   }
 }
 
-export default RadioGroupDoc;
+export default TableFieldsetDoc;

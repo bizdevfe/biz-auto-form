@@ -3,7 +3,7 @@ import InputDemo from './InputDemo';
 import TextAreaDemo from './TextAreaDemo';
 import RedWordInputDemo from './RedWordInputDemo';
 import LinkTextAreaDemo from './LinkTextAreaDemo';
-import MarkdownElement from '../MarkdownElement';
+import MarkdownElement from '../../MarkdownElement';
 import doc from './doc.md';
 
 class InputDoc extends React.Component {

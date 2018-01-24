@@ -1,6 +1,6 @@
 import React from 'react';
 import UploadDemo from './UploadDemo';
-import MarkdownElement from '../MarkdownElement';
+import MarkdownElement from '../../MarkdownElement';
 import doc from './doc.md';
 
 class UploadDoc extends React.Component {
