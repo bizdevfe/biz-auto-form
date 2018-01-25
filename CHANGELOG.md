@@ -1,5 +1,11 @@
 # 更新日志
 
+## 1.2.0 stable 稳定版
+`2018-01-25`
+- 修改模块export方式。
+- 完善 docs 和 demos。
+- 修改npm script。
+
 ## 1.1.3
 `2018-01-18`
 - 修改 ListFieldset，TableFieldset组件,可变字节倒计。

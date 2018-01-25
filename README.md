@@ -17,13 +17,14 @@ npm install @bizfe/biz-auto-form
 ## 使用示例
 ```
 import AutoForm from '@bizfe/biz-auto-form';
+import formDesc from './108.json';
 
 ReactDom.render(
     <AutoForm
         data={dataObj}
         onSubmit={(values) => {
           console.log(values);
-        };}
+        }}
         descriptor={formDesc}
     />,
     this.el
@@ -46,9 +47,11 @@ import { ListFieldset } from '@bizfe/biz-auto-form';
 const ListFieldset = Fieldsets.ListFieldset;
 ```
 
+## Docs and Demos
+[https://galaxy-fe.github.io/biz-auto-form/](https://galaxy-fe.github.io/biz-auto-form/)
 
 ## 设计方案
-![image](./examples/images/auto-form.png)
+![image](https://galaxy-fe.github.io/biz-auto-form/images/auto-form.png)
 
 AutoForm组件通过data属性`（json对象）`可以回填表单数据json对象，
 通过descriptor属性`（json对象的数组，每一项对应一个字段）`自动渲染生成整个表单，
@@ -83,3 +86,9 @@ src          //源码
 └── index.jsx
 test          //单元测试
 ```
+
+## Test Case
+```
+npm run test
+```
+

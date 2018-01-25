@@ -1,15 +1,17 @@
 {
   "name": "@bizfe/biz-auto-form",
-  "version": "1.1.3",
-  "description": "some form components for auto-generated in ad systems",
+  "version": "1.2.0",
+  "description": "Auto-generated form react components used in ad material system",
   "main": "lib/index.js",
   "scripts": {
     "dev": "webpack-dev-server --config webpack.dev.js",
     "doc": "webpack --config webpack.docs.js",
     "test": "karma start",
+    "build": "webpack",
+    "lessc": "lessc assets/index.less assets/index.css",
     "precompile": "rimraf lib",
-    "compile": "lessc assets/index.less assets/index.css && babel src --out-dir lib",
-    "prepublishOnly": "npm run compile"
+    "compile": "npm run lessc && babel src --out-dir lib",
+    "prepublishOnly": "npm run compile && npm run build"
   },
   "repository": {
     "type": "git",
@@ -27,8 +29,9 @@
   },
   "homepage": "https://github.com/galaxy-fe/biz-auto-form#readme",
   "files": [
-    "assets/*.css",
-    "lib"
+    "assets",
+    "lib",
+    "dist"
   ],
   "dependencies": {
     "async-validator": "^1.8.1",
