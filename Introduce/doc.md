@@ -17,13 +17,14 @@ npm install @bizfe/biz-auto-form
 ## 使用示例
 ```
 import AutoForm from '@bizfe/biz-auto-form';
+import formDesc from './108.json';
 
 ReactDom.render(
     <AutoForm
         data={dataObj}
         onSubmit={(values) => {
           console.log(values);
-        };}
+        }}
         descriptor={formDesc}
     />,
     this.el
@@ -46,6 +47,8 @@ import { ListFieldset } from '@bizfe/biz-auto-form';
 const ListFieldset = Fieldsets.ListFieldset;
 ```
 
+## Docs and Demos
+[https://galaxy-fe.github.io/biz-auto-form/](https://galaxy-fe.github.io/biz-auto-form/)
 
 ## 设计方案
 ![image](./images/auto-form.png)
@@ -83,3 +86,9 @@ src          //源码
 └── index.jsx
 test          //单元测试
 ```
+
+## Test Case
+```
+npm run test
+```
+
